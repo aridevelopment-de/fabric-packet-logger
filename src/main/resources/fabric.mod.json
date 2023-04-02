@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "packetlogger",
+  "version": "${version}",
+
+  "name": "Packet Logger",
+  "description": "Logs packet with a nice web-ui",
+  "authors": [
+    "Ari van Houten"
+  ],
+  "contact": {
+    "homepage": "https://aridevelopment.de",
+    "sources": "https://github.com/aridevelopment-de"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/packetlogger/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "de.ari24.packetlogger.PacketLogger"
+    ]
+  },
+  "mixins": [
+    "packetlogger.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.17",
+    "fabric-api": "*",
+    "minecraft": "~1.19.4",
+    "java": ">=17"
+  },
+  "suggests": {
+
+  }
+}
