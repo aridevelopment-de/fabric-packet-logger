@@ -4,8 +4,10 @@ There weren't really any good fabric packet loggers out on Modrinth, so I decide
 
 ## Features
 
-- Web-UI (Port 8080)
-- Websocket Connection (Port 1337)
+- Web-UI (Default Port 8080)
+- Websocket Connection (Default Port 1337)
+- InGame config
+- TODO: InGame packet history viewer
 
 ## Websocket
 
