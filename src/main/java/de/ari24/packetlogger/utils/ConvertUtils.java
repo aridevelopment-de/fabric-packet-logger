@@ -27,7 +27,7 @@ public class ConvertUtils {
     public static JsonObject serializeGlobalPos(GlobalPos globalPos) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("dimension", globalPos.getDimension().getValue().toString());
-        jsonObject.addProperty("position", globalPos.getPos().toShortString());
+        jsonObject.addProperty("position", globalPos.getPos().toString());
         return jsonObject;
     }
 

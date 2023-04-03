@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
 import net.minecraft.network.packet.s2c.login.LoginCompressionS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
 import net.minecraft.network.packet.s2c.play.*;
@@ -48,6 +50,11 @@ public class PacketHandler {
         HANDLERS.put(PlaySoundS2CPacket.class, new PlaySoundS2CPacketHandler());
         HANDLERS.put(WorldTimeUpdateS2CPacket.class, new WorldTimeUpdateS2CPacketHandler());
         HANDLERS.put(ChunkDeltaUpdateS2CPacket.class, new ChunkDeltaUpdateS2CPacketHandler());
+        HANDLERS.put(EntityTrackerUpdateS2CPacket.class, new EntityTrackerUpdateS2CPacketHandler());
+        HANDLERS.put(HandSwingC2SPacket.class, new HandSwingS2CPacketHandler());
+        HANDLERS.put(PlayerActionC2SPacket.class, new PlayerActionS2CPacketHandler());
+        HANDLERS.put(PlayerActionResponseS2CPacket.class, new PlayerActionResponseS2CPacketHandler());
+        HANDLERS.put(EntityStatusS2CPacket.class, new EntityStatusS2CPacketHandler());
     }
 
     public static <T extends Packet<?>> void handlePacket(T packet) {
