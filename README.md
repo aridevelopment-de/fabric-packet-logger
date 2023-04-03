@@ -17,4 +17,4 @@ I have a different React project locally which contains the code for the web-ui.
 
 Previews:
 
-[![Preview](https://cdn.discordapp.com/attachments/598256161212596235/1092214455854694410/image.png)](https://google.com/)
+[![Preview](https://cdn.discordapp.com/attachments/598256161212596235/1092402886710927370/image.png)](https://google.com/)
