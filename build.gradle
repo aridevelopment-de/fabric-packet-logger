@@ -25,7 +25,8 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	api("org.java-websocket:Java-WebSocket:1.5.2")
+	implementation("org.java-websocket:Java-WebSocket:1.5.2")
+	include("org.java-websocket:Java-WebSocket:1.5.2")
 
 	// lombok
 	compileOnly 'org.projectlombok:lombok:1.18.26'
