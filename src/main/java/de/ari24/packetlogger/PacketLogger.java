@@ -1,5 +1,7 @@
 package de.ari24.packetlogger;
 
+import de.ari24.packetlogger.comands.CommandHandler;
+import de.ari24.packetlogger.config.PacketLoggerConfig;
 import de.ari24.packetlogger.web.HTTPServer;
 import de.ari24.packetlogger.web.WebsocketServer;
 import net.fabricmc.api.ModInitializer;
@@ -10,19 +12,21 @@ import java.io.IOException;
 
 public class PacketLogger implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("packetlogger");
+    public static final PacketLoggerConfig CONFIG = PacketLoggerConfig.createAndLoad();
     public static WebsocketServer wss;
 
     @Override
     public void onInitialize() {
         LOGGER.info("Starting packet logger...");
+        CommandHandler.registerClient();
 
         try {
-            HTTPServer.start();
+            HTTPServer.start(CONFIG.webserverPort());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        wss = new WebsocketServer(1337);
+        wss = new WebsocketServer(CONFIG.wssPort());
         wss.start();
         LOGGER.info("Packet logger started!");
 

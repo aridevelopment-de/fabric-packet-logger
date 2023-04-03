@@ -13,6 +13,7 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	mavenCentral()
+	maven { url 'https://maven.wispforest.io' }
 }
 
 dependencies {
@@ -31,6 +32,14 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.26'
 	testCompileOnly 'org.projectlombok:lombok:1.18.26'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+	// jankson
+	api("blue.endless:jankson:1.1.0")
+
+	// owo
+	modImplementation "io.wispforest:owo-lib:${project.owo_version}"
+	include "io.wispforest:owo-sentinel:${project.owo_version}"
+	annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
 }
 
 base {

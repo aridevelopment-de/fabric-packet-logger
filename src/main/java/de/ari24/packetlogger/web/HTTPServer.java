@@ -13,9 +13,7 @@ import java.net.InetSocketAddress;
 import java.net.URL;
 
 public class HTTPServer {
-    private static final int port = 8080;
-
-    public static void start() throws IOException {
+    public static void start(int port) throws IOException {
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(port), 0);
         httpServer.createContext("/", new Handler());
 

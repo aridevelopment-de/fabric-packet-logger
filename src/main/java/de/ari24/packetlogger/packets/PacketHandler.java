@@ -73,7 +73,7 @@ public class PacketHandler {
             }
 
             PacketLogger.wss.sendAll(jsonObject);
-        } else {
+        } else if (PacketLogger.CONFIG.sysOutUnknownPackets()) {
             System.out.println(packet.getClass().getSimpleName());
         }
     }
