@@ -9,6 +9,12 @@ There weren't really any good fabric packet loggers out on Modrinth, so I decide
 - InGame config
 - TODO: InGame packet history viewer
 
+## Commands
+
+- ``/packetlogger`` is the base command for all subcommands. You should be able to auto-complete them
+- ``/packetlogger toggleLogging`` - toggles logging
+- ``/packetlogger open`` - opens the web-ui
+
 ## Websocket
 
 By default, the web-ui connects to the websocket and receives the packet information via json data. You can also connect to this websocket as well and receive the same data as the web-ui. I'd recommend using [insomnia](https://insomnia.rest/) or [weasel](https://addons.mozilla.org/de/firefox/addon/websocket-weasel/) on firefox.

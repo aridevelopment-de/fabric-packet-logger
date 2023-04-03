@@ -8,6 +8,7 @@ public class CommandHandler {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(ClientCommandManager.literal("packetlogger")
                     .then(ToggleLogging.register())
+                    .then(OpenWebUi.register())
             );
         });
     }
