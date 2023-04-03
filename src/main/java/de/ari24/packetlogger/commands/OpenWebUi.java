@@ -1,4 +1,4 @@
-package de.ari24.packetlogger.comands;
+package de.ari24.packetlogger.commands;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import de.ari24.packetlogger.PacketLogger;

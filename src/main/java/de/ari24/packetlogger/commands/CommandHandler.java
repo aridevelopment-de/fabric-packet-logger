@@ -1,4 +1,4 @@
-package de.ari24.packetlogger.comands;
+package de.ari24.packetlogger.commands;
 
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;

@@ -1,6 +1,6 @@
 package de.ari24.packetlogger;
 
-import de.ari24.packetlogger.comands.CommandHandler;
+import de.ari24.packetlogger.commands.CommandHandler;
 import de.ari24.packetlogger.config.PacketLoggerConfig;
 import de.ari24.packetlogger.web.HTTPServer;
 import de.ari24.packetlogger.web.WebsocketServer;
