@@ -13,7 +13,7 @@ public class PlayerSpawnPositionS2CPacketHandler implements BasePacketHandler<Pl
     @Override
     public JsonObject serialize(PlayerSpawnPositionS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("pos", packet.getPos().toShortString());
+        jsonObject.addProperty("pos", packet.getPos().toString());
         jsonObject.addProperty("angle", packet.getAngle());
         return jsonObject;
     }

@@ -12,7 +12,7 @@ public class BlockUpdateS2CPacketHandler implements BasePacketHandler<BlockUpdat
     @Override
     public JsonObject serialize(BlockUpdateS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("pos", packet.getPos().toShortString());
+        jsonObject.addProperty("pos", packet.getPos().toString());
         jsonObject.addProperty("state", packet.getState().toString());
         return jsonObject;
     }

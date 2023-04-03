@@ -13,7 +13,7 @@ public class ChunkDeltaUpdateS2CPacketHandler implements BasePacketHandler<Chunk
     @Override
     public JsonObject serialize(ChunkDeltaUpdateS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("sectionPos", ((ChunkDeltaS2CPacketAccessor) packet).getSectionPos().toShortString());
+        jsonObject.addProperty("sectionPos", ((ChunkDeltaS2CPacketAccessor) packet).getSectionPos().toString());
         jsonObject.addProperty("shouldSkipLightingUpdates", packet.shouldSkipLightingUpdates());
         jsonObject.addProperty("blockLength", ((ChunkDeltaS2CPacketAccessor) packet).getBlockStates().length);
         return jsonObject;
