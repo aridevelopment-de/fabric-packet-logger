@@ -4,6 +4,7 @@
   "package": "de.ari24.packetlogger.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ChunkDeltaS2CPacketAccessor",
     "ClientConnectionMixin"
   ],
   "client": [

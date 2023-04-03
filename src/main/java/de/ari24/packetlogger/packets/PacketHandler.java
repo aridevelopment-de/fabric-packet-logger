@@ -2,6 +2,7 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.login.LoginCompressionS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
@@ -9,10 +10,7 @@ import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
 import net.minecraft.network.packet.s2c.query.QueryResponseS2CPacket;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class PacketHandler {
     private static final Map<Class<? extends Packet<?>>, BasePacketHandler<?>> HANDLERS = new HashMap<>();
@@ -48,6 +46,8 @@ public class PacketHandler {
         HANDLERS.put(EntityPositionS2CPacket.class, new EntityPositionS2CPacketHandler());
         HANDLERS.put(BlockUpdateS2CPacket.class, new BlockUpdateS2CPacketHandler());
         HANDLERS.put(PlaySoundS2CPacket.class, new PlaySoundS2CPacketHandler());
+        HANDLERS.put(WorldTimeUpdateS2CPacket.class, new WorldTimeUpdateS2CPacketHandler());
+        HANDLERS.put(ChunkDeltaUpdateS2CPacket.class, new ChunkDeltaUpdateS2CPacketHandler());
     }
 
     public static <T extends Packet<?>> void handlePacket(T packet) {
@@ -64,10 +64,28 @@ public class PacketHandler {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("id", packetHandler.id());
             jsonObject.addProperty("legacyId", packet.getClass().getSimpleName().replace("S2CPacket", ""));
-            jsonObject.add("data", packetHandler.serialize(packet));
+
+            try {
+                jsonObject.add("data", packetHandler.serialize(packet));
+            } catch (Exception e) {
+                System.out.println("Error while serializing packet " + packet.getClass().getSimpleName());
+                e.printStackTrace();
+            }
+
             PacketLogger.wss.sendAll(jsonObject);
         } else {
             System.out.println(packet.getClass().getSimpleName());
         }
+    }
+
+    public static ArrayList<JsonObject> getRegisteredPacketIds() {
+        ArrayList<JsonObject> ids = new ArrayList<>();
+        for (BasePacketHandler<?> handler : HANDLERS.values()) {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("value", handler.getClass().getSimpleName().replace("S2CPacket", "").replace("Handler", "") + "S2CPacket");
+            jsonObject.addProperty("label", handler.id());
+            ids.add(jsonObject);
+        }
+        return ids;
     }
 }
