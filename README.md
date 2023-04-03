@@ -15,6 +15,55 @@ There weren't really any good fabric packet loggers out on Modrinth, so I decide
 - ``/packetlogger toggleLogging`` - toggles logging
 - ``/packetlogger open`` - opens the web-ui
 
+## Supported packets
+
+As developing serializers for each packet takes a lot of time, not every packet is supported. I will add more packets over time. If you want to help out, feel free to open a pull request.
+
+<!-- console.log(a.map((data) => `<li><code>${data.value} (${data.label})</code></li>`).sort().join("\n")) -->
+
+<details>
+    <summary>Supported Packets</summary>
+    <ul>
+        <li><code>BlockUpdateS2CPacket (BlockUpdate)</code></li>
+        <li><code>ChunkDataS2CPacket (ChunkDataAndLightUpdate)</code></li>
+        <li><code>ChunkDeltaUpdateS2CPacket (UpdateSectionBlocks)</code></li>
+        <li><code>ChunkLoadDistanceS2CPacket (SetRenderDistance)</code></li>
+        <li><code>CustomPayloadS2CPacket (PluginMessage)</code></li>
+        <li><code>DifficultyS2CPacket (ChangeDifficulty)</code></li>
+        <li><code>EntitiesDestroyS2CPacket (RemoveEntities)</code></li>
+        <li><code>EntityAttributesS2CPacket (UpdateAttributes)</code></li>
+        <li><code>EntityEquipmentUpdateS2CPacket (SetEquipment)</code></li>
+        <li><code>EntityPositionS2CPacket (TeleportEntity)</code></li>
+        <li><code>EntitySetHeadYawS2CPacket (SetHeadRotation)</code></li>
+        <li><code>EntitySpawnS2CPacket (SpawnEntity)</code></li>
+        <li><code>EntityStatusS2CPacket (SetEntityMetadata)</code></li>
+        <li><code>EntityTrackerUpdateS2CPacket (UpdateAttributes?)</code></li>
+        <li><code>EntityVelocityUpdateS2CPacket (SetEntityVelocity)</code></li>
+        <li><code>FeaturesS2CPacket (FeatureFlags)</code></li>
+        <li><code>GameJoinS2CPacket (LoginPlay)</code></li>
+        <li><code>GameMessageS2CPacket (SystemChatMessage)</code></li>
+        <li><code>HandSwingS2CPacket (SwingArm)</code></li>
+        <li><code>LightUpdateS2CPacket (LightUpdate)</code></li>
+        <li><code>LoginCompressionS2CPacket (SetCompression)</code></li>
+        <li><code>LoginSuccessS2CPacket (LoginSuccess)</code></li>
+        <li><code>MoveRelativeS2CPacket (UpdateEntityPosition)</code></li>
+        <li><code>PlaySoundS2CPacket (SoundEffect)</code></li>
+        <li><code>PlayerAbilitiesS2CPacket (PlayerAbilities)</code></li>
+        <li><code>PlayerActionResponseS2CPacket (PlayerActionResponse?)</code></li>
+        <li><code>PlayerActionS2CPacket (PlayerAction)</code></li>
+        <li><code>PlayerPositionLookS2CPacket (SynchronizePlayerPosition)</code></li>
+        <li><code>PlayerSpawnPositionS2CPacket (SetDefaultSpawnPosition)</code></li>
+        <li><code>QueryPongS2CPacket (PongPlay)</code></li>
+        <li><code>QueryResponseS2CPacket (StatusResponse)</code></li>
+        <li><code>RotateAndMoveRelativeS2CPacket (UpdateEntityPositionAndRotation)</code></li>
+        <li><code>RotateS2CPacket (UpdateEntityRotation)</code></li>
+        <li><code>ServerMetadataS2CPacket (ServerData)</code></li>
+        <li><code>UpdateSelectedSlotS2CPacket (SetHeldItem)</code></li>
+        <li><code>WorldBorderInitializeS2CPacket (InitializeWorldBorder)</code></li>
+        <li><code>WorldTimeUpdateS2CPacket (UpdateTime)</code></li>
+    </ul>
+</details>
+
 ## Websocket
 
 By default, the web-ui connects to the websocket and receives the packet information via json data. You can also connect to this websocket as well and receive the same data as the web-ui. I'd recommend using [insomnia](https://insomnia.rest/) or [weasel](https://addons.mozilla.org/de/firefox/addon/websocket-weasel/) on firefox.
