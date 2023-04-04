@@ -1,6 +1,6 @@
 # Fabric Packet Logger
 
-There weren't really any good fabric packet loggers out on Modrinth, so I decided to create my own one. I use this for development at [thejocraft.net](thejocraft.net). Yes, the code may not be the best. If you want to improve it, do it and open a pull request. I mainly use it for debugging purposes, so I don't really care about performance or code style.
+I use this for development at [thejocraft.net](thejocraft.net). Yes, the code may not be the best. If you want to improve it, do it and open a pull request. I mainly use it for debugging purposes, so I don't really care about performance or code style.
 
 ## Features
 
