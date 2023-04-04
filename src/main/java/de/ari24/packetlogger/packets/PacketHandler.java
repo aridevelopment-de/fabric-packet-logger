@@ -65,11 +65,11 @@ public class PacketHandler {
         HANDLERS.put(HealthUpdateS2CPacket.class, new HealthUpdateS2CPacketHandler());
         HANDLERS.put(SimulationDistanceS2CPacket.class, new SimulationDistanceS2CPacketHandler());
         HANDLERS.put(ItemPickupAnimationS2CPacket.class, new ItemPickupAnimationS2CPacketHandler());
+        HANDLERS.put(OpenScreenS2CPacket.class, new OpenScreenS2CPacketHandler());
         // TODO
         /*
         InventoryS2CPacket
         CommandTreeS2CPacket
-        OpenScreenS2CPacket
         WorldEventS2CPacket
         UnlockReciepesS2CPacket
         SynchronizeReciepesS2CPacket
