@@ -18,12 +18,17 @@ public class RotateHandler implements BasePacketHandler<EntityS2CPacket.Rotate> 
         JsonObject jsonObject = new JsonObject();
 
         ClientWorld world = MinecraftClient.getInstance().world;
-        Entity entity = packet.getEntity(world);
 
-        if (entity != null) {
-            jsonObject.add("entity", ConvertUtils.serializeEntity(entity));
+        if (world != null) {
+            Entity entity = packet.getEntity(world);
+
+            if (entity != null) {
+                jsonObject.add("entity", ConvertUtils.serializeEntity(entity));
+            } else {
+                jsonObject.addProperty("entityId", "unknown");
+            }
         } else {
-            jsonObject.addProperty("entity", "unknown");
+            jsonObject.addProperty("entityId", "unknown");
         }
 
         jsonObject.addProperty("yaw", packet.getYaw());

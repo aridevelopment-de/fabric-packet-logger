@@ -16,14 +16,18 @@ public class EntitySetHeadYawS2CPacketHandler implements BasePacketHandler<Entit
     @Override
     public JsonObject serialize(EntitySetHeadYawS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-
         ClientWorld world = MinecraftClient.getInstance().world;
-        Entity entity = packet.getEntity(world);
 
-        if (entity != null) {
-            jsonObject.add("entity", ConvertUtils.serializeEntity(entity));
+        if (world != null) {
+            Entity entity = packet.getEntity(world);
+
+            if (entity != null) {
+                jsonObject.add("entity", ConvertUtils.serializeEntity(entity));
+            } else {
+                jsonObject.addProperty("entityId", "unknown");
+            }
         } else {
-            jsonObject.addProperty("entity", "unknown");
+            jsonObject.addProperty("entityId", "unknown");
         }
 
         jsonObject.addProperty("headYaw", packet.getHeadYaw());

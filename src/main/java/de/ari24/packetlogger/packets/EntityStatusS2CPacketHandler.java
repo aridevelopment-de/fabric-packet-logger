@@ -1,6 +1,7 @@
 package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
+import de.ari24.packetlogger.utils.ConvertUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -18,15 +19,18 @@ public class EntityStatusS2CPacketHandler implements BasePacketHandler<EntitySta
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         ClientWorld clientWorld = minecraftClient.world;
 
-        Entity entity = packet.getEntity(clientWorld);
+        if (clientWorld != null) {
+            Entity entity = packet.getEntity(clientWorld);
 
-        if (entity == null) {
-            jsonObject.addProperty("error", "entity not found");
-            return jsonObject;
+            if (entity == null) {
+                jsonObject.addProperty("entityId", "unknown");
+            } else {
+                jsonObject.add("entity", ConvertUtils.serializeEntity(entity));
+            }
+        } else {
+            jsonObject.addProperty("entityId", "unknown");
         }
 
-        jsonObject.addProperty("entityId", entity.getId());
-        jsonObject.addProperty("entityType", entity.getType().toString());
         jsonObject.addProperty("status", packet.getStatus());
         return jsonObject;
     }
