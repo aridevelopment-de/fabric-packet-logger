@@ -6,7 +6,8 @@
   "mixins": [
     "AdvancementProgressAccessor",
     "ChunkDeltaS2CPacketAccessor",
-    "ClientConnectionMixin"
+    "ClientConnectionMixin",
+    "TagPacketSerializerSerializedAccessor"
   ],
   "client": [
   ],

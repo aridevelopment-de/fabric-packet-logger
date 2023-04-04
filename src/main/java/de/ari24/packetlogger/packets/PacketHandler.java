@@ -70,9 +70,9 @@ public class PacketHandler {
         HANDLERS.put(WorldEventS2CPacket.class, new WorldEventS2CPacketHandler());
         HANDLERS.put(UnlockRecipesS2CPacket.class, new UnlockRecipesS2CPacketHandler());
         HANDLERS.put(SynchronizeRecipesS2CPacket.class, new SynchronizeRecipesS2CPacketHandler());
+        HANDLERS.put(SynchronizeTagsS2CPacket.class, new SynchronizeTagsS2CPacketHandler());
         // TODO
         /*
-        SynchronizeReciepesS2CPacket
         SynchronizeTagsS2CPacket
          */
     }
