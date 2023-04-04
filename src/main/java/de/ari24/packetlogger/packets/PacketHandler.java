@@ -3,8 +3,6 @@ package de.ari24.packetlogger.packets;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
-import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
 import net.minecraft.network.packet.s2c.login.LoginCompressionS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
 import net.minecraft.network.packet.s2c.play.*;
@@ -57,6 +55,7 @@ public class PacketHandler {
         HANDLERS.put(EntityDamageS2CPacket.class, new EntityDamageS2CPacketHandler());
         HANDLERS.put(ChunkRenderDistanceCenterS2CPacket.class, new ChunkRenderDistanceCenterS2CPacketHandler());
         HANDLERS.put(ParticleS2CPacket.class, new ParticleS2CPacketHandler());
+        HANDLERS.put(KeepAliveS2CPacket.class, new KeepAliveS2CPacketHandler());
     }
 
     public static <T extends Packet<?>> void handlePacket(T packet) {
