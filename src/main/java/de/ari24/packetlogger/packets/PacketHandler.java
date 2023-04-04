@@ -56,8 +56,10 @@ public class PacketHandler {
         HANDLERS.put(ChunkRenderDistanceCenterS2CPacket.class, new ChunkRenderDistanceCenterS2CPacketHandler());
         HANDLERS.put(ParticleS2CPacket.class, new ParticleS2CPacketHandler());
         HANDLERS.put(KeepAliveS2CPacket.class, new KeepAliveS2CPacketHandler());
+        HANDLERS.put(UnloadChunkS2CPacket.class, new UnloadChunkS2CPacketHandler());
     }
 
+    @SuppressWarnings("unchecked")
     public static <T extends Packet<?>> void handlePacket(T packet) {
         if (packet instanceof BundleS2CPacket bundleS2CPacket) {
             bundleS2CPacket.getPackets().forEach(PacketHandler::handlePacket);
