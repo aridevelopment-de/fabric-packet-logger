@@ -3,6 +3,8 @@ package de.ari24.packetlogger.utils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.ChunkData;
 import net.minecraft.network.packet.s2c.play.LightData;
@@ -47,6 +49,23 @@ public class ConvertUtils {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("heightMap", chunkData.getHeightmap().toString());
         jsonObject.addProperty("sectionDataReadableBytes", chunkData.getSectionsDataBuf().readableBytes());
+        return jsonObject;
+    }
+
+    public static JsonObject serializeItemStack(ItemStack itemStack) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("isEmpty", itemStack.isEmpty());
+
+        if (!itemStack.isEmpty()) {
+            Item item = itemStack.getItem();
+            jsonObject.addProperty("type", item.toString());
+            jsonObject.addProperty("count", itemStack.getCount());
+
+            if ((item.isDamageable() || item.isNbtSynced()) && itemStack.getNbt() != null) {
+                jsonObject.addProperty("nbt", itemStack.getNbt().asString());
+            }
+        }
+
         return jsonObject;
     }
 }
