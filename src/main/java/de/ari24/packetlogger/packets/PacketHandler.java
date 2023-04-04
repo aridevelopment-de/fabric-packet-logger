@@ -66,6 +66,7 @@ public class PacketHandler {
         HANDLERS.put(SimulationDistanceS2CPacket.class, new SimulationDistanceS2CPacketHandler());
         HANDLERS.put(ItemPickupAnimationS2CPacket.class, new ItemPickupAnimationS2CPacketHandler());
         HANDLERS.put(OpenScreenS2CPacket.class, new OpenScreenS2CPacketHandler());
+        HANDLERS.put(InventoryS2CPacket.class, new InventoryS2CPacketHandler());
         // TODO
         /*
         InventoryS2CPacket
