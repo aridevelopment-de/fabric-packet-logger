@@ -75,18 +75,22 @@ public class ConvertUtils {
     }
 
     public static void appendEntity(JsonObject jsonObject, int entityId) {
+        appendEntity(jsonObject, entityId, "entity", "entityId");
+    }
+
+    public static void appendEntity(JsonObject jsonObject, int entityId, String key, String idKey) {
         ClientWorld clientWorld = MinecraftClient.getInstance().world;
 
         if (PacketLogger.CONFIG.resolveEntityIdsToEntities() && clientWorld != null) {
             Entity entity = clientWorld.getEntityById(entityId);
 
             if (entity != null) {
-                jsonObject.add("entity", ConvertUtils.serializeEntity(entity));
+                jsonObject.add(key, ConvertUtils.serializeEntity(entity));
             } else {
-                jsonObject.addProperty("entityId", entityId);
+                jsonObject.addProperty(idKey, entityId);
             }
         } else {
-            jsonObject.addProperty("entityId", entityId);
+            jsonObject.addProperty(idKey, entityId);
         }
     }
 

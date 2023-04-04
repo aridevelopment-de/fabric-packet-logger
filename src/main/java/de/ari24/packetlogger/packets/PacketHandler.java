@@ -64,13 +64,13 @@ public class PacketHandler {
         HANDLERS.put(ExperienceOrbSpawnS2CPacket.class, new ExperienceOrbSpawnS2CPacketHandler());
         HANDLERS.put(HealthUpdateS2CPacket.class, new HealthUpdateS2CPacketHandler());
         HANDLERS.put(SimulationDistanceS2CPacket.class, new SimulationDistanceS2CPacketHandler());
+        HANDLERS.put(ItemPickupAnimationS2CPacket.class, new ItemPickupAnimationS2CPacketHandler());
         // TODO
         /*
         InventoryS2CPacket
         CommandTreeS2CPacket
         OpenScreenS2CPacket
         WorldEventS2CPacket
-        ItemPickupAnimationS2CPacket
         UnlockReciepesS2CPacket
         SynchronizeReciepesS2CPacket
         SynchronizeTagsS2CPacket
