@@ -69,7 +69,6 @@ public class PacketHandler {
         HANDLERS.put(InventoryS2CPacket.class, new InventoryS2CPacketHandler());
         // TODO
         /*
-        InventoryS2CPacket
         CommandTreeS2CPacket
         WorldEventS2CPacket
         UnlockReciepesS2CPacket
