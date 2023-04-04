@@ -61,6 +61,20 @@ public class PacketHandler {
         HANDLERS.put(ScreenHandlerSlotUpdateS2CPacket.class, new ScreenHandlerSlotUpdateS2CPacketHandler());
         HANDLERS.put(ExperienceBarUpdateS2CPacket.class, new ExperienceBarUpdateS2CPacketHandler());
         HANDLERS.put(AdvancementUpdateS2CPacket.class, new AdvancementUpdateS2CPacketHandler());
+        HANDLERS.put(ExperienceOrbSpawnS2CPacket.class, new ExperienceOrbSpawnS2CPacketHandler());
+        // TODO
+        /*
+        HealthUpdateS2CPacket
+        SimulationDistanceS2CPacket
+        InventoryS2CPacket
+        CommandTreeS2CPacket
+        OpenScreenS2CPacket
+        WorldEventS2CPacket
+        ItemPickupAnimationS2CPacket
+        UnlockReciepesS2CPacket
+        SynchronizeReciepesS2CPacket
+        SynchronizeTagsS2CPacket
+         */
     }
 
     @SuppressWarnings("unchecked")
