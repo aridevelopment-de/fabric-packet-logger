@@ -55,6 +55,7 @@ public class PacketHandler {
         HANDLERS.put(PlayerActionC2SPacket.class, new PlayerActionS2CPacketHandler());
         HANDLERS.put(PlayerActionResponseS2CPacket.class, new PlayerActionResponseS2CPacketHandler());
         HANDLERS.put(EntityStatusS2CPacket.class, new EntityStatusS2CPacketHandler());
+        HANDLERS.put(EntityDamageS2CPacket.class, new EntityDamageS2CPacketHandler());
     }
 
     public static <T extends Packet<?>> void handlePacket(T packet) {
