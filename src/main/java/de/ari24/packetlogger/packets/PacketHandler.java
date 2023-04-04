@@ -58,7 +58,9 @@ public class PacketHandler {
         HANDLERS.put(KeepAliveS2CPacket.class, new KeepAliveS2CPacketHandler());
         HANDLERS.put(UnloadChunkS2CPacket.class, new UnloadChunkS2CPacketHandler());
         HANDLERS.put(PlayerListS2CPacket.class, new PlayerListS2CPacketHandler());
+        HANDLERS.put(ScreenHandlerSlotUpdateS2CPacket.class, new ScreenHandlerSlotUpdateS2CPacketHandler());
         HANDLERS.put(ExperienceBarUpdateS2CPacket.class, new ExperienceBarUpdateS2CPacketHandler());
+        HANDLERS.put(AdvancementUpdateS2CPacket.class, new AdvancementUpdateS2CPacketHandler());
     }
 
     @SuppressWarnings("unchecked")
