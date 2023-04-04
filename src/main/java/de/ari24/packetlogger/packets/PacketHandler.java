@@ -73,7 +73,18 @@ public class PacketHandler {
         HANDLERS.put(SynchronizeTagsS2CPacket.class, new SynchronizeTagsS2CPacketHandler());
         // TODO
         /*
-        SynchronizeTagsS2CPacket
+        EntityPassengersSetS2CPacket
+        EntityAnimationS2CPacket
+        BlockEntityUpdateS2CPacket
+        BlockEventS2CPacket
+        PlayerRespawnS2CPacket
+        CloseScreenS2CPacket
+        GameStateChangeS2CPacket
+        EntityStatusEffectS2CPacket
+        RemoveEntityStatusEffectS2CPacket
+        DamageTiltS2CPacket
+        EndCombatS2CPacket
+        CooldownUpdateS2CPacket
          */
     }
 

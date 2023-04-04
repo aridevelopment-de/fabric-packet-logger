@@ -70,9 +70,13 @@ As developing serializers for each packet takes a lot of time, not every packet 
         <li><code>ScreenSlotUpdateS2CPacket (SetContainerSlot)</code></li>
         <li><code>ServerMetadataS2CPacket (ServerData)</code></li>
         <li><code>SimulationDistanceS2CPacket (SetSimulationDistance)</code></li>
+        <li><code>SynchronizeRecipesS2CPacket (UpdateRecipes)</code></li>
+        <li><code>SynchronizeTagsS2CPacket (UpdateTags)</code></li>
         <li><code>UnloadChunkS2CPacket (UnloadChunk)</code></li>
+        <li><code>UnlockRecipesS2CPacket (UpdateRecipeBook)</code></li>
         <li><code>UpdateSelectedSlotS2CPacket (SetHeldItem)</code></li>
         <li><code>WorldBorderInitializeS2CPacket (InitializeWorldBorder)</code></li>
+        <li><code>WorldEventS2CPacket (WorldEvent)</code></li>
         <li><code>WorldTimeUpdateS2CPacket (UpdateTime)</code></li>
     </ul>
 </details>
