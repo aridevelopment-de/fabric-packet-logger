@@ -112,4 +112,12 @@ public class ConvertUtils {
         jsonObject.addProperty("pos", entity.getPos().toString());
         return jsonObject;
     }
+
+    public static String convertRGB(int color) {
+        // to rgb
+        int r = (color >> 16) & 0xFF;
+        int g = (color >> 8) & 0xFF;
+        int b = (color) & 0xFF;
+        return String.format("#%02x%02x%02x", r, g, b);
+    }
 }

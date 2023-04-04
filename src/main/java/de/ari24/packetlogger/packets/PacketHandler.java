@@ -67,10 +67,9 @@ public class PacketHandler {
         HANDLERS.put(ItemPickupAnimationS2CPacket.class, new ItemPickupAnimationS2CPacketHandler());
         HANDLERS.put(OpenScreenS2CPacket.class, new OpenScreenS2CPacketHandler());
         HANDLERS.put(InventoryS2CPacket.class, new InventoryS2CPacketHandler());
+        HANDLERS.put(WorldEventS2CPacket.class, new WorldEventS2CPacketHandler());
         // TODO
         /*
-        CommandTreeS2CPacket
-        WorldEventS2CPacket
         UnlockReciepesS2CPacket
         SynchronizeReciepesS2CPacket
         SynchronizeTagsS2CPacket
