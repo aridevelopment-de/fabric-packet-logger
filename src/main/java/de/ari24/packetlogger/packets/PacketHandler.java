@@ -2,7 +2,6 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
@@ -12,7 +11,9 @@ import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
 import net.minecraft.network.packet.s2c.query.QueryResponseS2CPacket;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PacketHandler {
     private static final Map<Class<? extends Packet<?>>, BasePacketHandler<?>> HANDLERS = new HashMap<>();
@@ -51,12 +52,11 @@ public class PacketHandler {
         HANDLERS.put(WorldTimeUpdateS2CPacket.class, new WorldTimeUpdateS2CPacketHandler());
         HANDLERS.put(ChunkDeltaUpdateS2CPacket.class, new ChunkDeltaUpdateS2CPacketHandler());
         HANDLERS.put(EntityTrackerUpdateS2CPacket.class, new EntityTrackerUpdateS2CPacketHandler());
-        HANDLERS.put(HandSwingC2SPacket.class, new HandSwingS2CPacketHandler());
-        HANDLERS.put(PlayerActionC2SPacket.class, new PlayerActionS2CPacketHandler());
         HANDLERS.put(PlayerActionResponseS2CPacket.class, new PlayerActionResponseS2CPacketHandler());
         HANDLERS.put(EntityStatusS2CPacket.class, new EntityStatusS2CPacketHandler());
         HANDLERS.put(EntityDamageS2CPacket.class, new EntityDamageS2CPacketHandler());
         HANDLERS.put(ChunkRenderDistanceCenterS2CPacket.class, new ChunkRenderDistanceCenterS2CPacketHandler());
+        HANDLERS.put(ParticleS2CPacket.class, new ParticleS2CPacketHandler());
     }
 
     public static <T extends Packet<?>> void handlePacket(T packet) {
