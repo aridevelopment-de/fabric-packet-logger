@@ -2,6 +2,7 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
+import de.ari24.packetlogger.utils.ConvertUtils;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.EntityEquipmentUpdateS2CPacket;
@@ -27,7 +28,7 @@ public class EntityEquipmentUpdateS2CPacketHandler implements BasePacketHandler<
     @Override
     public JsonObject serialize(EntityEquipmentUpdateS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("entityId", packet.getId());
+        ConvertUtils.appendEntity(jsonObject, packet.getId());
         jsonObject.add("equipment", serializeEquipment(packet.getEquipmentList()));
 
         return jsonObject;

@@ -10,6 +10,7 @@ public class PacketLoggerConfigModel {
     @SectionHeader("General")
     public boolean logPackets = false;
     public boolean sysOutUnknownPackets = false;
+    public boolean resolveEntityIdsToEntities = false;
     public int wssPort = 1337;
     public int webserverPort = 8080;
 }

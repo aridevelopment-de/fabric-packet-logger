@@ -3,6 +3,7 @@
   "text.config.packetlogger-config.section.General": "General Settings",
   "text.config.packetlogger-config.option.logPackets": "Log Packets",
   "text.config.packetlogger-config.option.sysOutUnknownPackets": "SysOut unhandled packets",
+  "text.config.packetlogger-config.option.resolveEntityIdsToEntities": "Resolve entity ids to entities",
   "text.config.packetlogger-config.option.wssPort": "Websocket Server Port (restart client after changing)",
   "text.config.packetlogger-config.option.webserverPort": "HTTPServer Port (restart client after changing)"
 }

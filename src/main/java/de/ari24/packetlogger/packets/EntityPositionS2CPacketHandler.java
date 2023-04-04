@@ -2,6 +2,7 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
+import de.ari24.packetlogger.utils.ConvertUtils;
 import net.minecraft.network.packet.s2c.play.EntityPositionS2CPacket;
 
 public class EntityPositionS2CPacketHandler implements BasePacketHandler<EntityPositionS2CPacket> {
@@ -14,7 +15,7 @@ public class EntityPositionS2CPacketHandler implements BasePacketHandler<EntityP
     @Override
     public JsonObject serialize(EntityPositionS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("entityId", packet.getId());
+        ConvertUtils.appendEntity(jsonObject, packet.getId());
         jsonObject.addProperty("x", packet.getX());
         jsonObject.addProperty("y", packet.getY());
         jsonObject.addProperty("z", packet.getZ());

@@ -31,7 +31,7 @@ public class GameJoinS2CPacketHandler implements BasePacketHandler<GameJoinS2CPa
     @Override
     public JsonObject serialize(GameJoinS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("entityId", packet.playerEntityId());
+        ConvertUtils.appendEntity(jsonObject, packet.playerEntityId());
         jsonObject.addProperty("hardcore", packet.hardcore());
         jsonObject.addProperty("gamemode", packet.gameMode().asString());
         if (packet.previousGameMode() != null) {

@@ -2,7 +2,11 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import de.ari24.packetlogger.PacketLogger;
 import de.ari24.packetlogger.utils.ConvertUtils;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.network.packet.s2c.play.EntityAttributesS2CPacket;
@@ -46,7 +50,8 @@ public class EntityAttributesS2CPacketHandler implements BasePacketHandler<Entit
     @Override
     public JsonObject serialize(EntityAttributesS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("entityId", packet.getEntityId());
+
+        ConvertUtils.appendEntity(jsonObject, packet.getEntityId());
         jsonObject.add("attributes", serializeAttributes(packet.getEntries()));
         return jsonObject;
     }

@@ -1,6 +1,7 @@
 package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
+import de.ari24.packetlogger.utils.ConvertUtils;
 import de.ari24.packetlogger.utils.MinecraftUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
@@ -59,7 +60,7 @@ public class EntitySpawnS2CPacketHandler implements BasePacketHandler<EntitySpaw
     @Override
     public JsonObject serialize(EntitySpawnS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("entityId", packet.getId());
+        ConvertUtils.appendEntity(jsonObject, packet.getId());
         jsonObject.addProperty("uuid", packet.getUuid().toString());
         jsonObject.addProperty("entityType", packet.getEntityType().getName().toString());
         jsonObject.addProperty("x", packet.getX());

@@ -16,7 +16,7 @@ public class EntityTrackerUpdateS2CPacketHandler implements BasePacketHandler<En
     @Override
     public JsonObject serialize(EntityTrackerUpdateS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("entityId", packet.id());
+        ConvertUtils.appendEntity(jsonObject, packet.id());
 
         ArrayList<JsonObject> list = new ArrayList<>();
 
