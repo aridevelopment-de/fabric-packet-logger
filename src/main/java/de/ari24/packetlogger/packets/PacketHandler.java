@@ -69,6 +69,7 @@ public class PacketHandler {
         HANDLERS.put(InventoryS2CPacket.class, new InventoryS2CPacketHandler());
         HANDLERS.put(WorldEventS2CPacket.class, new WorldEventS2CPacketHandler());
         HANDLERS.put(UnlockRecipesS2CPacket.class, new UnlockRecipesS2CPacketHandler());
+        HANDLERS.put(SynchronizeRecipesS2CPacket.class, new SynchronizeRecipesS2CPacketHandler());
         // TODO
         /*
         SynchronizeReciepesS2CPacket
