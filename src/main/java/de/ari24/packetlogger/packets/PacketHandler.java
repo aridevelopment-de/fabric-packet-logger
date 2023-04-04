@@ -63,9 +63,9 @@ public class PacketHandler {
         HANDLERS.put(AdvancementUpdateS2CPacket.class, new AdvancementUpdateS2CPacketHandler());
         HANDLERS.put(ExperienceOrbSpawnS2CPacket.class, new ExperienceOrbSpawnS2CPacketHandler());
         HANDLERS.put(HealthUpdateS2CPacket.class, new HealthUpdateS2CPacketHandler());
+        HANDLERS.put(SimulationDistanceS2CPacket.class, new SimulationDistanceS2CPacketHandler());
         // TODO
         /*
-        SimulationDistanceS2CPacket
         InventoryS2CPacket
         CommandTreeS2CPacket
         OpenScreenS2CPacket
