@@ -4,13 +4,17 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import de.ari24.packetlogger.PacketLogger;
+import net.minecraft.resource.NamespaceResourceManager;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.ResourceType;
+import net.minecraft.util.Identifier;
+import org.apache.commons.io.IOUtils;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URL;
+import java.util.Arrays;
 
 public class HTTPServer {
     public static void start(int port) throws IOException {
@@ -52,24 +56,23 @@ public class HTTPServer {
             }
 
             String path = uri.getPath();
-            File local = null;
+            InputStreamReader reader = null;
 
             if(path.startsWith(prefix)) {
-                URL url = getClass().getClassLoader().getResource("web/" + path.substring(prefix.length()));
-
-                if (url == null) {
+                try {
+                    reader = new InputStreamReader(getClass().getResourceAsStream("/assets/packetlogger/web/" + path.substring(prefix.length())));
+                } catch (Exception e) {
+                    PacketLogger.LOGGER.error(e.toString());
                     sendNotFound(exchange);
                     return;
                 }
-
-                local = new File(url.getFile());
             }
 
             String logOutput = "GET " + uri.toString();
 
-            if(local != null && local.exists())
+            if(reader != null)
             {
-                String filename = local.getName();
+                String filename = path.substring(path.lastIndexOf('/') + 1);
                 String ext = filename.substring(filename.lastIndexOf('.') + 1);
 
                 if(types.containsKey(ext)) {
@@ -78,11 +81,13 @@ public class HTTPServer {
                             .add("Content-Type", types.get(ext));
                 }
 
-                logOutput += " 200 " + local.length();
-                exchange.sendResponseHeaders(200, local.length());
+                String content = IOUtils.toString(reader);
+
+                logOutput += " 200 " + content.length();
+                exchange.sendResponseHeaders(200, content.length());
 
                 try (OutputStream out = exchange.getResponseBody()) {
-                    java.nio.file.Files.copy(local.toPath(), out);
+                    out.write(content.getBytes());
                 }
             } else {
                 logOutput += " 404";
