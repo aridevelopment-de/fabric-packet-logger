@@ -2,6 +2,8 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
+import net.minecraft.network.NetworkSide;
+import net.minecraft.network.NetworkState;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.login.LoginCompressionS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
@@ -9,9 +11,7 @@ import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
 import net.minecraft.network.packet.s2c.query.QueryResponseS2CPacket;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class PacketHandler {
     private static final Map<Class<? extends Packet<?>>, BasePacketHandler<?>> HANDLERS = new HashMap<>();
@@ -71,12 +71,15 @@ public class PacketHandler {
         HANDLERS.put(UnlockRecipesS2CPacket.class, new UnlockRecipesS2CPacketHandler());
         HANDLERS.put(SynchronizeRecipesS2CPacket.class, new SynchronizeRecipesS2CPacketHandler());
         HANDLERS.put(SynchronizeTagsS2CPacket.class, new SynchronizeTagsS2CPacketHandler());
+        HANDLERS.put(EntityPassengersSetS2CPacket.class, new EntityPassengersSetS2CPacketHandler());
+        HANDLERS.put(EntityAnimationS2CPacket.class, new EntityAnimationS2CPacketHandler());
+        HANDLERS.put(BlockEntityUpdateS2CPacket.class, new BlockEntityUpdateS2CPacketHandler());
+        HANDLERS.put(BlockEventS2CPacket.class, new BlockEventS2CPacketHandler());
+        HANDLERS.put(MapUpdateS2CPacket.class, new MapUpdateS2CPacketHandler());
         // TODO
         /*
-        EntityPassengersSetS2CPacket
-        EntityAnimationS2CPacket
-        BlockEntityUpdateS2CPacket
-        BlockEventS2CPacket
+        LoginQueryRequestS2CPacket
+        CommandTreeS2CPacket
         PlayerRespawnS2CPacket
         CloseScreenS2CPacket
         GameStateChangeS2CPacket
@@ -101,19 +104,25 @@ public class PacketHandler {
             BasePacketHandler<T> packetHandler = (BasePacketHandler<T>) handler;
 
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("id", packetHandler.id());
-            jsonObject.addProperty("legacyId", packet.getClass().getSimpleName().replace("S2CPacket", ""));
+            jsonObject.addProperty("name", packetHandler.name());
+
+            // TODO: Add mojenk mappings
+            jsonObject.addProperty("legacyName", packet.getClass().getSimpleName().replace("S2CPacket", ""));
+
+            NetworkState state = Objects.requireNonNull(NetworkState.getPacketHandlerState(packet));
+            int id = state.getPacketId(NetworkSide.CLIENTBOUND, packet);
+            jsonObject.addProperty("id", "0x" + Integer.toHexString(id).toUpperCase(Locale.ROOT));
 
             try {
                 jsonObject.add("data", packetHandler.serialize(packet));
             } catch (Exception e) {
-                System.out.println("Error while serializing packet " + packet.getClass().getSimpleName());
-                e.printStackTrace();
+                PacketLogger.LOGGER.error("Error while serializing packet " + packet.getClass().getSimpleName());
+                PacketLogger.LOGGER.error(e.toString());
             }
 
             PacketLogger.wss.sendAll(jsonObject);
         } else if (PacketLogger.CONFIG.sysOutUnknownPackets()) {
-            System.out.println(packet.getClass().getSimpleName());
+            PacketLogger.LOGGER.info(packet.getClass().getSimpleName());
         }
     }
 
@@ -122,9 +131,19 @@ public class PacketHandler {
         for (BasePacketHandler<?> handler : HANDLERS.values()) {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("value", handler.getClass().getSimpleName().replace("S2CPacket", "").replace("Handler", "") + "S2CPacket");
-            jsonObject.addProperty("label", handler.id());
+            jsonObject.addProperty("label", handler.name());
             ids.add(jsonObject);
         }
         return ids;
+    }
+
+    public static Map<String, JsonObject> getPacketDescriptions() {
+        Map<String, JsonObject> descriptions = new HashMap<>();
+
+        for (BasePacketHandler<?> handler : HANDLERS.values()) {
+            descriptions.put(handler.name(), handler.description());
+        }
+
+        return descriptions;
     }
 }
