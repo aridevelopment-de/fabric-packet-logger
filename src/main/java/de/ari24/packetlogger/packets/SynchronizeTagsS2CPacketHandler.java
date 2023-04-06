@@ -10,8 +10,13 @@ import java.util.List;
 
 public class SynchronizeTagsS2CPacketHandler implements BasePacketHandler<SynchronizeTagsS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "UpdateTags";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Update_Tags";
     }
 
     @Override

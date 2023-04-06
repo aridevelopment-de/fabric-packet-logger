@@ -6,8 +6,13 @@ import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 
 public class ScreenHandlerSlotUpdateS2CPacketHandler implements BasePacketHandler<ScreenHandlerSlotUpdateS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "SetContainerSlot";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Set_Container_Slot";
     }
 
     @Override

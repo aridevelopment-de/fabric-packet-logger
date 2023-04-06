@@ -6,8 +6,13 @@ import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
 
 public class LoginSuccessS2CPacketHandler implements BasePacketHandler<LoginSuccessS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "LoginSuccess";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Login_Success";
     }
 
     @Override

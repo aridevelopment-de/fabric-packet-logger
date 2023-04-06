@@ -8,8 +8,13 @@ import net.minecraft.network.packet.s2c.play.EntityPositionS2CPacket;
 public class EntityPositionS2CPacketHandler implements BasePacketHandler<EntityPositionS2CPacket> {
 
     @Override
-    public String id() {
+    public String name() {
         return "TeleportEntity";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Teleport_Entity";
     }
 
     @Override

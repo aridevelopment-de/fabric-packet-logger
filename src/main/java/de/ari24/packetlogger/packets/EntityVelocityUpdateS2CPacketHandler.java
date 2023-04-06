@@ -6,8 +6,13 @@ import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
 
 public class EntityVelocityUpdateS2CPacketHandler implements BasePacketHandler<EntityVelocityUpdateS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "SetEntityVelocity";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Set_Entity_Velocity";
     }
 
     @Override

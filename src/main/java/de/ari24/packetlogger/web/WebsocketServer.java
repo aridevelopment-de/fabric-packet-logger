@@ -29,6 +29,7 @@ public class WebsocketServer extends WebSocketServer {
 
         JsonObject jsonObject = new JsonObject();;
         jsonObject.add("allPackets", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getRegisteredPacketIds()));
+        jsonObject.add("descriptions", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getPacketDescriptions()));
         conn.send(jsonObject.toString());
     }
 

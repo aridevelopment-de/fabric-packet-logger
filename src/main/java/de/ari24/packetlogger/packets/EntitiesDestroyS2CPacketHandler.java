@@ -1,5 +1,6 @@
 package de.ari24.packetlogger.packets;
 
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import de.ari24.packetlogger.utils.ConvertUtils;
@@ -13,8 +14,22 @@ import java.util.List;
 
 public class EntitiesDestroyS2CPacketHandler implements BasePacketHandler<EntitiesDestroyS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "RemoveEntities";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Remove_Entities";
+    }
+
+    @Override
+    public JsonObject description() {
+        JsonObject jsonObject = new JsonObject();;
+        jsonObject.addProperty("general", "Sent by the server when an entity is to be destroyed on the client. ");
+        jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
+        jsonObject.addProperty("entityIds", "The entity ids of the entities that are to be destroyed. ");
+        return jsonObject;
     }
 
     @Override

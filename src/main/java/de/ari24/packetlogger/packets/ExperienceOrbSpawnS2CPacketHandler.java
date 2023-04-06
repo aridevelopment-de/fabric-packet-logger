@@ -6,8 +6,13 @@ import net.minecraft.network.packet.s2c.play.ExperienceOrbSpawnS2CPacket;
 
 public class ExperienceOrbSpawnS2CPacketHandler implements BasePacketHandler<ExperienceOrbSpawnS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "SpawnExperienceOrb";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Spawn_Experience_Orb";
     }
 
     @Override

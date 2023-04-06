@@ -6,8 +6,13 @@ import net.minecraft.network.packet.s2c.play.HealthUpdateS2CPacket;
 public class HealthUpdateS2CPacketHandler implements BasePacketHandler<HealthUpdateS2CPacket> {
 
     @Override
-    public String id() {
+    public String name() {
         return "SetHealth";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Set_Health";
     }
 
     @Override

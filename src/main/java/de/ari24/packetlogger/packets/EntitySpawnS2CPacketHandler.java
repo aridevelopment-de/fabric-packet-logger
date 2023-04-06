@@ -53,8 +53,13 @@ public class EntitySpawnS2CPacketHandler implements BasePacketHandler<EntitySpaw
     }
 
     @Override
-    public String id() {
+    public String name() {
         return "SpawnEntity";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Spawn_Entity";
     }
 
     @Override

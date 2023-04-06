@@ -6,8 +6,13 @@ import net.minecraft.network.packet.s2c.play.ItemPickupAnimationS2CPacket;
 
 public class ItemPickupAnimationS2CPacketHandler implements BasePacketHandler<ItemPickupAnimationS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "PickupItem";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Pickup_Item";
     }
 
     @Override

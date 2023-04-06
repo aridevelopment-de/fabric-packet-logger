@@ -10,8 +10,13 @@ import java.util.List;
 
 public class InventoryS2CPacketHandler implements BasePacketHandler<InventoryS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "SetContainerContent";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Set_Container_Content";
     }
 
     @Override

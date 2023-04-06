@@ -5,8 +5,13 @@ import net.minecraft.network.packet.s2c.play.WorldBorderInitializeS2CPacket;
 
 public class WorldBorderInitializeS2CPacketHandler implements BasePacketHandler<WorldBorderInitializeS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "InitializeWorldBorder";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Initialize_World_Border";
     }
 
     @Override

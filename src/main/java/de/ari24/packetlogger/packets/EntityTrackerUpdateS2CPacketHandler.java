@@ -9,8 +9,13 @@ import java.util.ArrayList;
 
 public class EntityTrackerUpdateS2CPacketHandler implements BasePacketHandler<EntityTrackerUpdateS2CPacket> {
     @Override
-    public String id() {
-        return "UpdateAttributes?";
+    public String name() {
+        return "UpdateAttributes";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Update_Attributes";
     }
 
     @Override

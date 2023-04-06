@@ -7,8 +7,13 @@ import net.minecraft.util.Identifier;
 
 public class OpenScreenS2CPacketHandler implements BasePacketHandler<OpenScreenS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "OpenScreen";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Open_Screen";
     }
 
     @Override

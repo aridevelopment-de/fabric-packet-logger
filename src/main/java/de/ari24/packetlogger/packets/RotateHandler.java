@@ -9,8 +9,13 @@ import net.minecraft.network.packet.s2c.play.EntityS2CPacket;
 
 public class RotateHandler implements BasePacketHandler<EntityS2CPacket.Rotate> {
     @Override
-    public String id() {
+    public String name() {
         return "UpdateEntityRotation";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Update_Entity_Rotation";
     }
 
     @Override

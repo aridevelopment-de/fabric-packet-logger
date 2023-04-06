@@ -6,8 +6,13 @@ import net.minecraft.network.packet.s2c.play.ServerMetadataS2CPacket;
 
 public class ServerMetadataS2CPacketHandler implements BasePacketHandler<ServerMetadataS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "ServerData";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Server_Data";
     }
 
     @Override

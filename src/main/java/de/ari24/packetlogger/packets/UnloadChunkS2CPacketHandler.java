@@ -5,8 +5,13 @@ import net.minecraft.network.packet.s2c.play.UnloadChunkS2CPacket;
 
 public class UnloadChunkS2CPacketHandler implements BasePacketHandler<UnloadChunkS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "UnloadChunk";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Unload_Chunk";
     }
 
     @Override

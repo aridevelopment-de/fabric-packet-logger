@@ -5,8 +5,13 @@ import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
 
 public class GameMessageS2CPacketHandler implements BasePacketHandler<GameMessageS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "SystemChatMessage";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#System_Chat_Message";
     }
 
     @Override

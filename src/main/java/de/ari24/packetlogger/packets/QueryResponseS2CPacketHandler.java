@@ -9,6 +9,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class QueryResponseS2CPacketHandler implements BasePacketHandler<QueryResponseS2CPacket> {
+
+    @Override
+    public String name() {
+        return "StatusResponse";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Status_Response";
+    }
+
     private JsonObject getPlayerInfo(ServerMetadata.Players players) {
         JsonObject json = new JsonObject();
         json.addProperty("max", players.max());
@@ -28,11 +39,6 @@ public class QueryResponseS2CPacketHandler implements BasePacketHandler<QueryRes
         String faviconString = new String(Base64.getEncoder().encode(favicon.iconBytes()), StandardCharsets.UTF_8);
         json.addProperty("icon", "data:image/png;base64," + faviconString);
         return json;
-    }
-
-    @Override
-    public String id() {
-        return "StatusResponse";
     }
 
     @Override

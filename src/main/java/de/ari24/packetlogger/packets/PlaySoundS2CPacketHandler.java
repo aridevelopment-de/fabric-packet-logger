@@ -5,8 +5,13 @@ import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 
 public class PlaySoundS2CPacketHandler implements BasePacketHandler<PlaySoundS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "SoundEffect";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Sound_Effect";
     }
 
     @Override

@@ -81,6 +81,14 @@ As developing serializers for each packet takes a lot of time, not every packet 
     </ul>
 </details>
 
+## Why do you not use Reflections/... to convert the packet data?
+
+Mainly because I want to learn about packets themselves. Also, I think serializing each packet itself can help in the process of filtering the correct data and thus making it better for developers to understand. It also allows me to provide fallback values / filtering if certain data is missing.
+
+## What are these ids?
+
+The names you see in the web-ui are the names taken from wiki.vg. This provides much faster navigation to the correct packet data. If you see a question mark after the packet, that means I'm not sure if the wiki.vg entry and the packet match.
+
 ## Websocket
 
 By default, the web-ui connects to the websocket and receives the packet information via json data. You can also connect to this websocket as well and receive the same data as the web-ui. I'd recommend using [insomnia](https://insomnia.rest/) or [weasel](https://addons.mozilla.org/de/firefox/addon/websocket-weasel/) on firefox.

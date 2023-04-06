@@ -5,8 +5,13 @@ import net.minecraft.network.packet.s2c.login.LoginCompressionS2CPacket;
 
 public class LoginCompressionS2CPacketHandler implements BasePacketHandler<LoginCompressionS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "SetCompression";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Set_Compression";
     }
 
     @Override

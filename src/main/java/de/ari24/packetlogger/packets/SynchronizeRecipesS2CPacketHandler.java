@@ -11,8 +11,13 @@ import java.util.List;
 
 public class SynchronizeRecipesS2CPacketHandler implements BasePacketHandler<SynchronizeRecipesS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "UpdateRecipes";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Update_Recipes";
     }
 
     public static JsonObject serializeRecipeData(Recipe<?> recipe) {

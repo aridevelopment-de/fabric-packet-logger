@@ -9,8 +9,13 @@ import net.minecraft.network.packet.s2c.play.EntityStatusS2CPacket;
 
 public class EntityStatusS2CPacketHandler implements BasePacketHandler<EntityStatusS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "SetEntityMetadata";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Set_Entity_Metadata";
     }
 
     @Override

@@ -6,8 +6,13 @@ import net.minecraft.particle.ParticleEffect;
 
 public class ParticleS2CPacketHandler implements BasePacketHandler<ParticleS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "Particle";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Particle_2";
     }
 
     private <T extends ParticleEffect> JsonObject serializeParticleParameter(T particleEffect) {

@@ -9,8 +9,13 @@ import net.minecraft.network.packet.s2c.play.EntityS2CPacket;
 
 public class MoveRelativeHandler implements BasePacketHandler<EntityS2CPacket.MoveRelative> {
     @Override
-    public String id() {
+    public String name() {
         return "UpdateEntityPosition";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Update_Entity_Position";
     }
 
     @Override

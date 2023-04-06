@@ -6,8 +6,13 @@ import net.minecraft.network.packet.s2c.play.PlayerSpawnPositionS2CPacket;
 
 public class PlayerSpawnPositionS2CPacketHandler implements BasePacketHandler<PlayerSpawnPositionS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "SetDefaultSpawnPosition";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Set_Default_Spawn_Position";
     }
 
     @Override

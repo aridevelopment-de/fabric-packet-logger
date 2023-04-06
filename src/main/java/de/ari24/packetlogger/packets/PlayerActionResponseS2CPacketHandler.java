@@ -5,8 +5,13 @@ import net.minecraft.network.packet.s2c.play.PlayerActionResponseS2CPacket;
 
 public class PlayerActionResponseS2CPacketHandler implements BasePacketHandler<PlayerActionResponseS2CPacket> {
     @Override
-    public String id() {
-        return "PlayerActionResponse?";
+    public String name() {
+        return "AcknowledgeBlockChange";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Acknowledge_Block_Change";
     }
 
     @Override

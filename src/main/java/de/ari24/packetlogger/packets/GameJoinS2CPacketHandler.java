@@ -24,8 +24,13 @@ public class GameJoinS2CPacketHandler implements BasePacketHandler<GameJoinS2CPa
     }
 
     @Override
-    public String id() {
-        return "LoginPlay";
+    public String name() {
+        return "Login (Play)";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Login_.28play.29";
     }
 
     @Override

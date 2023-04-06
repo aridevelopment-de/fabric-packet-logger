@@ -9,8 +9,13 @@ import java.util.List;
 
 public class PlayerListS2CPacketHandler implements BasePacketHandler<PlayerListS2CPacket> {
     @Override
-    public String id() {
+    public String name() {
         return "PlayerInfoUpdate";
+    }
+
+    @Override
+    public String url() {
+        return "https://wiki.vg/Protocol#Player_Info_Update";
     }
 
     @Override
