@@ -9,6 +9,10 @@ I use this for development at [thejocraft.net](thejocraft.net). Yes, the code ma
 - InGame config
 - TODO: InGame packet history viewer
 
+## Web-ui
+
+Now located at [aridevelopment-de/fabric-packet-logger-frontend](https://github.com/aridevelopment-de/fabric-packet-logger-frontend).
+
 ## Commands
 
 - ``/packetlogger`` is the base command for all subcommands. You should be able to auto-complete them
@@ -99,4 +103,8 @@ I have a different React project locally which contains the code for the web-ui.
 
 Previews:
 
-[![Preview](https://cdn.discordapp.com/attachments/598256161212596235/1092927191442010142/image.png)](https://cdn.discordapp.com/attachments/598256161212596235/1092927191442010142/image.png)
+Overview:
+![https://cdn.discordapp.com/attachments/598256161212596235/1093634774763065475/image.png](https://cdn.discordapp.com/attachments/598256161212596235/1093634774763065475/image.png)
+
+MapUpdateAdapter:
+![https://cdn.discordapp.com/attachments/598256161212596235/1093635306244280431/image.png](https://cdn.discordapp.com/attachments/598256161212596235/1093635306244280431/image.png)
