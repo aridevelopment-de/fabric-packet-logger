@@ -15,6 +15,16 @@ public class UnloadChunkS2CPacketHandler implements BasePacketHandler<UnloadChun
     }
 
     @Override
+    public JsonObject description() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("general", "Tells the client to unload a chunk column. ");
+        jsonObject.addProperty("wikiVgNotes", "It is legal to send this packet even if the given chunk is not currently loaded. ");
+        jsonObject.addProperty("chunkX", "Block coordinate divided by 16, rounded down");
+        jsonObject.addProperty("chunkZ", "Block coordinate divided by 16, rounded down");
+        return jsonObject;
+    }
+
+    @Override
     public JsonObject serialize(UnloadChunkS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("chunkX", packet.getX());

@@ -1,5 +1,6 @@
 package de.ari24.packetlogger.packets;
 
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import net.minecraft.network.packet.s2c.play.SimulationDistanceS2CPacket;
 
@@ -12,6 +13,15 @@ public class SimulationDistanceS2CPacketHandler implements BasePacketHandler<Sim
     @Override
     public String url() {
         return "https://wiki.vg/Protocol#Set_Simulation_Distance";
+    }
+
+    @Override
+    public JsonObject description() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("general", "Updates the simulation distance of the client.");
+        jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
+        jsonObject.addProperty("simulationDistance", "The distance that the client will process specific things, such as entities.");
+        return jsonObject;
     }
 
     @Override

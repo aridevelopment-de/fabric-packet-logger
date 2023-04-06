@@ -19,6 +19,19 @@ public class MoveRelativeHandler implements BasePacketHandler<EntityS2CPacket.Mo
     }
 
     @Override
+    public JsonObject description() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("general", "This packet is sent by the server when an entity moves less then 8 blocks; if an entity moves more than 8 blocks Teleport Entity Packet should be sent instead.");
+        jsonObject.addProperty("wikiVgNotes", "This packet allows at most 8 blocks movement in any direction, because short range is from -32768 to 32767. And 32768 / (128 * 32) = 8. ");
+        jsonObject.addProperty("entityId", "The entity's ID.");
+        jsonObject.addProperty("deltaX", "Change in X position as (currentX * 32 - prevX * 32) * 128");
+        jsonObject.addProperty("deltaY", "Change in Y position as (currentY * 32 - prevY * 32) * 128");
+        jsonObject.addProperty("deltaZ", "Change in Z position as (currentZ * 32 - prevZ * 32) * 128");
+        jsonObject.addProperty("onGround", "True if the entity is on the ground.");
+        return jsonObject;
+    }
+
+    @Override
     public JsonObject serialize(EntityS2CPacket.MoveRelative packet) {
         JsonObject jsonObject = new JsonObject();
 

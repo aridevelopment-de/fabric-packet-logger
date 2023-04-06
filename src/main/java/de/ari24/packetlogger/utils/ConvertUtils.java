@@ -22,6 +22,13 @@ import java.util.List;
 public class ConvertUtils {
     public static final Gson GSON_INSTANCE = new Gson();
 
+    public static void appendGameProfileDescription(JsonObject jsonObject) {
+        jsonObject.addProperty("uuid", "UUID of the player");
+        jsonObject.addProperty("name", "Name of the player. Length should be at 16 characters maximum");
+        jsonObject.addProperty("legacy", "Whether the player is a legacy player. Most likely indicates a player joining an offline server");
+        jsonObject.addProperty("properties", "Properties of the player. TODO: Add example info");
+    }
+
     public static JsonObject serializeGameProfile(GameProfile gameProfile) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("uuid", gameProfile.getId().toString());

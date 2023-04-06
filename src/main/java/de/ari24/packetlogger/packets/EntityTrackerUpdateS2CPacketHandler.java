@@ -19,6 +19,12 @@ public class EntityTrackerUpdateS2CPacketHandler implements BasePacketHandler<En
     }
 
     @Override
+    public JsonObject description() {
+        // TODO: Implement description
+        return BasePacketHandler.super.description();
+    }
+
+    @Override
     public JsonObject serialize(EntityTrackerUpdateS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
         ConvertUtils.appendEntity(jsonObject, packet.id());

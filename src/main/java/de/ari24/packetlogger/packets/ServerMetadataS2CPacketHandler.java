@@ -16,9 +16,20 @@ public class ServerMetadataS2CPacketHandler implements BasePacketHandler<ServerM
     }
 
     @Override
+    public JsonObject description() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("general", "Server ping data");
+        jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
+        jsonObject.addProperty("motd", "The server's MOTD");
+        jsonObject.addProperty("favicon", "The server's favicon, PNG base64 string");
+        jsonObject.addProperty("enforcesSecureChat", "Whether the server enforces secure chat");
+        return jsonObject;
+    }
+
+    @Override
     public JsonObject serialize(ServerMetadataS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("description", packet.getDescription().toString());
+        jsonObject.addProperty("motd", packet.getDescription().toString());
 
         if (packet.getFavicon().isPresent()) {
             jsonObject.addProperty("favicon", new String(packet.getFavicon().get()));
@@ -26,7 +37,7 @@ public class ServerMetadataS2CPacketHandler implements BasePacketHandler<ServerM
             jsonObject.add("favicon", JsonNull.INSTANCE);
         }
 
-        jsonObject.addProperty("secureChatEnforced", packet.isSecureChatEnforced());
+        jsonObject.addProperty("enforcesSecureChat", packet.isSecureChatEnforced());
         return jsonObject;
     }
 }

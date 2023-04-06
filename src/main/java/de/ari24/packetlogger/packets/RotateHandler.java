@@ -1,5 +1,6 @@
 package de.ari24.packetlogger.packets;
 
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.utils.ConvertUtils;
 import net.minecraft.client.MinecraftClient;
@@ -16,6 +17,18 @@ public class RotateHandler implements BasePacketHandler<EntityS2CPacket.Rotate> 
     @Override
     public String url() {
         return "https://wiki.vg/Protocol#Update_Entity_Rotation";
+    }
+
+    @Override
+    public JsonObject description() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("general", "This packet is sent by the server when an entity rotates");
+        jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
+        jsonObject.addProperty("entityId", "The entity's ID");
+        jsonObject.addProperty("yaw", "New angle, not a delta.");
+        jsonObject.addProperty("pitch", "New angle, not a delta.");
+        jsonObject.addProperty("onGround", "Whether the entity is on the ground");
+        return jsonObject;
     }
 
     @Override
