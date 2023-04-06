@@ -108,3 +108,4 @@ Overview:
 
 MapUpdateAdapter:
 ![https://cdn.discordapp.com/attachments/598256161212596235/1093635306244280431/image.png](https://cdn.discordapp.com/attachments/598256161212596235/1093635306244280431/image.png)
+![https://cdn.discordapp.com/attachments/598256161212596235/1093668040752762920/image.png](https://cdn.discordapp.com/attachments/598256161212596235/1093668040752762920/image.png)
