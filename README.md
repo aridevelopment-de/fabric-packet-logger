@@ -21,7 +21,7 @@ Now located at [aridevelopment-de/fabric-packet-logger-frontend](https://github.
 
 ## Supported packets
 
-![57%](https://progress-bar.dev/57?title=All%20Play%20Packets%20(64/111))  
+![100%](https://progress-bar.dev/100?title=All%20Play%20Packets%20(110/110))  
 ![100%](https://progress-bar.dev/100?title=All%20Status%20Packets%20(2/2))  
 ![100%](https://progress-bar.dev/100?title=All%20Login%20Packets%20(5/5))  
 
