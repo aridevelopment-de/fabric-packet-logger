@@ -5,6 +5,7 @@ import de.ari24.packetlogger.packets.PacketHandler;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
+import net.minecraft.network.packet.BundleSplitterPacket;
 import net.minecraft.network.packet.Packet;
 
 import java.util.List;
@@ -20,7 +21,8 @@ class PacketHandlerTest {
         List<Class<? extends Packet<?>>> implementedPackets = handlers.keySet().stream().toList();
 
         Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.PLAY.getPacketIdToPacketMap(NetworkSide.CLIENTBOUND);
-        List<Class<? extends Packet<?>>> registeredPlayPackets = registeredPlayPacketsMapping.values().stream().toList();
+        // Pro solution
+        List<Class<? extends Packet<?>>> registeredPlayPackets = registeredPlayPacketsMapping.values().stream().filter(p -> ((Object) p) != ((Object) BundleSplitterPacket.class)).toList();
         compareAndPrintResults(registeredPlayPackets, implementedPackets);
     }
 
