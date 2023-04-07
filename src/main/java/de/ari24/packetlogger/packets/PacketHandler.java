@@ -90,6 +90,14 @@ public class PacketHandler {
         // TODO
         /*
         CommandTreeS2CPacket
+        CommandSuggestionsS2CPacket
+        BossBarS2CPacket
+        ExplosionS2CPacket
+        StopSoundS2CPacket
+
+        PositionAndOnGround
+        Full
+        OnGroundOnly
          */
     }
 
@@ -126,6 +134,10 @@ public class PacketHandler {
         } else if (PacketLogger.CONFIG.sysOutUnknownPackets()) {
             PacketLogger.LOGGER.info(packet.getClass().getSimpleName());
         }
+    }
+
+    public static Map<Class<? extends Packet<?>>, BasePacketHandler<?>> getHandlers() {
+        return HANDLERS;
     }
 
     public static ArrayList<JsonObject> getRegisteredPacketIds() {
