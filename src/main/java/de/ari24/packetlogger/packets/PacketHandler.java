@@ -5,9 +5,7 @@ import de.ari24.packetlogger.PacketLogger;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.s2c.login.LoginCompressionS2CPacket;
-import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
-import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
+import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
 import net.minecraft.network.packet.s2c.query.QueryResponseS2CPacket;
@@ -87,6 +85,8 @@ public class PacketHandler {
         HANDLERS.put(EndCombatS2CPacket.class, new EndCombatS2CPacketHandler());
         HANDLERS.put(EnterCombatS2CPacket.class, new EnterCombatS2CPacketHandler());
         HANDLERS.put(CooldownUpdateS2CPacket.class, new CooldownUpdateS2CPacketHandler());
+        HANDLERS.put(LoginHelloS2CPacket.class, new LoginHelloS2CPacketHandler());
+        HANDLERS.put(LoginDisconnectS2CPacket.class, new LoginDisconnectS2CPacketHandler());
         // TODO
         /*
         CommandTreeS2CPacket
@@ -94,6 +94,7 @@ public class PacketHandler {
         BossBarS2CPacket
         ExplosionS2CPacket
         StopSoundS2CPacket
+        LoginDisconnectS2CPacket
 
         PositionAndOnGround
         Full

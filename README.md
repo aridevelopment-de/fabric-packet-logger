@@ -1,5 +1,3 @@
-![62%](https://progress-bar.dev/62?title=All%20Clientside%20Packets%20(69/111))
-
 # Fabric Packet Logger
 
 I use this for development at [thejocraft.net](thejocraft.net). Yes, the code may not be the best. If you want to improve it, do it and open a pull request. I mainly use it for debugging purposes, so I don't really care about performance or code style.
@@ -22,6 +20,10 @@ Now located at [aridevelopment-de/fabric-packet-logger-frontend](https://github.
 - ``/packetlogger open`` - opens the web-ui
 
 ## Supported packets
+
+![57%](https://progress-bar.dev/57?title=All%20Play%20Packets%20(64/111))  
+![100%](https://progress-bar.dev/100?title=All%20Status%20Packets%20(2/2))  
+![100%](https://progress-bar.dev/100?title=All%20Login%20Packets%20(5/5))  
 
 As developing serializers for each packet takes a lot of time, not every packet is supported. I will add more packets over time. If you want to help out, feel free to open a pull request.
 

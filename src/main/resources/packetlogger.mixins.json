@@ -9,6 +9,7 @@
     "ClientConnectionMixin",
     "EndCombatS2CPacketAccessor",
     "GameStateChangeS2CPacketReasonAccessor",
+    "LoginHelloS2CPacketAccessor",
     "MapStateUpdateDataAccessor",
     "MapUpdateS2CPacketAccessor",
     "TagPacketSerializerSerializedAccessor"
