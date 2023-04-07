@@ -56,8 +56,8 @@ public class GameJoinS2CPacketHandler implements BasePacketHandler<GameJoinS2CPa
         jsonObject.addProperty("simulationDistance", "The distance that the client will process specific things, such as entities");
         jsonObject.addProperty("reducedDebugInfo", "If true, a Notchian client shows reduced information on the debug screen. For servers in development, this should almost always be false. ");
         jsonObject.addProperty("enableRespawnScreen", "Set to false when the doImmediateRespawn gamerule is true.");
-        jsonObject.addProperty("debugWorld", "True if the world is a debug mode world; debug mode worlds cannot be modified and have predefined blocks.");
-        jsonObject.addProperty("flatWorld", "True if the world is a flat world; flat worlds have a fixed height and no terrain generation.");
+        jsonObject.addProperty("isDebug", "True if the world is a debug mode world; debug mode worlds cannot be modified and have predefined blocks.");
+        jsonObject.addProperty("isFlat", "True if the world is a flat world; flat worlds have a fixed height and no terrain generation.");
         jsonObject.addProperty("deathLocation", "The location of the player's last death. If the player has not died, this is null.");
         return jsonObject;
     }

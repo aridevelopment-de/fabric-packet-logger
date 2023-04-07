@@ -7,17 +7,21 @@ import de.ari24.packetlogger.PacketLogger;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.ChunkData;
 import net.minecraft.network.packet.s2c.play.LightData;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.GlobalPos;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.function.Consumer;
 
 public class ConvertUtils {
     public static final Gson GSON_INSTANCE = new Gson();
@@ -61,6 +65,14 @@ public class ConvertUtils {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("heightMap", chunkData.getHeightmap().toString());
         jsonObject.addProperty("sectionDataReadableBytes", chunkData.getSectionsDataBuf().readableBytes());
+        return jsonObject;
+    }
+
+    public static JsonObject serializeItem(Item item) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id", item.toString());
+        jsonObject.addProperty("translationKey", item.getTranslationKey());
+        jsonObject.addProperty("maxCount", item.getMaxCount());
         return jsonObject;
     }
 
@@ -125,6 +137,24 @@ public class ConvertUtils {
         int r = (color >> 16) & 0xFF;
         int g = (color >> 8) & 0xFF;
         int b = (color) & 0xFF;
-        return String.format("#%02x%02x%02x", r, g, b);
+        return "#" + Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
+    }
+
+    public static JsonObject serializeStatusEffect(StatusEffect statusEffect) {
+        JsonObject jsonObject = new JsonObject();
+
+        Identifier identifier = Registries.STATUS_EFFECT.getId(statusEffect);
+
+        if (identifier != null) {
+            jsonObject.addProperty("id", identifier.toString());
+        } else {
+            jsonObject.addProperty("id", "not in registry");
+        }
+
+        jsonObject.addProperty("translation", statusEffect.getTranslationKey());
+        jsonObject.addProperty("category", statusEffect.getCategory().name());
+        jsonObject.addProperty("color", convertRGB(statusEffect.getColor()));
+        jsonObject.addProperty("positive", statusEffect.isBeneficial());
+        return jsonObject;
     }
 }

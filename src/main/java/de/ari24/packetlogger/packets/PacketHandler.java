@@ -6,6 +6,7 @@ import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.login.LoginCompressionS2CPacket;
+import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
@@ -76,18 +77,19 @@ public class PacketHandler {
         HANDLERS.put(BlockEntityUpdateS2CPacket.class, new BlockEntityUpdateS2CPacketHandler());
         HANDLERS.put(BlockEventS2CPacket.class, new BlockEventS2CPacketHandler());
         HANDLERS.put(MapUpdateS2CPacket.class, new MapUpdateS2CPacketHandler());
+        HANDLERS.put(LoginQueryRequestS2CPacket.class, new LoginQueryRequestS2CPacketHandler());
+        HANDLERS.put(PlayerRespawnS2CPacket.class, new PlayerRespawnS2CPacketHandler());
+        HANDLERS.put(CloseScreenS2CPacket.class, new CloseScreenS2CPacketHandler());
+        HANDLERS.put(GameStateChangeS2CPacket.class, new GameStateChangeS2CPacketHandler());
+        HANDLERS.put(EntityStatusEffectS2CPacket.class, new EntityStatusEffectS2CPacketHandler());
+        HANDLERS.put(RemoveEntityStatusEffectS2CPacket.class, new RemoveEntityStatusEffectS2CPacketHandler());
+        HANDLERS.put(DamageTiltS2CPacket.class, new DamageTiltS2CPacketHandler());
+        HANDLERS.put(EndCombatS2CPacket.class, new EndCombatS2CPacketHandler());
+        HANDLERS.put(EnterCombatS2CPacket.class, new EnterCombatS2CPacketHandler());
+        HANDLERS.put(CooldownUpdateS2CPacket.class, new CooldownUpdateS2CPacketHandler());
         // TODO
         /*
-        LoginQueryRequestS2CPacket
         CommandTreeS2CPacket
-        PlayerRespawnS2CPacket
-        CloseScreenS2CPacket
-        GameStateChangeS2CPacket
-        EntityStatusEffectS2CPacket
-        RemoveEntityStatusEffectS2CPacket
-        DamageTiltS2CPacket
-        EndCombatS2CPacket
-        CooldownUpdateS2CPacket
          */
     }
 

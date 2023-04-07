@@ -7,6 +7,8 @@
     "AdvancementProgressAccessor",
     "ChunkDeltaS2CPacketAccessor",
     "ClientConnectionMixin",
+    "EndCombatS2CPacketAccessor",
+    "GameStateChangeS2CPacketReasonAccessor",
     "MapStateUpdateDataAccessor",
     "MapUpdateS2CPacketAccessor",
     "TagPacketSerializerSerializedAccessor"
