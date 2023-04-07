@@ -5,13 +5,17 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AdvancementProgressAccessor",
+    "BossBarS2CPacketAccessor",
     "ChunkDeltaS2CPacketAccessor",
     "ClientConnectionMixin",
+    "CommandTreeS2CPacketAccessor",
     "EndCombatS2CPacketAccessor",
     "GameStateChangeS2CPacketReasonAccessor",
     "LoginHelloS2CPacketAccessor",
+    "LookAtS2CPacketAccessor",
     "MapStateUpdateDataAccessor",
     "MapUpdateS2CPacketAccessor",
+    "SetCameraEntityS2CPacketAccessor",
     "TagPacketSerializerSerializedAccessor"
   ],
   "client": [

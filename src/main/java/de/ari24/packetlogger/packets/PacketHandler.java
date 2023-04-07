@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
+import net.minecraft.network.packet.BundleSplitterPacket;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
@@ -16,6 +17,9 @@ public class PacketHandler {
     private static final Map<Class<? extends Packet<?>>, BasePacketHandler<?>> HANDLERS = new HashMap<>();
 
     static {
+        // After 11 hours straight coding, I've implemented the 50 packets that I needed to implement.
+        // Total work hours: 18 hours over around 6 days
+        // I will now rest in peace. Good night.
         HANDLERS.put(CustomPayloadS2CPacket.class, new CustomPayloadS2CPacketHandler());
         HANDLERS.put(DifficultyS2CPacket.class, new DifficultyS2CPacketHandler());
         HANDLERS.put(FeaturesS2CPacket.class, new FeaturesS2CPacketHandler());
@@ -87,15 +91,56 @@ public class PacketHandler {
         HANDLERS.put(CooldownUpdateS2CPacket.class, new CooldownUpdateS2CPacketHandler());
         HANDLERS.put(LoginHelloS2CPacket.class, new LoginHelloS2CPacketHandler());
         HANDLERS.put(LoginDisconnectS2CPacket.class, new LoginDisconnectS2CPacketHandler());
+        HANDLERS.put(BossBarS2CPacket.class, new BossBarS2CPacketHandler());
+        HANDLERS.put(ExplosionS2CPacket.class, new ExplosionS2CPacketHandler());
+        HANDLERS.put(StopSoundS2CPacket.class, new StopSoundS2CPacketHandler());
+        HANDLERS.put(CommandSuggestionsS2CPacket.class, new CommandSuggestionsS2CPacketHandler());
+        HANDLERS.put(CommandTreeS2CPacket.class, new CommandTreeS2CPacketHandler());
+        HANDLERS.put(ScoreboardDisplayS2CPacket.class, new ScoreboardDisplayS2CPacketHandler());
+        HANDLERS.put(EntityAttachS2CPacket.class, new EntityAttachS2CPacketHandler());
+        HANDLERS.put(WorldBorderCenterChangedS2CPacket.class, new WorldBorderCenterChangedS2CPacketHandler());
+        HANDLERS.put(WorldBorderSizeChangedS2CPacket.class, new WorldBorderSizeChangedS2CPacketHandler());
+        HANDLERS.put(SubtitleS2CPacket.class, new SubtitleS2CPacketHandler());
+        HANDLERS.put(ClearTitleS2CPacket.class, new ClearTitleS2CPacketHandler());
+        HANDLERS.put(PlaySoundFromEntityS2CPacket.class, new PlaySoundFromEntityS2CPacketHandler());
+        HANDLERS.put(PlayerListHeaderS2CPacket.class, new PlayerListHeaderS2CPacketHandler());
+        HANDLERS.put(ChatSuggestionsS2CPacket.class, new ChatSuggestionsS2CPacketHandler());
+        HANDLERS.put(ChatMessageS2CPacket.class, new ChatMessageS2CPacketHandler());
+        HANDLERS.put(TitleS2CPacket.class, new TitleS2CPacketHandler());
+        HANDLERS.put(TitleFadeS2CPacket.class, new TitleFadeS2CPacketHandler());
+        HANDLERS.put(DeathMessageS2CPacket.class, new DeathMessageS2CPacketHandler());
+        HANDLERS.put(ProfilelessChatMessageS2CPacket.class, new ProfilelessChatMessageS2CPacketHandler());
+        HANDLERS.put(DisconnectS2CPacket.class, new DisconnectS2CPacketHandler());
+        HANDLERS.put(SetTradeOffersS2CPacket.class, new SetTradeOffersS2CPacketHandler());
+        HANDLERS.put(LookAtS2CPacket.class, new LookAtS2CPacketHandler());
+        HANDLERS.put(PlayerRemoveS2CPacket.class, new PlayerRemoveS2CPacketHandler());
+        HANDLERS.put(WorldBorderWarningBlocksChangedS2CPacket.class, new WorldBorderWarningBlocksChangedS2CPacketHandler());
+        HANDLERS.put(WorldBorderWarningTimeChangedS2CPacket.class, new WorldBorderWarningTimeChangedS2CPacketHandler());
+        HANDLERS.put(RemoveMessageS2CPacket.class, new RemoveMessageS2CPacketHandler());
+        HANDLERS.put(ScoreboardPlayerUpdateS2CPacket.class, new ScoreboardPlayerUpdateS2CPacketHandler());
+        HANDLERS.put(ScoreboardObjectiveUpdateS2CPacket.class, new ScoreboardObjectiveUpdateS2CPacketHandler());
+        HANDLERS.put(TeamS2CPacket.class, new TeamS2CPacketHandler());
+        HANDLERS.put(StatisticsS2CPacket.class, new StatisticsS2CPacketHandler());
+        HANDLERS.put(BlockBreakingProgressS2CPacket.class, new BlockBreakingProgressS2CPacketHandler());
+        HANDLERS.put(PlayerSpawnS2CPacket.class, new PlayerSpawnS2CPacketHandler());
+        HANDLERS.put(WorldBorderInterpolateSizeS2CPacket.class, new WorldBorderInterpolateSizeS2CPacketHandler());
+        HANDLERS.put(SetCameraEntityS2CPacket.class, new SetCameraEntityS2CPacketHandler());
+        HANDLERS.put(SelectAdvancementTabS2CPacket.class, new SelectAdvancementTabS2CPacketHandler());
+        HANDLERS.put(ResourcePackSendS2CPacket.class, new ResourcePackSendS2CPacketHandler());
+        HANDLERS.put(ScreenHandlerPropertyUpdateS2CPacket.class, new ScreenHandlerPropertyUpdateS2CPacketHandler());
+        HANDLERS.put(NbtQueryResponseS2CPacket.class, new NbtQueryResponseS2CPacketHandler());
+        HANDLERS.put(ChunkBiomeDataS2CPacket.class, new ChunkBiomeDataS2CPacketHandler());
+        HANDLERS.put(OverlayMessageS2CPacket.class, new OverlayMessageS2CPacketHandler());
+        HANDLERS.put(VehicleMoveS2CPacket.class, new VehicleMoveS2CPacketHandler());
+        HANDLERS.put(OpenHorseScreenS2CPacket.class, new OpenHorseScreenS2CPacketHandler());
+        HANDLERS.put(CraftFailedResponseS2CPacket.class, new CraftFailedResponseS2CPacketHandler());
+        HANDLERS.put(OpenWrittenBookS2CPacket.class, new OpenWrittenBookS2CPacketHandler());
+        HANDLERS.put(SignEditorOpenS2CPacket.class, new SignEditorOpenS2CPacketHandler());
+        HANDLERS.put(PlayPingS2CPacket.class, new PlayPingS2CPacketHandler());
+        // Java why? ;( HANDLERS.put(BundleSplitterPacket.class, new BundleSplitterPacketHandler());
+
         // TODO
         /*
-        CommandTreeS2CPacket
-        CommandSuggestionsS2CPacket
-        BossBarS2CPacket
-        ExplosionS2CPacket
-        StopSoundS2CPacket
-        LoginDisconnectS2CPacket
-
         PositionAndOnGround
         Full
         OnGroundOnly
