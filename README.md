@@ -1,6 +1,6 @@
 # Fabric Packet Logger
 
-I use this for development at [thejocraft.net](thejocraft.net). Yes, the code may not be the best. If you want to improve it, do it and open a pull request. I mainly use it for debugging purposes, so I don't really care about performance or code style.
+I use this for development at [thejocraft.net](thejocraft.net). Yes, the code may not be the best. If you want to improve it, do it and open a pull request.
 
 ## Features
 
@@ -33,6 +33,8 @@ As developing serializers for each packet takes a lot of time, not every packet 
 ## Why do you not use Reflections/... to convert the packet data?
 
 Mainly because I want to learn about packets themselves. Also, I think serializing each packet itself can help in the process of filtering the correct data and thus making it better for developers to understand. It also allows me to provide fallback values / filtering if certain data is missing.
+
+I may use Reflections/VarHandles in the future tho. It depends on the features I want to implement.
 
 ## What are these ids?
 
