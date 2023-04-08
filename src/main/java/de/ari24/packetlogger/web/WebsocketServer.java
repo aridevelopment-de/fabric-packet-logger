@@ -11,6 +11,7 @@ import org.java_websocket.server.WebSocketServer;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class WebsocketServer extends WebSocketServer {
 
@@ -28,9 +29,15 @@ public class WebsocketServer extends WebSocketServer {
         clients.add(conn);
 
         JsonObject jsonObject = new JsonObject();;
+        jsonObject.addProperty("type", "init");
         jsonObject.add("allPackets", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getRegisteredPacketIds()));
         jsonObject.add("descriptions", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getPacketDescriptions()));
         conn.send(jsonObject.toString());
+
+        JsonObject loggingState = new JsonObject();
+        loggingState.addProperty("type", "loggingState");
+        loggingState.addProperty("state", PacketLogger.CONFIG.logPackets() ? "logging" : "off");
+        conn.send(loggingState.toString());
     }
 
     @Override
@@ -39,7 +46,14 @@ public class WebsocketServer extends WebSocketServer {
     }
 
     @Override
-    public void onMessage(WebSocket conn, String message) {}
+    public void onMessage(WebSocket conn, String message) {
+        JsonObject jsonObject = ConvertUtils.GSON_INSTANCE.fromJson(message, JsonObject.class);
+        String type = jsonObject.get("type").getAsString();
+
+        if (Objects.equals(type, "loggingState")) {
+            PacketLogger.CONFIG.logPackets(Objects.equals(jsonObject.get("state").getAsString(), "logging"));
+        }
+    }
 
     @Override
     public void onError(WebSocket conn, Exception ex) {

@@ -1,5 +1,6 @@
 package de.ari24.packetlogger.commands;
 
+import com.google.gson.JsonObject;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import de.ari24.packetlogger.PacketLogger;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;

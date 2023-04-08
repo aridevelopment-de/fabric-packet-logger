@@ -166,6 +166,7 @@ public class PacketHandler {
 
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("name", packetHandler.name());
+            jsonObject.addProperty("type", "packet");  // used for frontend-side differentiation
 
             // TODO: Add mojenk mappings
             jsonObject.addProperty("legacyName", packet.getClass().getSimpleName());
