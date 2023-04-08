@@ -25,6 +25,7 @@
   "mixins": [
     "packetlogger.mixins.json"
   ],
+  "accessWidener": "packetlogger.accesswidener",
 
   "depends": {
     "fabricloader": ">=0.14.17",

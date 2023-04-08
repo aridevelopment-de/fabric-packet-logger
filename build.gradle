@@ -72,6 +72,10 @@ tasks.test {
 	}
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/packetlogger.accesswidener")
+}
+
 java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.

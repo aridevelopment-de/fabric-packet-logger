@@ -15,7 +15,6 @@
     "LookAtS2CPacketAccessor",
     "MapStateUpdateDataAccessor",
     "MapUpdateS2CPacketAccessor",
-    "NetworkStateAccessor",
     "SetCameraEntityS2CPacketAccessor",
     "TagPacketSerializerSerializedAccessor"
   ],

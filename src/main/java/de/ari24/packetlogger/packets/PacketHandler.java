@@ -2,10 +2,8 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
-import de.ari24.packetlogger.mixin.NetworkStateAccessor;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
-import net.minecraft.network.packet.BundleSplitterPacket;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
@@ -13,9 +11,6 @@ import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
 import net.minecraft.network.packet.s2c.query.QueryResponseS2CPacket;
 import org.apache.commons.lang3.StringUtils;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.*;
 
 public class PacketHandler {
@@ -193,43 +188,9 @@ public class PacketHandler {
     }
 
     private static String getPacketId(Class<? extends Packet<?>> packetClass) {
-        NetworkState state = NetworkStateAccessor.getHANDLER_STATE_MAP().get(packetClass);
-        Field field = null;
-
-        try {
-            field = NetworkState.class.getDeclaredField("packetHandlers");
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        }
-
-        field.setAccessible(true);
-        Class<?> packetHandlerClass = null;
-        try {
-            packetHandlerClass = ((Map<NetworkSide, Object>) field.get(state)).get(NetworkSide.CLIENTBOUND).getClass();
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-
-        // make getId accessible
-        Method getIdMethod = null;
-
-        try {
-            getIdMethod = packetHandlerClass.getDeclaredMethod("getId", Class.class);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
-
-        getIdMethod.setAccessible(true);
-
-        // now we can call getId
-        int id = 0;
-
-        try {
-            id = (int) getIdMethod.invoke(((Map<NetworkSide, Object>) field.get(state)).get(NetworkSide.CLIENTBOUND), packetClass);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
-
+        NetworkState state = NetworkState.HANDLER_STATE_MAP.get(packetClass);
+        NetworkState.PacketHandler<?> packetHandler = state.packetHandlers.get(NetworkSide.CLIENTBOUND);
+        int id = packetHandler.getId(packetClass);
         return state.name() + "-0x" + StringUtils.leftPad(Integer.toHexString(id), 2, "0").toUpperCase(Locale.ROOT);
     }
 

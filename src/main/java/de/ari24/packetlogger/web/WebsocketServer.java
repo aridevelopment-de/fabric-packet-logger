@@ -26,22 +26,28 @@ public class WebsocketServer extends WebSocketServer {
 
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
+        PacketLogger.LOGGER.info("Client connected, sending meta");
         clients.add(conn);
 
-        JsonObject jsonObject = new JsonObject();;
-        jsonObject.addProperty("type", "init");
-        jsonObject.add("allPackets", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getRegisteredPacketIds()));
-        jsonObject.add("descriptions", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getPacketDescriptions()));
-        conn.send(jsonObject.toString());
+        try {
+            JsonObject jsonObject = new JsonObject();;
+            jsonObject.addProperty("type", "init");
+            jsonObject.add("allPackets", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getRegisteredPacketIds()));
+            jsonObject.add("descriptions", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getPacketDescriptions()));
+            conn.send(jsonObject.toString());
 
-        JsonObject loggingState = new JsonObject();
-        loggingState.addProperty("type", "loggingState");
-        loggingState.addProperty("state", PacketLogger.CONFIG.logPackets() ? "logging" : "off");
-        conn.send(loggingState.toString());
+            JsonObject loggingState = new JsonObject();
+            loggingState.addProperty("type", "loggingState");
+            loggingState.addProperty("state", PacketLogger.CONFIG.logPackets() ? "logging" : "off");
+            conn.send(loggingState.toString());
+        } catch (Exception exception) {
+            PacketLogger.LOGGER.error("Failed to send meta to client", exception);
+        }
     }
 
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote) {
+        PacketLogger.LOGGER.info("Client disconnected");
         clients.remove(conn);
     }
 
@@ -57,7 +63,7 @@ public class WebsocketServer extends WebSocketServer {
 
     @Override
     public void onError(WebSocket conn, Exception ex) {
-
+        PacketLogger.LOGGER.error("Websocket error", ex);
     }
 
     @Override
