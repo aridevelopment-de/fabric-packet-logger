@@ -2,6 +2,7 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
+import de.ari24.packetlogger.mixin.NetworkStateAccessor;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.packet.BundleSplitterPacket;
@@ -10,7 +11,11 @@ import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
 import net.minecraft.network.packet.s2c.query.QueryResponseS2CPacket;
+import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class PacketHandler {
@@ -163,11 +168,11 @@ public class PacketHandler {
             jsonObject.addProperty("name", packetHandler.name());
 
             // TODO: Add mojenk mappings
-            jsonObject.addProperty("legacyName", packet.getClass().getSimpleName().replace("S2CPacket", ""));
+            jsonObject.addProperty("legacyName", packet.getClass().getSimpleName());
 
             NetworkState state = Objects.requireNonNull(NetworkState.getPacketHandlerState(packet));
             int id = state.getPacketId(NetworkSide.CLIENTBOUND, packet);
-            jsonObject.addProperty("id", "0x" + Integer.toHexString(id).toUpperCase(Locale.ROOT));
+            jsonObject.addProperty("id", state.name() + "-0x" + StringUtils.leftPad(Integer.toHexString(id), 2, "0").toUpperCase(Locale.ROOT));
 
             try {
                 jsonObject.add("data", packetHandler.serialize(packet));
@@ -186,11 +191,57 @@ public class PacketHandler {
         return HANDLERS;
     }
 
+    private static String getPacketId(Class<? extends Packet<?>> packetClass) {
+        NetworkState state = NetworkStateAccessor.getHANDLER_STATE_MAP().get(packetClass);
+        Field field = null;
+
+        try {
+            field = NetworkState.class.getDeclaredField("packetHandlers");
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+
+        field.setAccessible(true);
+        Class<?> packetHandlerClass = null;
+        try {
+            packetHandlerClass = ((Map<NetworkSide, Object>) field.get(state)).get(NetworkSide.CLIENTBOUND).getClass();
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        // make getId accessible
+        Method getIdMethod = null;
+
+        try {
+            getIdMethod = packetHandlerClass.getDeclaredMethod("getId", Class.class);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+
+        getIdMethod.setAccessible(true);
+
+        // now we can call getId
+        int id = 0;
+
+        try {
+            id = (int) getIdMethod.invoke(((Map<NetworkSide, Object>) field.get(state)).get(NetworkSide.CLIENTBOUND), packetClass);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+
+        return state.name() + "-0x" + StringUtils.leftPad(Integer.toHexString(id), 2, "0").toUpperCase(Locale.ROOT);
+    }
+
     public static ArrayList<JsonObject> getRegisteredPacketIds() {
         ArrayList<JsonObject> ids = new ArrayList<>();
-        for (BasePacketHandler<?> handler : HANDLERS.values()) {
+        for (Map.Entry<Class<? extends Packet<?>>, BasePacketHandler<?>> entry : HANDLERS.entrySet()) {
+            Class<? extends Packet<?>> packetClass = entry.getKey();
+            BasePacketHandler<?> handler = entry.getValue();
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("value", handler.getClass().getSimpleName().replace("S2CPacket", "").replace("Handler", "") + "S2CPacket");
+
+            String id = getPacketId(packetClass);
+
+            jsonObject.addProperty("value", id);
             jsonObject.addProperty("label", handler.name());
             ids.add(jsonObject);
         }
@@ -200,8 +251,11 @@ public class PacketHandler {
     public static Map<String, JsonObject> getPacketDescriptions() {
         Map<String, JsonObject> descriptions = new HashMap<>();
 
-        for (BasePacketHandler<?> handler : HANDLERS.values()) {
-            descriptions.put(handler.name(), handler.description());
+        for (Map.Entry<Class<? extends Packet<?>>, BasePacketHandler<?>> entry : HANDLERS.entrySet()) {
+            Class<? extends Packet<?>> packetClass = entry.getKey();
+            BasePacketHandler<?> handler = entry.getValue();
+            String id = getPacketId(packetClass);
+            descriptions.put(id, handler.description());
         }
 
         return descriptions;
