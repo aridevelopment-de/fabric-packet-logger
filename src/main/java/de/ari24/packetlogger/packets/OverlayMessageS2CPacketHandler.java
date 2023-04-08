@@ -18,7 +18,7 @@ public class OverlayMessageS2CPacketHandler implements BasePacketHandler<Overlay
     @Override
     public JsonObject description() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "Sets the actionbar message.");  // TODO: How long will the message be displayed?
+        jsonObject.addProperty("general", "Sets the actionbar message. This will normally be visible for 60 ticks");
         jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
         jsonObject.addProperty("message", "Displays a message above the hotbar (the same as position 2 in Player Chat Message). ");
         return jsonObject;
