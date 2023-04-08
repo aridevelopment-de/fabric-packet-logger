@@ -11,21 +11,21 @@ import net.minecraft.network.packet.s2c.play.EntityStatusS2CPacket;
 public class EntityStatusS2CPacketHandler implements BasePacketHandler<EntityStatusS2CPacket> {
     @Override
     public String name() {
-        return "SetEntityMetadata";
+        return "EntityEvent";
     }
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Entity_Metadata";
+        return "https://wiki.vg/Protocol#Entity_Event";
     }
 
     @Override
     public JsonObject description() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "Updates one or more metadata properties for an existing entity. Any properties not included in the Metadata field are left unchanged.");
+        jsonObject.addProperty("general", "Entity statuses generally trigger an animation for an entity. The available statuses vary by the entity's type (and are available to subclasses of that type as well). ");
         jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
         jsonObject.addProperty("entityId", "The entity's ID");
-        jsonObject.addProperty("metadata", "The entity's metadata. See https://wiki.vg/Entity_metadata#Entity_Metadata_Format");
+        jsonObject.addProperty("metadata", "The entity's status. See https://wiki.vg/Entity_statuses");
         return jsonObject;
     }
 
@@ -47,7 +47,7 @@ public class EntityStatusS2CPacketHandler implements BasePacketHandler<EntitySta
             jsonObject.addProperty("entityId", "unknown");
         }
 
-        jsonObject.addProperty("metadata", packet.getStatus());
+        jsonObject.addProperty("status", packet.getStatus());
         return jsonObject;
     }
 }
