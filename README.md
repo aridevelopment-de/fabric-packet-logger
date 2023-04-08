@@ -29,80 +29,6 @@ As developing serializers for each packet takes a lot of time, not every packet 
 
 <!-- console.log(a.map((data) => `<li><code>${data.value} (${data.label})</code></li>`).sort().join("\n")) -->
 
-<details>
-    <summary>Supported Packets</summary>
-    <ul>
-        <li><code>AdvancementUpdateS2CPacket (UpdateAdvancements)</code></li>
-        <li><code>BlockEntityUpdateS2CPacket (BlockEntityData)</code></li>
-        <li><code>BlockEventS2CPacket (BlockAction)</code></li>
-        <li><code>BlockUpdateS2CPacket (BlockUpdate)</code></li>
-        <li><code>ChunkDataS2CPacket (ChunkDataAndLightUpdate)</code></li>
-        <li><code>ChunkDeltaUpdateS2CPacket (UpdateSectionBlocks)</code></li>
-        <li><code>ChunkLoadDistanceS2CPacket (SetRenderDistance)</code></li>
-        <li><code>ChunkRenderDistanceCenterS2CPacket (SetCenterChunk)</code></li>
-        <li><code>CloseScreenS2CPacket (CloseContainer)</code></li>
-        <li><code>CooldownUpdateS2CPacket (SetCooldown)</code></li>
-        <li><code>CustomPayloadS2CPacket (PluginMessage)</code></li>
-        <li><code>DamageTiltS2CPacket (HurtAnimation)</code></li>
-        <li><code>DifficultyS2CPacket (ChangeDifficulty)</code></li>
-        <li><code>EndCombatS2CPacket (EndCombat)</code></li>
-        <li><code>EnterCombatS2CPacket (EnterCombat)</code></li>
-        <li><code>EntitiesDestroyS2CPacket (RemoveEntities)</code></li>
-        <li><code>EntityAnimationS2CPacket (EntityAnimation)</code></li>
-        <li><code>EntityAttributesS2CPacket (UpdateAttributes)</code></li>
-        <li><code>EntityDamageS2CPacket (DamageEvent)</code></li>
-        <li><code>EntityEquipmentUpdateS2CPacket (SetEquipment)</code></li>
-        <li><code>EntityPassengersSetS2CPacket (SetPassengers)</code></li>
-        <li><code>EntityPositionS2CPacket (TeleportEntity)</code></li>
-        <li><code>EntitySetHeadYawS2CPacket (SetHeadRotation)</code></li>
-        <li><code>EntitySpawnS2CPacket (SpawnEntity)</code></li>
-        <li><code>EntityStatusEffectS2CPacket (EntityEffect)</code></li>
-        <li><code>EntityStatusS2CPacket (SetEntityMetadata)</code></li>
-        <li><code>EntityTrackerUpdateS2CPacket (UpdateAttributes)</code></li>
-        <li><code>EntityVelocityUpdateS2CPacket (SetEntityVelocity)</code></li>
-        <li><code>ExperienceBarUpdateS2CPacket (SetExperience)</code></li>
-        <li><code>ExperienceOrbSpawnS2CPacket (SpawnExperienceOrb)</code></li>
-        <li><code>FeaturesS2CPacket (FeatureFlags)</code></li>
-        <li><code>GameJoinS2CPacket (Login (Play))</code></li>
-        <li><code>GameMessageS2CPacket (SystemChatMessage)</code></li>
-        <li><code>GameStateChangeS2CPacket (GameEvent)</code></li>
-        <li><code>HealthUpdateS2CPacket (SetHealth)</code></li>
-        <li><code>InventoryS2CPacket (SetContainerContent)</code></li>
-        <li><code>ItemPickupAnimationS2CPacket (PickupItem)</code></li>
-        <li><code>KeepAliveS2CPacket (KeepAlive)</code></li>
-        <li><code>LightUpdateS2CPacket (UpdateLight)</code></li>
-        <li><code>LoginCompressionS2CPacket (SetCompression)</code></li>
-        <li><code>LoginQueryRequestS2CPacket (LoginPluginRequest)</code></li>
-        <li><code>LoginSuccessS2CPacket (LoginSuccess)</code></li>
-        <li><code>MapUpdateS2CPacket (MapData)</code></li>
-        <li><code>MoveRelativeS2CPacket (UpdateEntityPosition)</code></li>
-        <li><code>OpenScreenS2CPacket (OpenScreen)</code></li>
-        <li><code>ParticleS2CPacket (Particle)</code></li>
-        <li><code>PlaySoundS2CPacket (SoundEffect)</code></li>
-        <li><code>PlayerAbilitiesS2CPacket (PlayerAbilities)</code></li>
-        <li><code>PlayerActionResponseS2CPacket (AcknowledgeBlockChange)</code></li>
-        <li><code>PlayerListS2CPacket (PlayerInfoUpdate)</code></li>
-        <li><code>PlayerPositionLookS2CPacket (SynchronizePlayerPosition)</code></li>
-        <li><code>PlayerRespawnS2CPacket (Respawn)</code></li>
-        <li><code>PlayerSpawnPositionS2CPacket (SetDefaultSpawnPosition)</code></li>
-        <li><code>QueryPongS2CPacket (PongPlay)</code></li>
-        <li><code>QueryResponseS2CPacket (StatusResponse)</code></li>
-        <li><code>RemoveEntityStatusEffectS2CPacket (RemoveEntityEffect)</code></li>
-        <li><code>RotateAndMoveRelativeS2CPacket (UpdateEntityPositionAndRotation)</code></li>
-        <li><code>RotateS2CPacket (UpdateEntityRotation)</code></li>
-        <li><code>ScreenSlotUpdateS2CPacket (SetContainerSlot)</code></li>
-        <li><code>ServerMetadataS2CPacket (ServerData)</code></li>
-        <li><code>SimulationDistanceS2CPacket (SetSimulationDistance)</code></li>
-        <li><code>SynchronizeRecipesS2CPacket (UpdateRecipes)</code></li>
-        <li><code>SynchronizeTagsS2CPacket (UpdateTags)</code></li>
-        <li><code>UnloadChunkS2CPacket (UnloadChunk)</code></li>
-        <li><code>UnlockRecipesS2CPacket (UpdateRecipeBook)</code></li>
-        <li><code>UpdateSelectedSlotS2CPacket (SetHeldItem)</code></li>
-        <li><code>WorldBorderInitializeS2CPacket (InitializeWorldBorder)</code></li>
-        <li><code>WorldEventS2CPacket (WorldEvent)</code></li>
-        <li><code>WorldTimeUpdateS2CPacket (UpdateTime)</code></li>
-    </ul>
-</details>
 
 ## Why do you not use Reflections/... to convert the packet data?
 
@@ -119,7 +45,11 @@ By default, the web-ui connects to the websocket and receives the packet informa
 ## Previews:
 
 Video:  
-<video src="https://youtu.be/gqOpIm2WfJg" controls preload></video>
+<div align="left">
+      <a href="https://www.youtube.com/watch?v=gqOpIm2WfJg">
+         <img src="https://img.youtube.com/vi/gqOpIm2WfJg/0.jpg" style="width:100%;">
+      </a>
+</div>
 
 MapUpdateAdapter:
 ![https://cdn.discordapp.com/attachments/598256161212596235/1093635306244280431/image.png](https://cdn.discordapp.com/attachments/598256161212596235/1093635306244280431/image.png)
