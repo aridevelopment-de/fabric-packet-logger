@@ -118,8 +118,8 @@ By default, the web-ui connects to the websocket and receives the packet informa
 
 ## Previews:
 
-Overview:
-![https://cdn.discordapp.com/attachments/598256161212596235/1093634774763065475/image.png](https://cdn.discordapp.com/attachments/598256161212596235/1093634774763065475/image.png)
+Video:  
+<video src="https://youtu.be/gqOpIm2WfJg" controls preload></video>
 
 MapUpdateAdapter:
 ![https://cdn.discordapp.com/attachments/598256161212596235/1093635306244280431/image.png](https://cdn.discordapp.com/attachments/598256161212596235/1093635306244280431/image.png)
