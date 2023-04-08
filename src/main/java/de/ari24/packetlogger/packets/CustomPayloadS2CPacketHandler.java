@@ -2,6 +2,7 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.utils.ConvertUtils;
+import io.netty.buffer.ByteBuf;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
@@ -34,9 +35,12 @@ public class CustomPayloadS2CPacketHandler implements BasePacketHandler<CustomPa
         jsonObject.addProperty("channel", packet.getChannel().toString());
         jsonObject.addProperty("readableBytes", packet.getData().readableBytes());
 
-        IntList bytes = new IntArrayList();
-        packet.getData().writeIntList(bytes);
-
+        byte[] bytes = new byte[]{};
+        packet.getData().resetReaderIndex();
+        packet.getData().resetWriterIndex();
+        packet.getData().readBytes(bytes);
+        packet.getData().resetReaderIndex();
+        packet.getData().resetWriterIndex();
         jsonObject.add("data", ConvertUtils.GSON_INSTANCE.toJsonTree(bytes));
         return jsonObject;
     }
