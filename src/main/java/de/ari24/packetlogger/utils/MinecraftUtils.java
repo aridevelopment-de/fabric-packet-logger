@@ -1,11 +1,7 @@
 package de.ari24.packetlogger.utils;
 
-import net.minecraft.entity.EntityType;
-
-import java.util.ArrayList;
-
 public class MinecraftUtils {
-    public static final ArrayList<EntityType<?>> PROJECTILES = new ArrayList<>();
+    /*public static final ArrayList<EntityType<?>> PROJECTILES = new ArrayList<>();
 
     static {
         PROJECTILES.add(EntityType.ARROW);
@@ -26,5 +22,5 @@ public class MinecraftUtils {
         PROJECTILES.add(EntityType.EYE_OF_ENDER);
         PROJECTILES.add(EntityType.EVOKER_FANGS);
         PROJECTILES.add(EntityType.FISHING_BOBBER);
-    }
+    }*/
 }

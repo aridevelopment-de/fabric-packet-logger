@@ -3,25 +3,6 @@ package de.ari24.packetlogger.utils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
-import de.ari24.packetlogger.PacketLogger;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.packet.s2c.play.ChunkData;
-import net.minecraft.network.packet.s2c.play.LightData;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.GlobalPos;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.function.Consumer;
 
 public class ConvertUtils {
     public static final Gson GSON_INSTANCE = new Gson();
@@ -42,7 +23,7 @@ public class ConvertUtils {
         return jsonObject;
     }
 
-    public static JsonObject serializeGlobalPos(GlobalPos globalPos) {
+    /*public static JsonObject serializeGlobalPos(GlobalPos globalPos) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("dimension", globalPos.getDimension().getValue().toString());
         jsonObject.addProperty("position", globalPos.getPos().toString());
@@ -156,5 +137,5 @@ public class ConvertUtils {
         jsonObject.addProperty("color", convertRGB(statusEffect.getColor()));
         jsonObject.addProperty("positive", statusEffect.isBeneficial());
         return jsonObject;
-    }
+    }*/
 }

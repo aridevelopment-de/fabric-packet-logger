@@ -2,7 +2,6 @@ package de.ari24.packetlogger.web;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
-import de.ari24.packetlogger.packets.PacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
@@ -30,11 +29,11 @@ public class WebsocketServer extends WebSocketServer {
         clients.add(conn);
 
         try {
-            JsonObject jsonObject = new JsonObject();;
+            /*JsonObject jsonObject = new JsonObject();;
             jsonObject.addProperty("type", "init");
             jsonObject.add("allPackets", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getRegisteredPacketIds()));
             jsonObject.add("descriptions", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getPacketDescriptions()));
-            conn.send(jsonObject.toString());
+            conn.send(jsonObject.toString());*/
 
             JsonObject loggingState = new JsonObject();
             loggingState.addProperty("type", "loggingState");

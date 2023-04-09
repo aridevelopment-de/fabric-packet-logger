@@ -4,17 +4,12 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import de.ari24.packetlogger.PacketLogger;
-import net.minecraft.resource.NamespaceResourceManager;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.ResourceType;
-import net.minecraft.util.Identifier;
 import org.apache.commons.io.IOUtils;
 
-import java.io.*;
-
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.net.URL;
-import java.util.Arrays;
 
 public class HTTPServer {
     public static void start(int port) throws IOException {
