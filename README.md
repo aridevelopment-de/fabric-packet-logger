@@ -1,6 +1,6 @@
 # Fabric Packet Logger
 
-I use this for development at [thejocraft.net](thejocraft.net). Yes, the code may not be the best. If you want to improve it, do it and open a pull request.
+I use this for development at [thejocraft.net](https://thejocraft.net). Yes, the code may not be the best. If you want to improve it, do it and open a pull request.
 
 ## Features
 
