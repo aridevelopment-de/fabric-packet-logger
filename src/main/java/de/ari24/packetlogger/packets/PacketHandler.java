@@ -13,6 +13,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
+import static de.ari24.packetlogger.PacketLogger.PACKET_TICKER;
+
 public class PacketHandler {
     private static final Map<Class<? extends Packet<?>>, BasePacketHandler<?>> HANDLERS = new HashMap<>();
 
@@ -154,6 +156,7 @@ public class PacketHandler {
             return;
         }
 
+        PACKET_TICKER.tick();
         BasePacketHandler<?> handler = HANDLERS.get(packet.getClass());
 
         if (handler != null) {

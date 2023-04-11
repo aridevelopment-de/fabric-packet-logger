@@ -3,6 +3,7 @@ package de.ari24.packetlogger;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.commands.CommandHandler;
 import de.ari24.packetlogger.config.PacketLoggerConfig;
+import de.ari24.packetlogger.utils.PacketTicker;
 import de.ari24.packetlogger.web.HTTPServer;
 import de.ari24.packetlogger.web.WebsocketServer;
 import io.wispforest.owo.config.Option;
@@ -16,6 +17,7 @@ import java.util.Objects;
 public class    PacketLogger implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("packetlogger");
     public static final PacketLoggerConfig CONFIG = PacketLoggerConfig.createAndLoad();
+    public static final PacketTicker PACKET_TICKER = new PacketTicker();
     public static WebsocketServer wss;
 
     @Override

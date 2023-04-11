@@ -4,13 +4,13 @@
   "version": "${version}",
 
   "name": "Packet Logger",
-  "description": "Logs packet with a nice web-ui",
+  "description": "Logs packets with a nice web-ui",
   "authors": [
     "Ari van Houten"
   ],
   "contact": {
     "homepage": "https://aridevelopment.de",
-    "sources": "https://github.com/aridevelopment-de"
+    "sources": "https://github.com/aridevelopment-de/fabric-packet-logger"
   },
 
   "license": "AGPL-3.0",
