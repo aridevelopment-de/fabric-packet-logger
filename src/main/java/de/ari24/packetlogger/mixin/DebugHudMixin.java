@@ -20,6 +20,7 @@ public class DebugHudMixin {
         value.add("");
         value.add(Formatting.GOLD +"[Packet Logger]");
         value.add("Logging packets: " + (PacketLogger.CONFIG.logPackets() ? (Formatting.GREEN + "enabled") : (Formatting.RED + "disabled")));
+        value.add("Connected clients: " + PacketLogger.wss.getClients().size());
         value.add((PacketLogger.CONFIG.logPackets() ? "Packets/s: " + PACKET_TICKER.getPPS() : ""));
         value.add("");
     }

@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import de.ari24.packetlogger.packets.PacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
+import lombok.Getter;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -15,6 +16,7 @@ import java.util.Objects;
 
 public class WebsocketServer extends WebSocketServer {
 
+    @Getter
     private final Collection<WebSocket> clients;
 
     public WebsocketServer(int port) {
