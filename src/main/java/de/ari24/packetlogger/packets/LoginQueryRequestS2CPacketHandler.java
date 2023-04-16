@@ -12,7 +12,7 @@ public class LoginQueryRequestS2CPacketHandler implements BasePacketHandler<Logi
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Login_Plugin_Request";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Login_Plugin_Request";
     }
 
     @Override

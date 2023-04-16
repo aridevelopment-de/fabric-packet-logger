@@ -13,7 +13,7 @@ public class PlayerRespawnS2CPacketHandler implements BasePacketHandler<PlayerRe
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Respawn";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Respawn";
     }
 
     @Override

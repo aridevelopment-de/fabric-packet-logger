@@ -11,7 +11,7 @@ public class WorldBorderSizeChangedS2CPacketHandler implements BasePacketHandler
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Border_Size";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Border_Size";
     }
 
     @Override

@@ -12,7 +12,7 @@ public class OverlayMessageS2CPacketHandler implements BasePacketHandler<Overlay
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Action_Bar_Text";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Action_Bar_Text";
     }
 
     @Override

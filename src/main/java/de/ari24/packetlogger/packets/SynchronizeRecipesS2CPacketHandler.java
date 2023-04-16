@@ -17,7 +17,7 @@ public class SynchronizeRecipesS2CPacketHandler implements BasePacketHandler<Syn
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Recipes";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Recipes";
     }
 
     public static JsonObject serializeRecipeData(Recipe<?> recipe) {

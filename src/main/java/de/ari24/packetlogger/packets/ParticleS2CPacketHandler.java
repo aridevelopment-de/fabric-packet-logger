@@ -15,7 +15,7 @@ public class ParticleS2CPacketHandler implements BasePacketHandler<ParticleS2CPa
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Particle_2";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Particle_2";
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ParticleS2CPacketHandler implements BasePacketHandler<ParticleS2CPa
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("general", "Displays the named particle");
         jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
-        jsonObject.addProperty("particleType", "The type of the particle. See htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Particle");
+        jsonObject.addProperty("particleType", "The type of the particle. See https://wiki.vg/index.php?title=Protocol&oldid=18067#Particle");
         jsonObject.addProperty("longDistance", "If true, particle view distance increases from 256 to 65536.");
         jsonObject.addProperty("x", "");
         jsonObject.addProperty("y", "");
@@ -33,7 +33,7 @@ public class ParticleS2CPacketHandler implements BasePacketHandler<ParticleS2CPa
         jsonObject.addProperty("offsetZ", "This is added to the Z position after being multiplied by random.nextGaussian(). ");
         jsonObject.addProperty("maxSpeed", "");
         jsonObject.addProperty("count", "The number of particles to create");
-        jsonObject.addProperty("parameters", "The parameters of the particle. See htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Particle");
+        jsonObject.addProperty("parameters", "The parameters of the particle. See https://wiki.vg/index.php?title=Protocol&oldid=18067#Particle");
         return jsonObject;
     }
 

@@ -16,7 +16,7 @@ public class RotateAndMoveRelativeHandler implements BasePacketHandler<EntityS2C
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Entity_Position_and_Rotation";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Entity_Position_and_Rotation";
     }
 
     @Override

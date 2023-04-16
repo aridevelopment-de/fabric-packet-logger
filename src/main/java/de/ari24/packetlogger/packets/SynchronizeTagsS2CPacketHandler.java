@@ -16,7 +16,7 @@ public class SynchronizeTagsS2CPacketHandler implements BasePacketHandler<Synchr
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Tags";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Tags";
     }
 
     @Override

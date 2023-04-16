@@ -14,7 +14,7 @@ public class UnlockRecipesS2CPacketHandler implements BasePacketHandler<UnlockRe
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Recipe_Book";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Recipe_Book";
     }
 
     private JsonObject serializeOptions(RecipeBookOptions options) {

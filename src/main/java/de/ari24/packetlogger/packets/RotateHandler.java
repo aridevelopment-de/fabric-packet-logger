@@ -16,7 +16,7 @@ public class RotateHandler implements BasePacketHandler<EntityS2CPacket.Rotate> 
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Entity_Rotation";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Entity_Rotation";
     }
 
     @Override

@@ -12,7 +12,7 @@ public class TitleFadeS2CPacketHandler implements BasePacketHandler<TitleFadeS2C
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Title_Animation_Times";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Title_Animation_Times";
     }
 
     @Override

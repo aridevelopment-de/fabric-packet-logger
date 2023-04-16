@@ -13,7 +13,7 @@ public class EntityStatusEffectS2CPacketHandler implements BasePacketHandler<Ent
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Entity_Effect";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Entity_Effect";
     }
 
     @Override

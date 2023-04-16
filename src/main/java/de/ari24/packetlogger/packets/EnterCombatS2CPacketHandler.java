@@ -11,7 +11,7 @@ public class EnterCombatS2CPacketHandler implements BasePacketHandler<EnterComba
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Enter_Combat";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Enter_Combat";
     }
 
     @Override

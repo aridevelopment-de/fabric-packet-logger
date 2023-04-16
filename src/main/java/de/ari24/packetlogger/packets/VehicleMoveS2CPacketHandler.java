@@ -11,7 +11,7 @@ public class VehicleMoveS2CPacketHandler implements BasePacketHandler<VehicleMov
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Move_Vehicle";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Move_Vehicle";
     }
 
     @Override

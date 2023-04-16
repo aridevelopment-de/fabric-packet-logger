@@ -17,7 +17,7 @@ public class InventoryS2CPacketHandler implements BasePacketHandler<InventoryS2C
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Container_Content";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Container_Content";
     }
 
     @Override

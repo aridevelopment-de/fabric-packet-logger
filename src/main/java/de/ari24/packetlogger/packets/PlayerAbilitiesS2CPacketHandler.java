@@ -11,7 +11,7 @@ public class PlayerAbilitiesS2CPacketHandler implements BasePacketHandler<Player
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Player_Abilities";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Player_Abilities";
     }
 
     @Override

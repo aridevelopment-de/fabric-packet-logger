@@ -12,7 +12,7 @@ public class CommandTreeS2CPacketHandler implements BasePacketHandler<CommandTre
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Commands";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Commands";
     }
 
     @Override

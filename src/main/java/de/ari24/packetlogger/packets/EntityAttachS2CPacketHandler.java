@@ -13,7 +13,7 @@ public class EntityAttachS2CPacketHandler implements BasePacketHandler<EntityAtt
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Link_Entities";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Link_Entities";
     }
 
     @Override

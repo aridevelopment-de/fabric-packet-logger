@@ -13,7 +13,7 @@ public class SetCameraEntityS2CPacketHandler implements BasePacketHandler<SetCam
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Camera";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Camera";
     }
 
     @Override

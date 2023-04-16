@@ -15,7 +15,7 @@ public class MoveRelativeHandler implements BasePacketHandler<EntityS2CPacket.Mo
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Entity_Position";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Entity_Position";
     }
 
     @Override

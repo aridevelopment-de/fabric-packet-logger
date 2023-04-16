@@ -14,7 +14,7 @@ public class LoginHelloS2CPacketHandler implements BasePacketHandler<LoginHelloS
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Encryption_Request";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Encryption_Request";
     }
 
     @Override

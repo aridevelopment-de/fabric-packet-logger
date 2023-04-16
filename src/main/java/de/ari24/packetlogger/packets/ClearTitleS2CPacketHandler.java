@@ -12,7 +12,7 @@ public class ClearTitleS2CPacketHandler implements BasePacketHandler<ClearTitleS
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Clear_Titles";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Clear_Titles";
     }
 
     @Override

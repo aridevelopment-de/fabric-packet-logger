@@ -11,7 +11,7 @@ public class WorldBorderInitializeS2CPacketHandler implements BasePacketHandler<
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Initialize_World_Border";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Initialize_World_Border";
     }
 
     @Override

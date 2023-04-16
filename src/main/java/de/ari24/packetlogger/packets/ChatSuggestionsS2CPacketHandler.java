@@ -13,7 +13,7 @@ public class ChatSuggestionsS2CPacketHandler implements BasePacketHandler<ChatSu
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Chat_Suggestions";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Chat_Suggestions";
     }
 
     @Override

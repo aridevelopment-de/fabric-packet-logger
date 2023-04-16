@@ -13,7 +13,7 @@ public class DeathMessageS2CPacketHandler implements BasePacketHandler<DeathMess
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Combat_Death";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Combat_Death";
     }
 
     @Override

@@ -60,7 +60,7 @@ public class EntitySpawnS2CPacketHandler implements BasePacketHandler<EntitySpaw
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Spawn_Entity";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Spawn_Entity";
     }
 
     @Override

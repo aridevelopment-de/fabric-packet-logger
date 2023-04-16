@@ -12,7 +12,7 @@ public class ChunkLoadDistanceS2CPacketHandler implements BasePacketHandler<Chun
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Render_Distance";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Render_Distance";
     }
 
     @Override

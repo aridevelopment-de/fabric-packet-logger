@@ -12,7 +12,7 @@ public class TitleS2CPacketHandler implements BasePacketHandler<TitleS2CPacket> 
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Title_Text";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Title_Text";
     }
 
     @Override

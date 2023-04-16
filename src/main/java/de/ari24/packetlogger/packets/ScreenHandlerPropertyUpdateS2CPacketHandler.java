@@ -11,14 +11,14 @@ public class ScreenHandlerPropertyUpdateS2CPacketHandler implements BasePacketHa
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Container_Property";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Container_Property";
     }
 
     @Override
     public JsonObject description() {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("general", "This packet is used to inform the client that part of a GUI window should be updated");
-        jsonObject.addProperty("wikiVgNotes", "The meaning of the Property field depends on the type of the window. A table with all window types & values can be found here: htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Container_Property");
+        jsonObject.addProperty("wikiVgNotes", "The meaning of the Property field depends on the type of the window. A table with all window types & values can be found here: https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Container_Property");
         jsonObject.addProperty("windowId", "The ID of the window which should be updated");
         jsonObject.addProperty("property", "The property which should be updated");
         jsonObject.addProperty("value", "The new value of the property");

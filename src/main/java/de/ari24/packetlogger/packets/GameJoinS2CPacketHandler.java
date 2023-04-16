@@ -30,7 +30,7 @@ public class GameJoinS2CPacketHandler implements BasePacketHandler<GameJoinS2CPa
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Login_.28play.29";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Login_.28play.29";
     }
 
     @Override

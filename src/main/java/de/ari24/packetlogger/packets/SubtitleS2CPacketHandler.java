@@ -12,7 +12,7 @@ public class SubtitleS2CPacketHandler implements BasePacketHandler<SubtitleS2CPa
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Subtitle_Text";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Subtitle_Text";
     }
 
     @Override

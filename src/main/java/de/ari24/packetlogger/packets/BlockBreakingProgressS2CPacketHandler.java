@@ -12,7 +12,7 @@ public class BlockBreakingProgressS2CPacketHandler implements BasePacketHandler<
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Block_Destroy_Stage";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Block_Destroy_Stage";
     }
 
     @Override

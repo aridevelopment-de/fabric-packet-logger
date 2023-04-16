@@ -14,7 +14,7 @@ public class PlaySoundFromEntityS2CPacketHandler implements BasePacketHandler<Pl
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Entity_Sound_Effect";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Entity_Sound_Effect";
     }
 
     @Override

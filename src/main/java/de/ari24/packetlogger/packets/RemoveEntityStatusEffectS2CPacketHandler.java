@@ -16,7 +16,7 @@ public class RemoveEntityStatusEffectS2CPacketHandler implements BasePacketHandl
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Remove_Entity_Effect";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Remove_Entity_Effect";
     }
 
     @Override

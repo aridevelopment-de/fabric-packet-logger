@@ -12,7 +12,7 @@ public class LightUpdateS2CPacketHandler implements BasePacketHandler<LightUpdat
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Light";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Light";
     }
 
     @Override

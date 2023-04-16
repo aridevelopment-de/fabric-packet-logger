@@ -14,7 +14,7 @@ public class EntityPositionS2CPacketHandler implements BasePacketHandler<EntityP
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Teleport_Entity";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Teleport_Entity";
     }
 
     @Override

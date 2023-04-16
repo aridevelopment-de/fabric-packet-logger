@@ -21,7 +21,7 @@ public class MapUpdateS2CPacketHandler implements BasePacketHandler<MapUpdateS2C
 
     @Override
     public String url() {
-        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Map_Data";
+        return "https://wiki.vg/index.php?title=Protocol&oldid=18067#Map_Data";
     }
 
     @Override
