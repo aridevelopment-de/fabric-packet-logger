@@ -9,6 +9,16 @@ I use this for development at [thejocraft.net](https://thejocraft.net). Yes, the
 - InGame config
 - TODO: InGame packet history viewer
 
+## Supported Minecraft Versions
+
+| Minecraft Version | Status |
+|-------------------|------|
+| 1.19.3 | ⚠️   |
+| 1.19.4 | ✔️     |
+
+⚠️ = Packets implemented but not validated  
+✔️ = Supported
+
 ## Web-ui
 
 Now located at [aridevelopment-de/fabric-packet-logger-frontend](https://github.com/aridevelopment-de/fabric-packet-logger-frontend).
