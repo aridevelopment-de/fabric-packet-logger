@@ -12,7 +12,7 @@ public class PlayerListHeaderS2CPacketHandler implements BasePacketHandler<Playe
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Tab_List_Header_And_Footer";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Tab_List_Header_And_Footer";
     }
 
     @Override

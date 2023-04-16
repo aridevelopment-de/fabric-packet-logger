@@ -13,7 +13,7 @@ public class PlayerRespawnS2CPacketHandler implements BasePacketHandler<PlayerRe
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Respawn";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Respawn";
     }
 
     @Override
@@ -53,9 +53,9 @@ public class PlayerRespawnS2CPacketHandler implements BasePacketHandler<PlayerRe
         jsonObject.addProperty("isFlat", packet.isFlatWorld());
         // TODO: wiki.vg states a "copyMetadata" boolean, but it's not in the packet class
         // Is the flag attribute used for this?
-        jsonObject.addProperty("keepAttributes", packet.hasFlag(PlayerRespawnS2CPacket.KEEP_ATTRIBUTES));
-        jsonObject.addProperty("keepTrackedData", packet.hasFlag(PlayerRespawnS2CPacket.KEEP_TRACKED_DATA));
-        jsonObject.addProperty("keepAll", packet.hasFlag(PlayerRespawnS2CPacket.KEEP_ALL));
+        jsonObject.addProperty("keepAttributes", packet.method_48016(PlayerRespawnS2CPacket.field_41730));
+        jsonObject.addProperty("keepTrackedData", packet.method_48016(PlayerRespawnS2CPacket.field_41731));
+        jsonObject.addProperty("keepAll", packet.method_48016(PlayerRespawnS2CPacket.field_41732));
         jsonObject.addProperty("hasDeathLocation", packet.getLastDeathPos().isPresent());
 
         if (packet.getLastDeathPos().isPresent()) {

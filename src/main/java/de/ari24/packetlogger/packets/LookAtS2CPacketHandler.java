@@ -13,7 +13,7 @@ public class LookAtS2CPacketHandler implements BasePacketHandler<LookAtS2CPacket
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Look_At";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Look_At";
     }
 
     @Override

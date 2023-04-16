@@ -12,7 +12,7 @@ public class ExperienceBarUpdateS2CPacketHandler implements BasePacketHandler<Ex
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Experience";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Experience";
     }
 
     @Override

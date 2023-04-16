@@ -12,7 +12,7 @@ public class DisconnectS2CPacketHandler implements BasePacketHandler<DisconnectS
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Disconnect_.28play.29";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Disconnect_.28play.29";
     }
 
     @Override

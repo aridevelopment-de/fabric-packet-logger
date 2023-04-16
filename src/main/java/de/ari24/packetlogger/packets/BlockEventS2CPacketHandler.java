@@ -11,7 +11,7 @@ public class BlockEventS2CPacketHandler implements BasePacketHandler<BlockEventS
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Block_Action";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Block_Action";
     }
 
     @Override

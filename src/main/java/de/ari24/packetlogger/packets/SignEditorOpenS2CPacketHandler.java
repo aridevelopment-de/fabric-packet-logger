@@ -12,7 +12,7 @@ public class SignEditorOpenS2CPacketHandler implements BasePacketHandler<SignEdi
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Open_Sign_Editor";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Open_Sign_Editor";
     }
 
     @Override

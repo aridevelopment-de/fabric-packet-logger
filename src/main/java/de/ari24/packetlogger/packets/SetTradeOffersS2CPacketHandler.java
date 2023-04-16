@@ -16,7 +16,7 @@ public class SetTradeOffersS2CPacketHandler implements BasePacketHandler<SetTrad
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Merchant_Offers";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Merchant_Offers";
     }
 
     @Override

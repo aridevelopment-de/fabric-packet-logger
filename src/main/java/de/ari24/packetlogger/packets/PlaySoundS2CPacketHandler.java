@@ -11,7 +11,7 @@ public class PlaySoundS2CPacketHandler implements BasePacketHandler<PlaySoundS2C
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Sound_Effect";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Sound_Effect";
     }
 
     @Override

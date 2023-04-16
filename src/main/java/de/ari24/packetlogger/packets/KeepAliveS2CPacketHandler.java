@@ -11,7 +11,7 @@ public class KeepAliveS2CPacketHandler implements BasePacketHandler<KeepAliveS2C
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Keep_Alive";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Keep_Alive";
     }
 
     @Override

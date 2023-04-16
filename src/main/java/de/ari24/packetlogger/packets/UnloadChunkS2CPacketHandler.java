@@ -11,7 +11,7 @@ public class UnloadChunkS2CPacketHandler implements BasePacketHandler<UnloadChun
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Unload_Chunk";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Unload_Chunk";
     }
 
     @Override

@@ -16,7 +16,7 @@ public class EntitySetHeadYawS2CPacketHandler implements BasePacketHandler<Entit
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Head_Rotation";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Head_Rotation";
     }
 
     @Override

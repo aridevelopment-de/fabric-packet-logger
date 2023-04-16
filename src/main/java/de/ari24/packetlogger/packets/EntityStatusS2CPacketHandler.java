@@ -16,7 +16,7 @@ public class EntityStatusS2CPacketHandler implements BasePacketHandler<EntitySta
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Entity_Event";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Entity_Event";
     }
 
     @Override

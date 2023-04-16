@@ -12,7 +12,7 @@ public class PlayerPositionLookS2CPacketHandler implements BasePacketHandler<Pla
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Synchronize_Player_Position";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Synchronize_Player_Position";
     }
 
     @Override

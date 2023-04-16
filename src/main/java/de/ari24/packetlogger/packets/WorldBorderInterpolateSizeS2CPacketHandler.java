@@ -12,7 +12,7 @@ public class WorldBorderInterpolateSizeS2CPacketHandler implements BasePacketHan
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Border_Lerp_Size";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Border_Lerp_Size";
     }
 
     @Override

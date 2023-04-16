@@ -12,7 +12,7 @@ public class ScreenHandlerSlotUpdateS2CPacketHandler implements BasePacketHandle
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Container_Slot";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Container_Slot";
     }
 
     @Override

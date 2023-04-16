@@ -89,7 +89,7 @@ public class WorldEventS2CPacketHandler implements BasePacketHandler<WorldEventS
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#World_Event";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#World_Event";
     }
 
     private JsonObject getEventData(int eventId, int data) {

@@ -19,7 +19,7 @@ public class EntityPassengersSetS2CPacketHandler implements BasePacketHandler<En
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Passengers";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Passengers";
     }
 
     @Override

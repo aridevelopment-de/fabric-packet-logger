@@ -11,7 +11,7 @@ public class BlockUpdateS2CPacketHandler implements BasePacketHandler<BlockUpdat
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Block_Update";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Block_Update";
     }
 
     @Override

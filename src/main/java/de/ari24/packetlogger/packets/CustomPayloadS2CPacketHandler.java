@@ -15,7 +15,7 @@ public class CustomPayloadS2CPacketHandler implements BasePacketHandler<CustomPa
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Plugin_Message";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Plugin_Message";
     }
 
     @Override

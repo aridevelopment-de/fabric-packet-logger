@@ -13,7 +13,7 @@ public class OpenWrittenBookS2CPacketHandler implements BasePacketHandler<OpenWr
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Open_Book";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Open_Book";
     }
 
     @Override

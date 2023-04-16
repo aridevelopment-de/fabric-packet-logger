@@ -16,7 +16,7 @@ public class EntityTrackerUpdateS2CPacketHandler implements BasePacketHandler<En
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Entity_Metadata";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Entity_Metadata";
     }
 
     @Override

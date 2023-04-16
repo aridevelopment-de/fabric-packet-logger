@@ -11,7 +11,7 @@ public class LoginDisconnectS2CPacketHandler implements BasePacketHandler<LoginD
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Disconnect_.28login.29";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Disconnect_.28login.29";
     }
 
     @Override

@@ -12,7 +12,7 @@ public class ItemPickupAnimationS2CPacketHandler implements BasePacketHandler<It
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Pickup_Item";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Pickup_Item";
     }
 
     @Override

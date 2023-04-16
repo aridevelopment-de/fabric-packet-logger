@@ -18,14 +18,14 @@ public class ChunkDeltaUpdateS2CPacketHandler implements BasePacketHandler<Chunk
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Update_Section_Blocks";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Section_Blocks";
     }
 
     @Override
     public JsonObject description() {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("general", "Fired whenever 2 or more blocks are changed within the same chunk on the same tick.");
-        jsonObject.addProperty("wikiVgNotes", "Changing blocks in chunks not loaded by the client is unsafe (see note on https://wiki.vg/Protocol#Block_Update).");
+        jsonObject.addProperty("wikiVgNotes", "Changing blocks in chunks not loaded by the client is unsafe (see note on htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Block_Update).");
         jsonObject.addProperty("sectionPos", "Chunk section coordinate (encoded chunk x and z with each 22 bits, and section y with 20 bits, from left to right).");
         jsonObject.addProperty("suppressLightUpdates", "Whether to ignore light updates caused by the contained changes. Always inverse the preceding Update Light packet's \"Trust Edges\" boolean");
         jsonObject.addProperty("blockLength", "Length of the block states array.");

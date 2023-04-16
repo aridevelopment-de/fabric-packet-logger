@@ -20,7 +20,7 @@ public class EntitiesDestroyS2CPacketHandler implements BasePacketHandler<Entiti
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Remove_Entities";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Remove_Entities";
     }
 
     @Override

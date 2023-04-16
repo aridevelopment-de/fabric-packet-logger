@@ -12,7 +12,7 @@ public class ServerMetadataS2CPacketHandler implements BasePacketHandler<ServerM
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Server_Data";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Server_Data";
     }
 
     @Override

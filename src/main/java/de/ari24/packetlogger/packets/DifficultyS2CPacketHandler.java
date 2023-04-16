@@ -12,7 +12,7 @@ public class DifficultyS2CPacketHandler implements BasePacketHandler<DifficultyS
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Change_Difficulty";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Change_Difficulty";
     }
 
     @Override

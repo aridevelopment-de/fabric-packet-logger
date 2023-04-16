@@ -12,7 +12,7 @@ public class ResourcePackSendS2CPacketHandler implements BasePacketHandler<Resou
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Resource_Pack";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Resource_Pack";
     }
 
     @Override

@@ -13,7 +13,7 @@ public class ExperienceOrbSpawnS2CPacketHandler implements BasePacketHandler<Exp
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Spawn_Experience_Orb";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Spawn_Experience_Orb";
     }
 
     @Override

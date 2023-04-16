@@ -12,7 +12,7 @@ public class SimulationDistanceS2CPacketHandler implements BasePacketHandler<Sim
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Simulation_Distance";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Simulation_Distance";
     }
 
     @Override

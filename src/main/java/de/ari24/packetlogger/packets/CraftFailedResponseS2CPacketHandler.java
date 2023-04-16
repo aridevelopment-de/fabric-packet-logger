@@ -12,7 +12,7 @@ public class CraftFailedResponseS2CPacketHandler implements BasePacketHandler<Cr
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Place_Ghost_Recipe";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Place_Ghost_Recipe";
     }
 
     @Override

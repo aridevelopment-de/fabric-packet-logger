@@ -12,7 +12,7 @@ public class ScoreboardObjectiveUpdateS2CPacketHandler implements BasePacketHand
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Update_Objectives";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Objectives";
     }
 
     @Override

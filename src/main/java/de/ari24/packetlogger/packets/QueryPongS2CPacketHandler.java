@@ -12,7 +12,7 @@ public class QueryPongS2CPacketHandler implements BasePacketHandler<QueryPongS2C
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Pong_.28play.29";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Pong_.28play.29";
     }
 
     @Override

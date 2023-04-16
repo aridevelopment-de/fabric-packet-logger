@@ -12,7 +12,7 @@ public class UpdateSelectedSlotS2CPacketHandler implements BasePacketHandler<Upd
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Held_Item";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Held_Item";
     }
 
     @Override

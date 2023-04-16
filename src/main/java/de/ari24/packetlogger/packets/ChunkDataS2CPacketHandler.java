@@ -12,7 +12,7 @@ public class ChunkDataS2CPacketHandler implements BasePacketHandler<ChunkDataS2C
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Chunk_Data_and_Update_Light";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Chunk_Data_and_Update_Light";
     }
 
     @Override

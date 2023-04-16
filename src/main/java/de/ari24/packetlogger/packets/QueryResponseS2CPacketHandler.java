@@ -8,6 +8,7 @@ import net.minecraft.server.ServerMetadata;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class QueryResponseS2CPacketHandler implements BasePacketHandler<QueryRes
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Status_Response";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Status_Response";
     }
 
     @Override
@@ -38,17 +39,17 @@ public class QueryResponseS2CPacketHandler implements BasePacketHandler<QueryRes
         jsonObject.addProperty("players.sample", "List of players (not all). An id of a sample needs to be a valid UUID format, else the connection will abort. ");
         jsonObject.addProperty("version.name", "Readable version name (e.g. 1.19.4)");
         jsonObject.addProperty("version.protocol", "Protocol version (e.g. 761)");
-        jsonObject.addProperty("favicon.icon", "The favicon should be a PNG image that is Base64 encoded (without newlines: \\n, new lines no longer work since 1.13) and prepended with data:image/png;base64,. It should also be noted that the source image must be exactly 64x64 pixels, otherwise the Notchian client will not render the image. ");
+        jsonObject.addProperty("favicon", "The favicon should be a PNG image that is Base64 encoded (without newlines: \\n, new lines no longer work since 1.13) and prepended with data:image/png;base64,. It should also be noted that the source image must be exactly 64x64 pixels, otherwise the Notchian client will not render the image. ");
         return jsonObject;
     }
 
     private JsonObject getPlayerInfo(ServerMetadata.Players players) {
         JsonObject json = new JsonObject();
-        json.addProperty("max", players.max());
-        json.addProperty("online", players.online());
+        json.addProperty("max", players.getPlayerLimit());
+        json.addProperty("online", players.getOnlinePlayerCount());
 
         List<JsonObject> samples = new ArrayList<>();
-        players.sample().forEach(sample -> samples.add(ConvertUtils.serializeGameProfile(sample)));
+        Arrays.stream(players.getSample()).toList().forEach(sample -> samples.add(ConvertUtils.serializeGameProfile(sample)));
 
         json.add("sample", ConvertUtils.GSON_INSTANCE.toJsonTree(samples));
         return json;
@@ -56,37 +57,35 @@ public class QueryResponseS2CPacketHandler implements BasePacketHandler<QueryRes
 
     private JsonObject getVersionInfo(ServerMetadata.Version version) {
         JsonObject json = new JsonObject();
-        json.addProperty("name", version.gameVersion());
-        json.addProperty("protocol", version.protocolVersion());
-        return json;
-    }
-
-    private JsonObject getFaviconInfo(ServerMetadata.Favicon favicon) {
-        JsonObject json = new JsonObject();
-        String faviconString = new String(Base64.getEncoder().encode(favicon.iconBytes()), StandardCharsets.UTF_8);
-        json.addProperty("icon", "data:image/png;base64," + faviconString);
+        json.addProperty("name", version.getGameVersion());
+        json.addProperty("protocol", version.getProtocolVersion());
         return json;
     }
 
     @Override
     public JsonObject serialize(QueryResponseS2CPacket packet) {
         JsonObject json = new JsonObject();
-        json.addProperty("description", packet.metadata().description().toString());
 
-        if (packet.metadata().players().isPresent()) {
-            json.add("players", getPlayerInfo(packet.metadata().players().get()));
+        if (packet.getServerMetadata().getDescription() != null) {
+            json.addProperty("description", packet.getServerMetadata().getDescription().toString());
+        } else {
+            json.add("description", JsonNull.INSTANCE);
+        }
+
+        if (packet.getServerMetadata().getPlayers() != null) {
+            json.add("players", getPlayerInfo(packet.getServerMetadata().getPlayers()));
         } else {
             json.add("players", JsonNull.INSTANCE);
         }
 
-        if (packet.metadata().version().isPresent()) {
-            json.add("version", getVersionInfo(packet.metadata().version().get()));
+        if (packet.getServerMetadata().getVersion() != null) {
+            json.add("version", getVersionInfo(packet.getServerMetadata().getVersion()));
         } else {
             json.add("version", JsonNull.INSTANCE);
         }
 
-        if (packet.metadata().favicon().isPresent()) {
-            json.add("favicon", getFaviconInfo(packet.metadata().favicon().get()));
+        if (packet.getServerMetadata().getFavicon() != null) {
+            json.addProperty("favicon", packet.getServerMetadata().getFavicon());
         } else {
             json.add("favicon", JsonNull.INSTANCE);
         }

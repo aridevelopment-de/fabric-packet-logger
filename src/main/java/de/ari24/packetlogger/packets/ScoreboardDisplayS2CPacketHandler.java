@@ -12,7 +12,7 @@ public class ScoreboardDisplayS2CPacketHandler implements BasePacketHandler<Scor
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Display_Objective";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Display_Objective";
     }
 
     @Override

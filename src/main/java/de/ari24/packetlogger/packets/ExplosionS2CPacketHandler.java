@@ -13,7 +13,7 @@ public class ExplosionS2CPacketHandler implements BasePacketHandler<ExplosionS2C
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Explosion";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Explosion";
     }
 
     @Override

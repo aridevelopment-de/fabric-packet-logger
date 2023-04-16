@@ -11,7 +11,7 @@ public class SelectAdvancementTabS2CPacketHandler implements BasePacketHandler<S
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Select_Advancements_Tab";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Select_Advancements_Tab";
     }
 
     @Override

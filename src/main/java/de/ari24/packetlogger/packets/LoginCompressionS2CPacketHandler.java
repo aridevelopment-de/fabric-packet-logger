@@ -12,7 +12,7 @@ public class LoginCompressionS2CPacketHandler implements BasePacketHandler<Login
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Compression";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Compression";
     }
 
     @Override

@@ -12,7 +12,7 @@ public class OpenHorseScreenS2CPacketHandler implements BasePacketHandler<OpenHo
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Open_Horse_Screen";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Open_Horse_Screen";
     }
 
     @Override

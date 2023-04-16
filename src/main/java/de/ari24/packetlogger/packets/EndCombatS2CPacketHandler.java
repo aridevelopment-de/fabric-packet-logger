@@ -14,7 +14,7 @@ public class EndCombatS2CPacketHandler implements BasePacketHandler<EndCombatS2C
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#End_Combat";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#End_Combat";
     }
 
     @Override

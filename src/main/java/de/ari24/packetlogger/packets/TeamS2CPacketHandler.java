@@ -13,7 +13,7 @@ public class TeamS2CPacketHandler implements BasePacketHandler<TeamS2CPacket> {
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Update_Teams";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Teams";
     }
 
     @Override

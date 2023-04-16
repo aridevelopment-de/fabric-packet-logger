@@ -13,7 +13,7 @@ public class GameStateChangeS2CPacketHandler implements BasePacketHandler<GameSt
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Game_Event";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Game_Event";
     }
 
     @Override

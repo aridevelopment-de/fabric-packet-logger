@@ -12,7 +12,7 @@ public class EntityVelocityUpdateS2CPacketHandler implements BasePacketHandler<E
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Entity_Velocity";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Entity_Velocity";
     }
 
     @Override

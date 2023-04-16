@@ -15,7 +15,7 @@ public class PlayerListS2CPacketHandler implements BasePacketHandler<PlayerListS
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Player_Info_Update";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Player_Info_Update";
     }
 
     @Override

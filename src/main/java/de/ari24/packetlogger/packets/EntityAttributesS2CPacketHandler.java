@@ -24,7 +24,7 @@ public class EntityAttributesS2CPacketHandler implements BasePacketHandler<Entit
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Update_Attributes";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Attributes";
     }
 
     @Override

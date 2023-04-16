@@ -13,7 +13,7 @@ public class PlayerRemoveS2CPacketHandler implements BasePacketHandler<PlayerRem
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Player_Info_Remove";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Player_Info_Remove";
     }
 
     @Override

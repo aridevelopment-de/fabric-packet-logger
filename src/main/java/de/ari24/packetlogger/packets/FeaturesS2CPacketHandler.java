@@ -12,7 +12,7 @@ public class FeaturesS2CPacketHandler implements BasePacketHandler<FeaturesS2CPa
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Feature_Flags";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Feature_Flags";
     }
 
     @Override

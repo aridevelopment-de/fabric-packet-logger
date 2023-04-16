@@ -12,7 +12,7 @@ public class CloseScreenS2CPacketHandler implements BasePacketHandler<CloseScree
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Close_Container";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Close_Container";
     }
 
     @Override

@@ -12,7 +12,7 @@ public class NbtQueryResponseS2CPacketHandler implements BasePacketHandler<NbtQu
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Tag_Query_Response";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Tag_Query_Response";
     }
 
     @Override

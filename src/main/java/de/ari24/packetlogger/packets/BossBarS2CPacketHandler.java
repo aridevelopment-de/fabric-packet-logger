@@ -12,7 +12,7 @@ public class BossBarS2CPacketHandler implements BasePacketHandler<BossBarS2CPack
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Boss_Bar";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Boss_Bar";
     }
 
     @Override

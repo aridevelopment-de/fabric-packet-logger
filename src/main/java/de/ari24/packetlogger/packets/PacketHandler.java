@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
@@ -57,7 +57,6 @@ public class PacketHandler {
         HANDLERS.put(EntityTrackerUpdateS2CPacket.class, new EntityTrackerUpdateS2CPacketHandler());
         HANDLERS.put(PlayerActionResponseS2CPacket.class, new PlayerActionResponseS2CPacketHandler());
         HANDLERS.put(EntityStatusS2CPacket.class, new EntityStatusS2CPacketHandler());
-        HANDLERS.put(EntityDamageS2CPacket.class, new EntityDamageS2CPacketHandler());
         HANDLERS.put(ChunkRenderDistanceCenterS2CPacket.class, new ChunkRenderDistanceCenterS2CPacketHandler());
         HANDLERS.put(ParticleS2CPacket.class, new ParticleS2CPacketHandler());
         HANDLERS.put(KeepAliveS2CPacket.class, new KeepAliveS2CPacketHandler());
@@ -87,7 +86,6 @@ public class PacketHandler {
         HANDLERS.put(GameStateChangeS2CPacket.class, new GameStateChangeS2CPacketHandler());
         HANDLERS.put(EntityStatusEffectS2CPacket.class, new EntityStatusEffectS2CPacketHandler());
         HANDLERS.put(RemoveEntityStatusEffectS2CPacket.class, new RemoveEntityStatusEffectS2CPacketHandler());
-        HANDLERS.put(DamageTiltS2CPacket.class, new DamageTiltS2CPacketHandler());
         HANDLERS.put(EndCombatS2CPacket.class, new EndCombatS2CPacketHandler());
         HANDLERS.put(EnterCombatS2CPacket.class, new EnterCombatS2CPacketHandler());
         HANDLERS.put(CooldownUpdateS2CPacket.class, new CooldownUpdateS2CPacketHandler());
@@ -131,7 +129,6 @@ public class PacketHandler {
         HANDLERS.put(ResourcePackSendS2CPacket.class, new ResourcePackSendS2CPacketHandler());
         HANDLERS.put(ScreenHandlerPropertyUpdateS2CPacket.class, new ScreenHandlerPropertyUpdateS2CPacketHandler());
         HANDLERS.put(NbtQueryResponseS2CPacket.class, new NbtQueryResponseS2CPacketHandler());
-        HANDLERS.put(ChunkBiomeDataS2CPacket.class, new ChunkBiomeDataS2CPacketHandler());
         HANDLERS.put(OverlayMessageS2CPacket.class, new OverlayMessageS2CPacketHandler());
         HANDLERS.put(VehicleMoveS2CPacket.class, new VehicleMoveS2CPacketHandler());
         HANDLERS.put(OpenHorseScreenS2CPacket.class, new OpenHorseScreenS2CPacketHandler());
@@ -139,23 +136,10 @@ public class PacketHandler {
         HANDLERS.put(OpenWrittenBookS2CPacket.class, new OpenWrittenBookS2CPacketHandler());
         HANDLERS.put(SignEditorOpenS2CPacket.class, new SignEditorOpenS2CPacketHandler());
         HANDLERS.put(PlayPingS2CPacket.class, new PlayPingS2CPacketHandler());
-        // Java why? ;( HANDLERS.put(BundleSplitterPacket.class, new BundleSplitterPacketHandler());
-
-        // TODO
-        /*
-        PositionAndOnGround
-        Full
-        OnGroundOnly
-         */
     }
 
     @SuppressWarnings("unchecked")
     public static <T extends Packet<?>> void handlePacket(T packet) {
-        if (packet instanceof BundleS2CPacket bundleS2CPacket) {
-            bundleS2CPacket.getPackets().forEach(PacketHandler::handlePacket);
-            return;
-        }
-
         PACKET_TICKER.tick();
         BasePacketHandler<?> handler = HANDLERS.get(packet.getClass());
 

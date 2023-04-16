@@ -13,7 +13,7 @@ public class ProfilelessChatMessageS2CPacketHandler implements BasePacketHandler
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Disguised_Chat_Message";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Disguised_Chat_Message";
     }
 
     @Override

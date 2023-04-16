@@ -11,7 +11,7 @@ public class GameMessageS2CPacketHandler implements BasePacketHandler<GameMessag
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#System_Chat_Message";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#System_Chat_Message";
     }
 
     @Override

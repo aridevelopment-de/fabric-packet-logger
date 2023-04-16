@@ -12,7 +12,7 @@ public class CooldownUpdateS2CPacketHandler implements BasePacketHandler<Cooldow
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Cooldown";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Cooldown";
     }
 
     @Override

@@ -12,7 +12,7 @@ public class HealthUpdateS2CPacketHandler implements BasePacketHandler<HealthUpd
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Health";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Health";
     }
 
     @Override

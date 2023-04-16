@@ -12,7 +12,7 @@ public class StopSoundS2CPacketHandler implements BasePacketHandler<StopSoundS2C
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Stop_Sound";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Stop_Sound";
     }
 
     @Override

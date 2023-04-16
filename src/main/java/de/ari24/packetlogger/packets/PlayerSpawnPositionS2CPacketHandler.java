@@ -13,7 +13,7 @@ public class PlayerSpawnPositionS2CPacketHandler implements BasePacketHandler<Pl
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Set_Default_Spawn_Position";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Set_Default_Spawn_Position";
     }
 
     @Override

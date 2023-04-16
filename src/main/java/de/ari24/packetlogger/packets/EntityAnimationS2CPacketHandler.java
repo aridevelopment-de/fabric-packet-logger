@@ -24,7 +24,7 @@ public class EntityAnimationS2CPacketHandler implements BasePacketHandler<Entity
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Entity_Animation";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Entity_Animation";
     }
 
     @Override

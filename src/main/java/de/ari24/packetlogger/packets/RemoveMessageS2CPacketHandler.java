@@ -13,7 +13,7 @@ public class RemoveMessageS2CPacketHandler implements BasePacketHandler<RemoveMe
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Delete_Message";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Delete_Message";
     }
 
     @Override

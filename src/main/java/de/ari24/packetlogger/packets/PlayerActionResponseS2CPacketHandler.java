@@ -12,7 +12,7 @@ public class PlayerActionResponseS2CPacketHandler implements BasePacketHandler<P
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Acknowledge_Block_Change";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Acknowledge_Block_Change";
     }
 
     @Override

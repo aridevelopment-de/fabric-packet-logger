@@ -14,7 +14,7 @@ public class BlockEntityUpdateS2CPacketHandler implements BasePacketHandler<Bloc
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Block_Entity_Data";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Block_Entity_Data";
     }
 
     @Override

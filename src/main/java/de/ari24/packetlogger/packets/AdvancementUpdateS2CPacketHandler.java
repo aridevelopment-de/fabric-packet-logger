@@ -21,7 +21,7 @@ public class AdvancementUpdateS2CPacketHandler implements BasePacketHandler<Adva
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Update_Advancements";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Update_Advancements";
     }
 
     @Override

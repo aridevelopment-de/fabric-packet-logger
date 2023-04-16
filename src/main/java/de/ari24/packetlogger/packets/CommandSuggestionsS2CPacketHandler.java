@@ -15,7 +15,7 @@ public class CommandSuggestionsS2CPacketHandler implements BasePacketHandler<Com
 
     @Override
     public String url() {
-        return "https://wiki.vg/Protocol#Command_Suggestions_Response";
+        return "htthttps://wiki.vg/index.php?title=Protocol&oldid=18067#Command_Suggestions_Response";
     }
 
     @Override
