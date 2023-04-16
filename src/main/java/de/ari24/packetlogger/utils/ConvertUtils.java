@@ -1,6 +1,7 @@
 package de.ari24.packetlogger.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
 import de.ari24.packetlogger.PacketLogger;
@@ -24,7 +25,9 @@ import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 
 public class ConvertUtils {
-    public static final Gson GSON_INSTANCE = new Gson();
+    public static final Gson GSON_INSTANCE = new GsonBuilder()
+            .serializeNulls()
+            .create();
 
     public static void appendGameProfileDescription(JsonObject jsonObject) {
         jsonObject.addProperty("uuid", "UUID of the player");

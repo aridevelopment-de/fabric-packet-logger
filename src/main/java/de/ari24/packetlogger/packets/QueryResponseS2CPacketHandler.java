@@ -49,7 +49,9 @@ public class QueryResponseS2CPacketHandler implements BasePacketHandler<QueryRes
         json.addProperty("online", players.getOnlinePlayerCount());
 
         List<JsonObject> samples = new ArrayList<>();
-        Arrays.stream(players.getSample()).toList().forEach(sample -> samples.add(ConvertUtils.serializeGameProfile(sample)));
+        if (players.getSample() != null) {
+            Arrays.stream(players.getSample()).toList().forEach(sample -> samples.add(ConvertUtils.serializeGameProfile(sample)));
+        }
 
         json.add("sample", ConvertUtils.GSON_INSTANCE.toJsonTree(samples));
         return json;
