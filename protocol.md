@@ -20,7 +20,9 @@ enum PacketId {
     MC_PACKET_METADATA = 1,
     MC_PACKET_RECEIVED = 2,
     MC_PACKET_SENT = 3,
-    REQUEST_MC_PACKET_METADATA = 4
+    REQUEST_MC_PACKET_METADATA = 4,
+    REQUEST_MC_PACKET_INFO = 5,
+    MC_PACKET_INFO = 6
 }
 ````
 
@@ -55,7 +57,7 @@ enum LogState {
   "id": 1,
   "data": {
     "clientbound": {
-        "0x00": {
+        "0": {
           "name": "UpdateAdvancements",
           "url": "https://wiki.vg/Protocol#Update_Advancements",
           "fields": {
@@ -77,26 +79,40 @@ enum LogState {
 
 ## ``mc_packet_received``
 
-Field packetIds include packet id and unix timestamp (in milliseconds)
+Field packetIds include packet id, unix timestamp (milliseconds) and a unique index for later referencing
 
 ````json
 {
   "id": 2,
   "data": {
-    "packetIds": [["0x00", 1234567890], ["0x01", 123456790]]
+    "packetIds": [[0, 1234567890, 9], [1, 123456790, 10]]
   }
 }
 ````
 
 ## ``mc_packet_sent``
 
-Field packetIds include packet id and unix timestamp (in milliseconds)
+Field packetIds include packet id, unix timestamp (milliseconds) and a unique index for later referencing
 
 ````json
 {
   "id": 3,
   "data": {
-    "packetId": [["0x00", 1234567890], ["0x01", 123456790]]
+    "packetIds": [[0, 1234567890, 9], [1, 123456790, 10]]
+  }
+}
+````
+
+## ``mc_packet_info``
+
+````json
+{
+  "id": 6,
+  "data": {
+    "reset": true,
+    "advancementMapping": ["..."],
+    "toRemove": ["..."],
+    "...": "..."
   }
 }
 ````
@@ -120,5 +136,16 @@ Field packetIds include packet id and unix timestamp (in milliseconds)
 {
     "id": 4,
     "data": null
+}
+````
+
+## ``request_mc_packet_info``
+
+*Data specifies an index given by mc_packet_received or mc_packet_sent packet*
+
+````json
+{
+  "id": 5,
+  "data": 1
 }
 ````
