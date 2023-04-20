@@ -7,16 +7,6 @@ import net.minecraft.network.packet.s2c.play.BossBarS2CPacket;
 
 public class BossBarS2CPacketHandler implements BasePacketHandler<BossBarS2CPacket> {
     @Override
-    public String name() {
-        return "BossBar";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Boss_Bar";
-    }
-
-    @Override
     public JsonObject serialize(BossBarS2CPacket packet) {
         BossBarS2CPacketAccessor accessor = (BossBarS2CPacketAccessor) packet;
         JsonObject jsonObject = new JsonObject();

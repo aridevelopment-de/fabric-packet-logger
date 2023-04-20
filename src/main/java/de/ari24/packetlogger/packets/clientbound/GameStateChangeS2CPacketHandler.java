@@ -7,31 +7,7 @@ import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
 import net.minecraft.world.GameMode;
 
 public class GameStateChangeS2CPacketHandler implements BasePacketHandler<GameStateChangeS2CPacket> {
-    @Override
-    public String name() {
-        return "GameEvent";
-    }
 
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Game_Event";
-    }
-
-    @Override
-    public JsonObject description() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "Used for a wide variety of game events, from weather to bed use to gamemode to demo messages.");
-        jsonObject.addProperty("wikiVgNotes", """
-                Notes on some events:
-                - No Respawn Block Available: Displays message 'block.minecraft.spawn.not_valid' (You have no home bed or charged respawn anchor, or it was obstructed) to the player.
-                - Arrow hit player: Sent when any player is struck by an arrow.
-                - Rain level change: Seems to change both sky color and lighting. Ranges from 0 to 1
-                - Thunder level change: Seems to change both sky color and lighting (same as Rain level change, but doesn't start rain). It also requires rain to render by notchian client. Ranges from 0 to 1
-                """);
-        jsonObject.addProperty("event", "The event name if resolvable, otherwise the id");
-        jsonObject.addProperty("value", "The event value if resolvable, otherwise the float");
-        return jsonObject;
-    }
 
     @Override
     public JsonObject serialize(GameStateChangeS2CPacket packet) {

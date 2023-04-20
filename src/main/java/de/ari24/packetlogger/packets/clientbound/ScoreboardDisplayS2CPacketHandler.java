@@ -1,30 +1,11 @@
 package de.ari24.packetlogger.packets.clientbound;
 
-import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import net.minecraft.network.packet.s2c.play.ScoreboardDisplayS2CPacket;
 
 public class ScoreboardDisplayS2CPacketHandler implements BasePacketHandler<ScoreboardDisplayS2CPacket> {
-    @Override
-    public String name() {
-        return "DisplayObjective";
-    }
 
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Display_Objective";
-    }
-
-    @Override
-    public JsonObject description() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "This is sent to the client when it should display a scoreboard");
-        jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
-        jsonObject.addProperty("position", "The position of the scoreboard. String if resolvable, otherwise a byte.");
-        jsonObject.addProperty("scoreName", "The unique name for the scoreboard to be displayed");
-        return jsonObject;
-    }
 
     @Override
     public JsonObject serialize(ScoreboardDisplayS2CPacket packet) {

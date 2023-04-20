@@ -7,30 +7,6 @@ import de.ari24.packetlogger.utils.ConvertUtils;
 import net.minecraft.network.packet.s2c.play.LookAtS2CPacket;
 
 public class LookAtS2CPacketHandler implements BasePacketHandler<LookAtS2CPacket> {
-    @Override
-    public String name() {
-        return "LookAt";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Look_At";
-    }
-
-    @Override
-    public JsonObject description() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "Used to rotate the client player to face the given location or entity (for /teleport [<targets>] <x> <y> <z> facing).");
-        jsonObject.addProperty("wikiVgNotes", "If the entity given by entity ID cannot be found, this packet should be treated as if is entity was false. ");
-        jsonObject.addProperty("selfAnchor", "f set to eyes, aims using the head position; otherwise aims using the feet position.");
-        jsonObject.addProperty("targetX", "x coordinate of the point to face towards");
-        jsonObject.addProperty("targetY", "y coordinate of the point to face towards");
-        jsonObject.addProperty("targetZ", "z coordinate of the point to face towards");
-        jsonObject.addProperty("isEntity", "If true, additional information about an entity is provided. Also being used when client retrieves the vec3d target position (via head/feet)");
-        jsonObject.addProperty("entityId", "Entity ID of the entity to face towards");
-        jsonObject.addProperty("targetAnchor", "f set to eyes, aims using the head position; otherwise aims using the feet position.");
-        return jsonObject;
-    }
 
     @Override
     public JsonObject serialize(LookAtS2CPacket packet) {

@@ -1,6 +1,5 @@
 package de.ari24.packetlogger.packets.clientbound;
 
-import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
@@ -18,25 +17,6 @@ public class EntityAnimationS2CPacketHandler implements BasePacketHandler<Entity
             "MAGIC_CRITICAL_EFFECT"
     );
 
-    @Override
-    public String name() {
-        return "EntityAnimation";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Entity_Animation";
-    }
-
-    @Override
-    public JsonObject description() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "Sent whenever an entity should change animation. ");
-        jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
-        jsonObject.addProperty("entityId", "The entity ID of the entity that should change animation.");
-        jsonObject.addProperty("animation", "Animation that will be played. ");
-        return jsonObject;
-    }
 
     @Override
     public JsonObject serialize(EntityAnimationS2CPacket packet) {

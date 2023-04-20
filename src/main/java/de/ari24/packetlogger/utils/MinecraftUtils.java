@@ -1,8 +1,13 @@
 package de.ari24.packetlogger.utils;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.network.NetworkSide;
+import net.minecraft.network.NetworkState;
+import net.minecraft.network.packet.Packet;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MinecraftUtils {
     public static final ArrayList<EntityType<?>> PROJECTILES = new ArrayList<>();
@@ -26,5 +31,12 @@ public class MinecraftUtils {
         PROJECTILES.add(EntityType.EYE_OF_ENDER);
         PROJECTILES.add(EntityType.EVOKER_FANGS);
         PROJECTILES.add(EntityType.FISHING_BOBBER);
+    }
+
+    public static String getPacketId(Class<? extends Packet<?>> packetClass) {
+        NetworkState state = NetworkState.HANDLER_STATE_MAP.get(packetClass);
+        NetworkState.PacketHandler<?> packetHandler = state.packetHandlers.get(NetworkSide.CLIENTBOUND);
+        int id = packetHandler.getId(packetClass);
+        return "0x" + StringUtils.leftPad(Integer.toHexString(id), 2, "0").toUpperCase(Locale.ROOT);
     }
 }

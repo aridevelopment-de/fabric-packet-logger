@@ -16,11 +16,9 @@ import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
 import net.minecraft.network.packet.s2c.query.QueryResponseS2CPacket;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import static de.ari24.packetlogger.PacketLogger.PACKET_TICKER;
 
@@ -229,13 +227,6 @@ public class PacketHandler {
         if (handler == null) return null;
 
         return handler.serialize(packet);
-    }
-
-    private static String getPacketId(Class<? extends Packet<?>> packetClass) {
-        NetworkState state = NetworkState.HANDLER_STATE_MAP.get(packetClass);
-        NetworkState.PacketHandler<?> packetHandler = state.packetHandlers.get(NetworkSide.CLIENTBOUND);
-        int id = packetHandler.getId(packetClass);
-        return state.name() + "-0x" + StringUtils.leftPad(Integer.toHexString(id), 2, "0").toUpperCase(Locale.ROOT);
     }
 
     public record SerializedPacketData(int packetId, int index, long timestamp, int networkState, int direction) {

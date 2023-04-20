@@ -6,25 +6,6 @@ import de.ari24.packetlogger.packets.BasePacketHandler;
 import net.minecraft.network.packet.s2c.play.StopSoundS2CPacket;
 
 public class StopSoundS2CPacketHandler implements BasePacketHandler<StopSoundS2CPacket> {
-    @Override
-    public String name() {
-        return "StopSound";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Stop_Sound";
-    }
-
-    @Override
-    public JsonObject description() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "Stops an active sound.");
-        jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
-        jsonObject.addProperty("soundId", "The sound to stop. If null, all sounds will be stopped.");
-        jsonObject.addProperty("category", "The category of sounds to stop. If null, all sounds will be stopped.");
-        return jsonObject;
-    }
 
     @Override
     public JsonObject serialize(StopSoundS2CPacket packet) {

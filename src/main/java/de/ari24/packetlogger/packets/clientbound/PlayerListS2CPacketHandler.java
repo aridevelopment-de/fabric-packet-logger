@@ -10,18 +10,8 @@ import java.util.List;
 
 public class PlayerListS2CPacketHandler implements BasePacketHandler<PlayerListS2CPacket> {
     @Override
-    public String name() {
-        return "PlayerInfoUpdate";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Player_Info_Update";
-    }
-
-    @Override
     public JsonObject serialize(PlayerListS2CPacket packet) {
-        JsonObject jsonObject = new JsonObject();;
+        JsonObject jsonObject = new JsonObject();
         jsonObject.add("actions", ConvertUtils.GSON_INSTANCE.toJsonTree(packet.getActions()));
 
         List<JsonObject> entries = new ArrayList<>();

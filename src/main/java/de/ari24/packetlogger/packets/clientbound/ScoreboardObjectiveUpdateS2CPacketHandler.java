@@ -1,32 +1,10 @@
 package de.ari24.packetlogger.packets.clientbound;
 
-import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import net.minecraft.network.packet.s2c.play.ScoreboardObjectiveUpdateS2CPacket;
 
 public class ScoreboardObjectiveUpdateS2CPacketHandler implements BasePacketHandler<ScoreboardObjectiveUpdateS2CPacket> {
-    @Override
-    public String name() {
-        return "UpdateObjectives";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Update_Objectives";
-    }
-
-    @Override
-    public JsonObject description() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "This is sent to the client when it should create a new scoreboard objective or remove one.");
-        jsonObject.add("wikiVgNotes", JsonNull.INSTANCE);
-        jsonObject.addProperty("objectiveName", "A unique name for the objective.");
-        jsonObject.addProperty("mode", "String if the mode is known, otherwise the integer itself");
-        jsonObject.addProperty("objectiveValue", "Only if the mode is 0 (Create Scoreboard) or 2 (Update Display Text). The text to be displayed for the score.");
-        jsonObject.addProperty("type", "Only if mode is 0 (Create Scoreboard) or 2 (Update Display Text)"); // TODO: What does hearts even mean?
-        return jsonObject;
-    }
 
     @Override
     public JsonObject serialize(ScoreboardObjectiveUpdateS2CPacket packet) {

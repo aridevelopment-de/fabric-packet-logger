@@ -10,16 +10,6 @@ import java.util.List;
 
 public class CommandSuggestionsS2CPacketHandler implements BasePacketHandler<CommandSuggestionsS2CPacket> {
     @Override
-    public String name() {
-        return "CommandSuggestionsResponse";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Command_Suggestions_Response";
-    }
-
-    @Override
     public JsonObject serialize(CommandSuggestionsS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("completionId", packet.getCompletionId());

@@ -8,16 +8,6 @@ import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.recipe.book.RecipeBookOptions;
 
 public class UnlockRecipesS2CPacketHandler implements BasePacketHandler<UnlockRecipesS2CPacket> {
-    @Override
-    public String name() {
-        return "UpdateRecipeBook";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Update_Recipe_Book";
-    }
-
     private JsonObject serializeOptions(RecipeBookOptions options) {
         JsonObject jsonObject = new JsonObject();
 

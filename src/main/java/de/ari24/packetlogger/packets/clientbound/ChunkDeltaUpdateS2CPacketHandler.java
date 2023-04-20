@@ -13,28 +13,6 @@ import java.util.List;
 
 public class ChunkDeltaUpdateS2CPacketHandler implements BasePacketHandler<ChunkDeltaUpdateS2CPacket> {
     @Override
-    public String name() {
-        return "UpdateSectionBlocks";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Update_Section_Blocks";
-    }
-
-    @Override
-    public JsonObject description() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "Fired whenever 2 or more blocks are changed within the same chunk on the same tick.");
-        jsonObject.addProperty("wikiVgNotes", "Changing blocks in chunks not loaded by the client is unsafe (see note on https://wiki.vg/Protocol#Block_Update).");
-        jsonObject.addProperty("sectionPos", "Chunk section coordinate (encoded chunk x and z with each 22 bits, and section y with 20 bits, from left to right).");
-        jsonObject.addProperty("suppressLightUpdates", "Whether to ignore light updates caused by the contained changes. Always inverse the preceding Update Light packet's \"Trust Edges\" boolean");
-        jsonObject.addProperty("blockLength", "Length of the block states array.");
-        jsonObject.addProperty("blocks", "Each entry is composed of the block state id, shifted left by 12, and the relative block position in the chunk section (4 bits for x, z, and y, from left to right). ");
-        return jsonObject;
-    }
-
-    @Override
     public JsonObject serialize(ChunkDeltaUpdateS2CPacket packet) {
         ChunkDeltaS2CPacketAccessor accessor = (ChunkDeltaS2CPacketAccessor) packet;
         JsonObject jsonObject = new JsonObject();

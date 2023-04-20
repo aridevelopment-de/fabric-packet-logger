@@ -3,7 +3,6 @@ package de.ari24.packetlogger.packets.clientbound;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.network.packet.s2c.play.WorldEventS2CPacket;
 
 import java.util.HashMap;
@@ -81,16 +80,6 @@ public class WorldEventS2CPacketHandler implements BasePacketHandler<WorldEventS
         EVENT_MAP.put(3003, "Copper apply wax");
         EVENT_MAP.put(3004, "Copper remove wax");
         EVENT_MAP.put(3005, "Copper scrape oxidation");
-    }
-
-    @Override
-    public String name() {
-        return "WorldEvent";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#World_Event";
     }
 
     private JsonObject getEventData(int eventId, int data) {

@@ -2,15 +2,12 @@ package de.ari24.packetlogger.tests;
 
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import de.ari24.packetlogger.packets.PacketHandler;
-import io.netty.buffer.ByteBuf;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.packet.BundleSplitterPacket;
 import net.minecraft.network.packet.Packet;
-import org.junit.jupiter.api.Test;
 
-import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +22,7 @@ class PacketHandlerTest {
 
         Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.PLAY.getPacketIdToPacketMap(NetworkSide.CLIENTBOUND);
         // Pro solution
-        List<Class<? extends Packet<?>>> registeredPlayPackets = registeredPlayPacketsMapping.values().stream().filter(p -> ((Object) p) != ((Object) BundleSplitterPacket.class)).toList();
+        List<Class<? extends Packet<?>>> registeredPlayPackets = registeredPlayPacketsMapping.values().stream().filter(p -> p != BundleSplitterPacket.class).toList();
         compareAndPrintResults(registeredPlayPackets, implementedPackets);
     }
 

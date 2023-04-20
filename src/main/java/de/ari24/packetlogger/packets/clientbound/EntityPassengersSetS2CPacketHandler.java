@@ -13,25 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityPassengersSetS2CPacketHandler implements BasePacketHandler<EntityPassengersSetS2CPacket> {
-    @Override
-    public String name() {
-        return "SetPassengers";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Set_Passengers";
-    }
-
-    @Override
-    public JsonObject description() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "This packet is sent when an entity changes its passengers.");
-        jsonObject.addProperty("entityId", "The vehicle's entity ID.");
-        jsonObject.addProperty("passengerCount", "The amount of passengers.");
-        jsonObject.addProperty("passengerIds", "The passenger's entity IDs.");
-        return jsonObject;
-    }
 
     @Override
     public JsonObject serialize(EntityPassengersSetS2CPacket packet) {

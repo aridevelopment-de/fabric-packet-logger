@@ -1,14 +1,10 @@
 package de.ari24.packetlogger.packets.clientbound;
 
-import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
 import de.ari24.packetlogger.utils.MinecraftUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 
 public class EntitySpawnS2CPacketHandler implements BasePacketHandler<EntitySpawnS2CPacket> {
@@ -51,37 +47,6 @@ public class EntitySpawnS2CPacketHandler implements BasePacketHandler<EntitySpaw
             jsonObject.addProperty("unknown", entityData);
         }
 
-        return jsonObject;
-    }
-
-    @Override
-    public String name() {
-        return "SpawnEntity";
-    }
-
-    @Override
-    public String url() {
-        return "https://wiki.vg/Protocol#Spawn_Entity";
-    }
-
-    @Override
-    public JsonObject description() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("general", "Sent by the server when a vehicle or other non-living entity is created.");
-        jsonObject.addProperty("wikiVgNotes", "Velocity is believed to be in units of 1/8000 of a block per server tick (50ms); for example, -1343 would move (-1343 / 8000) = −0.167875 blocks per tick (or −3.3575 blocks per second). ");
-        jsonObject.addProperty("entityId", "The entity's ID.");
-        jsonObject.addProperty("uuid", "The entity's UUID.");
-        jsonObject.addProperty("entityType", "The entity's type, see https://wiki.vg/Entity_metadata#Mobs");
-        jsonObject.addProperty("x", "");
-        jsonObject.addProperty("y", "");
-        jsonObject.addProperty("z", "");
-        jsonObject.addProperty("pitch", "To get the real pitch, you must divide this by (256.0F / 360.0F) ");
-        jsonObject.addProperty("yaw", "To get the real yaw, you must divide this by (256.0F / 360.0F) ");
-        jsonObject.addProperty("headYaw", "Only used by living entities, where the head of the entity may differ from the general body rotation. ");
-        jsonObject.addProperty("entityData", "Meaning dependent on the entity type, see https://wiki.vg/Object_Data");
-        jsonObject.addProperty("velocityX", "");
-        jsonObject.addProperty("velocityY", "");
-        jsonObject.addProperty("velocityZ", "");
         return jsonObject;
     }
 
