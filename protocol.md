@@ -106,10 +106,17 @@ public enum NetworkState {
 {
   "id": 4,
   "data": {
-    "reset": true,
-    "advancementMapping": ["..."],
-    "toRemove": ["..."],
-    "...": "..."
+    "index": 0,
+    "packetData": {
+      "reset": true,
+      "advancementMapping": [
+        "..."
+      ],
+      "toRemove": [
+        "..."
+      ],
+      "...": "..."
+    }
   }
 }
 ````

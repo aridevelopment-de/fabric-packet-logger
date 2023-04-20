@@ -11,7 +11,11 @@ public class RequestMcPacketInfoHandler implements BaseHandler {
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("id", WSSPacket.MC_PACKET_INFO.ordinal());
-        jsonObject.add("data", PacketHandler.retrievePacketDetails(index));
+
+        JsonObject bodyData = new JsonObject();
+        bodyData.addProperty("index", index);
+        bodyData.add("packetData", PacketHandler.retrievePacketDetails(index));
+        jsonObject.add("data", bodyData);
         ws.send(jsonObject.toString());
     }
 }
