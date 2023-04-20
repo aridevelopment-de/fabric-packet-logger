@@ -10,9 +10,14 @@ import io.wispforest.owo.config.annotation.SectionHeader;
 public class PacketLoggerConfigModel {
     @SectionHeader("General")
     @Hook
-    public boolean logPackets = false;
-    public boolean sysOutUnknownPackets = false;
+    public LogState logState = LogState.OFF;
+    public int maxPacketsPerSecond = 1000;
     public boolean resolveEntityIdsToEntities = false;
     public int wssPort = 1337;
     public int webserverPort = 8080;
+
+    public enum LogState {
+        OFF,
+        LOGGING
+    }
 }

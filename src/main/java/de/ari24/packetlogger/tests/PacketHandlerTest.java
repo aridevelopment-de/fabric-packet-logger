@@ -2,12 +2,15 @@ package de.ari24.packetlogger.tests;
 
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import de.ari24.packetlogger.packets.PacketHandler;
+import io.netty.buffer.ByteBuf;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.packet.BundleSplitterPacket;
 import net.minecraft.network.packet.Packet;
+import org.junit.jupiter.api.Test;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +20,7 @@ class PacketHandlerTest {
 
     @org.junit.jupiter.api.Test
     void testPlayPackets() {
-        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHandlers();
+        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHANDLERS();
         List<Class<? extends Packet<?>>> implementedPackets = handlers.keySet().stream().toList();
 
         Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.PLAY.getPacketIdToPacketMap(NetworkSide.CLIENTBOUND);
@@ -28,7 +31,7 @@ class PacketHandlerTest {
 
     @org.junit.jupiter.api.Test
     void testLoginPackets() {
-        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHandlers();
+        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHANDLERS();
         List<Class<? extends Packet<?>>> implementedPackets = handlers.keySet().stream().toList();
 
         Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.LOGIN.getPacketIdToPacketMap(NetworkSide.CLIENTBOUND);
@@ -38,7 +41,7 @@ class PacketHandlerTest {
 
     @org.junit.jupiter.api.Test
     void testStatusPackets() {
-        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHandlers();
+        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHANDLERS();
         List<Class<? extends Packet<?>>> implementedPackets = handlers.keySet().stream().toList();
 
         Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.STATUS.getPacketIdToPacketMap(NetworkSide.CLIENTBOUND);

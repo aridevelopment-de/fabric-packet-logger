@@ -1,6 +1,7 @@
 package de.ari24.packetlogger.mixin;
 
 import de.ari24.packetlogger.PacketLogger;
+import de.ari24.packetlogger.config.PacketLoggerConfigModel;
 import net.minecraft.client.gui.hud.DebugHud;
 import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,9 +20,9 @@ public class DebugHudMixin {
         List<String> value = cir.getReturnValue();
         value.add("");
         value.add(Formatting.GOLD +"[Packet Logger]");
-        value.add("Logging packets: " + (PacketLogger.CONFIG.logPackets() ? (Formatting.GREEN + "enabled") : (Formatting.RED + "disabled")));
+        value.add("Logging packets: " + PacketLogger.CONFIG.logState().name().toLowerCase());
         value.add("Connected clients: " + PacketLogger.wss.getClients().size());
-        value.add((PacketLogger.CONFIG.logPackets() ? "Packets/s: " + PACKET_TICKER.getPPS() : ""));
+        value.add((PacketLogger.CONFIG.logState() == PacketLoggerConfigModel.LogState.LOGGING ? "Packets/s: " + PACKET_TICKER.getPPS() : ""));
         value.add("");
     }
 }

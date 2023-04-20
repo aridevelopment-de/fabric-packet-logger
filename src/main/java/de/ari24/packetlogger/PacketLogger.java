@@ -3,9 +3,12 @@ package de.ari24.packetlogger;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.commands.CommandHandler;
 import de.ari24.packetlogger.config.PacketLoggerConfig;
+import de.ari24.packetlogger.config.PacketLoggerConfigModel;
+import de.ari24.packetlogger.packets.PacketHandler;
 import de.ari24.packetlogger.utils.PacketTicker;
 import de.ari24.packetlogger.web.HTTPServer;
 import de.ari24.packetlogger.web.WebsocketServer;
+import de.ari24.packetlogger.web.handlers.WSSPacket;
 import io.wispforest.owo.config.Option;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -25,10 +28,10 @@ public class    PacketLogger implements ModInitializer {
         LOGGER.info("Starting packet logger...");
         CommandHandler.registerClient();
 
-        Objects.requireNonNull(CONFIG.optionForKey(new Option.Key("logPackets"))).observe(t -> {
+        Objects.requireNonNull(CONFIG.optionForKey(new Option.Key("logState"))).observe(t -> {
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("type", "loggingState");
-            jsonObject.addProperty("state", (boolean) t ? "logging" : "off");
+            jsonObject.addProperty("id", WSSPacket.PACKETLOGGER_LOGSTATE.ordinal());
+            jsonObject.addProperty("data", ((PacketLoggerConfigModel.LogState) t).ordinal());
             PacketLogger.wss.sendAll(jsonObject);
         });
 
@@ -40,10 +43,14 @@ public class    PacketLogger implements ModInitializer {
 
         wss = new WebsocketServer(CONFIG.wssPort());
         wss.start();
+        PacketHandler.initialize();
+
         LOGGER.info("Packet logger started!");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             LOGGER.info("Stopping packet logger...");
+
+            PacketHandler.cleanup();
 
             try {
                 wss.stop(1000);

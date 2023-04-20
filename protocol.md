@@ -16,11 +16,11 @@ Where ``packet_id`` is one of the following enum entries
 
 ````ts
 enum PacketId {
-    PACKETLOGGER_LOGSTATE = 0,
-    MC_PACKET_RECEIVED = 2,
-    MC_PACKET_SENT = 3,
-    REQUEST_MC_PACKET_INFO = 5,
-    MC_PACKET_INFO = 6
+    PACKETLOGGER_LOGSTATE,
+    MC_PACKET_RECEIVED,
+    MC_PACKET_SENT,
+    REQUEST_MC_PACKET_INFO,
+    MC_PACKET_INFO
 }
 ````
 
@@ -48,27 +48,59 @@ enum LogState {
 
 ## ``mc_packet_received``
 
-Field packetIds include packet id, unix timestamp (milliseconds) and a unique index for later referencing
+[//]: # (Lets go for some raw byte data in the future. See Blob#arrayBuffer and Uint8Array)
+
+``[packet id, unix milli-timestamp, unique index, networkstate, direction]``
+
+- Unique index will be used for later referencing through the ``request_mc_packet_info`` packet
+- NetworkState is the network state of the packet. See enum below
+- Direction is the direction of the packet. 0 = client -> server, 1 = server -> client
 
 ````json
 {
-  "id": 2,
+  "id": 1,
   "data": {
-    "packetIds": [[0, 1234567890, 9], [1, 123456790, 10]]
+    "packetIds": [[0, 1234567890, 9, 0, 0], [1, 123456790, 10, 0, 0]]
   }
+}
+````
+
+Networkstate Enum:
+
+````java
+public enum NetworkState {
+    HANDSHAKING,
+    PLAY,
+    STATUS,
+    LOGIN
 }
 ````
 
 ## ``mc_packet_sent``
 
-Field packetIds include packet id, unix timestamp (milliseconds) and a unique index for later referencing
+``[packet id, unix milli-timestamp, unique index, networkstate, direction]``
+
+- Unique index will be used for later referencing through the ``request_mc_packet_info`` packet
+- NetworkState is the network state of the packet. See enum below
+- Direction is the direction of the packet. 0 = client -> server, 1 = server -> client
 
 ````json
 {
-  "id": 3,
+  "id": 2,
   "data": {
-    "packetIds": [[0, 1234567890, 9], [1, 123456790, 10]]
+    "packetIds": [[0, 1234567890, 9, 0, 0], [1, 123456790, 10, 0, 0]]
   }
+}
+````
+
+Networkstate Enum:
+
+````java
+public enum NetworkState {
+    HANDSHAKING,
+    PLAY,
+    STATUS,
+    LOGIN
 }
 ````
 
@@ -76,7 +108,7 @@ Field packetIds include packet id, unix timestamp (milliseconds) and a unique in
 
 ````json
 {
-  "id": 6,
+  "id": 4,
   "data": {
     "reset": true,
     "advancementMapping": ["..."],
@@ -105,7 +137,7 @@ Field packetIds include packet id, unix timestamp (milliseconds) and a unique in
 
 ````json
 {
-  "id": 5,
+  "id": 3,
   "data": 1
 }
 ````
