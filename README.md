@@ -20,10 +20,8 @@ I use this for development at [thejocraft.net](https://thejocraft.net). Yes, the
 
 ## Linked repositories
 
--
-Web-UI: [aridevelopment-de/fabric-packet-logger-frontend](https://github.com/aridevelopment-de/fabric-packet-logger-frontend)
--
-Metadata: [aridevelopment-de/fabric-packet-logger-metadata](https://github.com/aridevelopment-de/fabric-packet-logger-metadata)
+- Web-UI: [aridevelopment-de/fabric-packet-logger-frontend](https://github.com/aridevelopment-de/fabric-packet-logger-frontend)
+- Metadata: [aridevelopment-de/fabric-packet-logger-metadata](https://github.com/aridevelopment-de/fabric-packet-logger-metadata)
 
 ## Commands
 
