@@ -17,10 +17,8 @@ Where ``packet_id`` is one of the following enum entries
 ````ts
 enum PacketId {
     PACKETLOGGER_LOGSTATE = 0,
-    MC_PACKET_METADATA = 1,
     MC_PACKET_RECEIVED = 2,
     MC_PACKET_SENT = 3,
-    REQUEST_MC_PACKET_METADATA = 4,
     REQUEST_MC_PACKET_INFO = 5,
     MC_PACKET_INFO = 6
 }
@@ -45,35 +43,6 @@ Enum being used for future uses. Values correspond to the following enum:
 enum LogState {
     OFF = 0,
     LOGGING = 1
-}
-````
-
-## ``mc_packet_metadata``
-
-*Example data*
-
-````json
-{
-  "id": 1,
-  "data": {
-    "clientbound": {
-        "0": {
-          "name": "UpdateAdvancements",
-          "url": "https://wiki.vg/Protocol#Update_Advancements",
-          "fields": {
-            "general": "No description available",
-            "wikiVgNotes": null,
-            "reset": "...",
-            "advancementMapping": "...",
-            "toRemove": "...",
-            "...": "..."
-          }
-        }
-    },
-    "serverbound": [
-      "..."
-    ]
-  }
 }
 ````
 
@@ -127,15 +96,6 @@ Field packetIds include packet id, unix timestamp (milliseconds) and a unique in
 {
   "id": 0,
   "data": 0
-}
-````
-
-## ``request_mc_packet_metadata``
-
-````json
-{
-    "id": 4,
-    "data": null
 }
 ````
 
