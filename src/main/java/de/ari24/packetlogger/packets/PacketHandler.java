@@ -2,8 +2,10 @@ package de.ari24.packetlogger.packets;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
+import de.ari24.packetlogger.packets.clientbound.*;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
@@ -17,11 +19,9 @@ import static de.ari24.packetlogger.PacketLogger.PACKET_TICKER;
 
 public class PacketHandler {
     private static final Map<Class<? extends Packet<?>>, BasePacketHandler<?>> HANDLERS = new HashMap<>();
+    private static final List<PacketByteBuf> packetData = new ArrayList<>();
 
     static {
-        // After 11 hours straight coding, I've implemented the 50 packets that I needed to implement.
-        // Total work hours: 18 hours over around 6 days
-        // I will now rest in peace. Good night.
         HANDLERS.put(CustomPayloadS2CPacket.class, new CustomPayloadS2CPacketHandler());
         HANDLERS.put(DifficultyS2CPacket.class, new DifficultyS2CPacketHandler());
         HANDLERS.put(FeaturesS2CPacket.class, new FeaturesS2CPacketHandler());
@@ -140,13 +140,6 @@ public class PacketHandler {
         HANDLERS.put(SignEditorOpenS2CPacket.class, new SignEditorOpenS2CPacketHandler());
         HANDLERS.put(PlayPingS2CPacket.class, new PlayPingS2CPacketHandler());
         // Java why? ;( HANDLERS.put(BundleSplitterPacket.class, new BundleSplitterPacketHandler());
-
-        // TODO
-        /*
-        PositionAndOnGround
-        Full
-        OnGroundOnly
-         */
     }
 
     @SuppressWarnings("unchecked")
@@ -205,7 +198,7 @@ public class PacketHandler {
             JsonObject jsonObject = new JsonObject();
 
             String id = getPacketId(packetClass);
-
+            // TODO: inlcude url
             jsonObject.addProperty("value", id);
             jsonObject.addProperty("label", handler.name());
             ids.add(jsonObject);
