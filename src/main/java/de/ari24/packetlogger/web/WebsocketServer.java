@@ -5,10 +5,7 @@ import de.ari24.packetlogger.PacketLogger;
 import de.ari24.packetlogger.config.PacketLoggerConfigModel;
 import de.ari24.packetlogger.packets.PacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
-import de.ari24.packetlogger.web.handlers.BaseHandler;
-import de.ari24.packetlogger.web.handlers.PacketloggerLogstateHandler;
-import de.ari24.packetlogger.web.handlers.RequestMcPacketInfoHandler;
-import de.ari24.packetlogger.web.handlers.WSSPacket;
+import de.ari24.packetlogger.web.handlers.*;
 import lombok.Getter;
 import org.java_websocket.WebSocket;
 import org.java_websocket.framing.Framedata;
@@ -26,7 +23,8 @@ public class WebsocketServer extends WebSocketServer {
 
     private final Map<Integer, Class<? extends BaseHandler>> handlers = Map.of(
             WSSPacket.PACKETLOGGER_LOGSTATE.ordinal(), PacketloggerLogstateHandler.class,
-            WSSPacket.REQUEST_MC_PACKET_INFO.ordinal(), RequestMcPacketInfoHandler.class
+            WSSPacket.REQUEST_MC_PACKET_INFO.ordinal(), RequestMcPacketInfoHandler.class,
+            WSSPacket.REQUEST_CLEAR.ordinal(), RequestClearHandler.class
     );
 
     public WebsocketServer(int port) {

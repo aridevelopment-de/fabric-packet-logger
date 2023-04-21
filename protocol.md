@@ -20,7 +20,8 @@ enum PacketId {
     MC_PACKET_RECEIVED,
     MC_PACKET_SENT,
     REQUEST_MC_PACKET_INFO,
-    MC_PACKET_INFO
+    MC_PACKET_INFO,
+    REQUEST_CLEAR
 }
 ````
 
@@ -144,3 +145,14 @@ public enum NetworkState {
   "data": 1
 }
 ````
+
+## ``request_clear``
+
+*Tells the client to clear all stored packets*
+
+`````json
+{
+  "id": 5,
+  "data": null
+}
+`````

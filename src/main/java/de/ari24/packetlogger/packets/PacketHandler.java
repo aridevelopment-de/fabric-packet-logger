@@ -25,6 +25,8 @@ import static de.ari24.packetlogger.PacketLogger.PACKET_TICKER;
 public class PacketHandler {
     @Getter
     private static final Map<Class<? extends Packet<?>>, BasePacketHandler<?>> HANDLERS = new HashMap<>();
+
+    @Getter
     private static final List<PacketData> packetData = new ArrayList<>();
     private static final Queue<SerializedPacketData> readyForSending = new ConcurrentLinkedQueue<>();
 
@@ -198,12 +200,13 @@ public class PacketHandler {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
         NetworkState state = Objects.requireNonNull(NetworkState.getPacketHandlerState(packet));
         int packetId = state.getPacketId(side, packet);
+        int index = packetData.size();
         long timestamp = System.currentTimeMillis();
 
         packet.write(buf);
 
         packetData.add(new PacketData(buf, state, side, packetId));
-        readyForSending.offer(new SerializedPacketData(packetId, packetData.size() - 1, timestamp, state.ordinal(), side.ordinal()));
+        readyForSending.offer(new SerializedPacketData(packetId, index, timestamp, state.ordinal(), side.ordinal()));
     }
 
     public static <T extends Packet<?>> JsonElement retrievePacketDetails(int index) {
@@ -233,8 +236,8 @@ public class PacketHandler {
         public JsonArray toJson() {
             JsonArray array = new JsonArray();
             array.add(packetId);
-            array.add(index);
             array.add(timestamp);
+            array.add(index);
             array.add(networkState);
             array.add(direction);
             return array;
