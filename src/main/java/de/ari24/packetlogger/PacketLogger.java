@@ -17,8 +17,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Objects;
 
-public class    PacketLogger implements ModInitializer {
+public class PacketLogger implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("packetlogger");
+    public static final String LOG_DIRECTORY = "packetlogs";
     public static final PacketLoggerConfig CONFIG = PacketLoggerConfig.createAndLoad();
     public static final PacketTicker PACKET_TICKER = new PacketTicker();
     public static WebsocketServer wss;

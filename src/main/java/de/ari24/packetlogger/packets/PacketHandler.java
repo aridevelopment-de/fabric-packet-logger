@@ -205,8 +205,34 @@ public class PacketHandler {
 
         packet.write(buf);
 
-        packetData.add(new PacketData(buf, state, side, packetId));
+        packetData.add(new PacketData(buf, state, side, packetId, timestamp));
         readyForSending.offer(new SerializedPacketData(packetId, index, timestamp, state.ordinal(), side.ordinal()));
+    }
+
+    public static JsonArray retrieveAllPacketDetails() {
+        JsonArray array = new JsonArray();
+
+        for (int i = 0; i < packetData.size(); i++) {
+            PacketData currentPacketData = packetData.get(i);
+
+            JsonObject data = new JsonObject();
+            data.addProperty("id", currentPacketData.packetId());
+            data.addProperty("timestamp", currentPacketData.timestamp());
+            data.addProperty("networkState", currentPacketData.state().ordinal());
+            data.addProperty("direction", currentPacketData.side().ordinal());
+
+            JsonElement bodyData = retrievePacketDetails(i);
+
+            if (bodyData != null) {
+                data.add("data", bodyData);
+            } else {
+                data.add("data", new JsonObject());
+            }
+
+            array.add(data);
+        }
+
+        return array;
     }
 
     public static <T extends Packet<?>> JsonElement retrievePacketDetails(int index) {
@@ -243,6 +269,6 @@ public class PacketHandler {
             return array;
         }
     }
-    public record PacketData(PacketByteBuf buf, NetworkState state, NetworkSide side, int packetId) {
+    public record PacketData(PacketByteBuf buf, NetworkState state, NetworkSide side, int packetId, long timestamp) {
     }
 }

@@ -21,7 +21,8 @@ enum PacketId {
     MC_PACKET_SENT,
     REQUEST_MC_PACKET_INFO,
     MC_PACKET_INFO,
-    REQUEST_CLEAR
+    REQUEST_CLEAR,
+    REQUEST_EXPORT
 }
 ````
 
@@ -154,5 +155,19 @@ public enum NetworkState {
 {
   "id": 5,
   "data": null
+}
+`````
+
+## ``request_export``
+
+*Tells the client to export all stored packets. If whitelist is not empty, only packets in the whitelist shall be included. If blacklist is not empty, all packets in the blacklist shall be excluded*
+
+`````json
+{
+  "id": 6,
+  "data": {
+    "whitelist": ["play-0x01", "play-0x02"],
+    "blacklist": ["play-0x03", "play-0x04"]
+  }
 }
 `````

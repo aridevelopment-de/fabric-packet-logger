@@ -24,7 +24,8 @@ public class WebsocketServer extends WebSocketServer {
     private final Map<Integer, Class<? extends BaseHandler>> handlers = Map.of(
             WSSPacket.PACKETLOGGER_LOGSTATE.ordinal(), PacketloggerLogstateHandler.class,
             WSSPacket.REQUEST_MC_PACKET_INFO.ordinal(), RequestMcPacketInfoHandler.class,
-            WSSPacket.REQUEST_CLEAR.ordinal(), RequestClearHandler.class
+            WSSPacket.REQUEST_CLEAR.ordinal(), RequestClearHandler.class,
+            WSSPacket.REQUEST_EXPORT.ordinal(), RequestExportHandler.class
     );
 
     public WebsocketServer(int port) {
