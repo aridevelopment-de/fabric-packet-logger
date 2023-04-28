@@ -9,6 +9,7 @@ public class CommandHandler {
             dispatcher.register(ClientCommandManager.literal("packetlogger")
                     .then(ToggleLogging.register())
                     .then(OpenWebUi.register())
+                    .then(ExportData.register())
             );
         });
     }
