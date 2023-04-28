@@ -19,7 +19,7 @@ public class ClientConnectionMixin {
     @Shadow @Final private NetworkSide side;
 
     @Inject(method="channelRead0(Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/packet/Packet;)V", at=@At(value="INVOKE", target="Lnet/minecraft/network/ClientConnection;handlePacket(Lnet/minecraft/network/packet/Packet;Lnet/minecraft/network/listener/PacketListener;)V"))
-    private void onPacketRead(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo ci) {
+    private void PacketLogger$onPacketRead(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo ci) {
         if (PacketLogger.CONFIG.logState() == PacketLoggerConfigModel.LogState.LOGGING && side == NetworkSide.CLIENTBOUND) {
             PacketHandler.handlePacket(packet, NetworkSide.CLIENTBOUND);
         }
