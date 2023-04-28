@@ -1,4 +1,7 @@
 {
+  "dataWarning.header": "Quick note on PacketLogger",
+  "dataWarning.message": "Packetlogger stores the actual packet-data on the minecraft client and not in the browser to aid in performance and memory. If you close your game, that data will be lost. It can be exported through the web-ui or via an in-game command",
+  "dataWarning.check":  "Do not show this screen again",
   "text.config.packetlogger-config.title": "Packetlogger Config",
   "text.config.packetlogger-config.section.General": "General Settings",
   "text.config.packetlogger-config.option.logPackets": "Log Packets",

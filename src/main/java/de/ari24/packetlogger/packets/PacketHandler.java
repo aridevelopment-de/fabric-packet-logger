@@ -1,27 +1,38 @@
 package de.ari24.packetlogger.packets;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
+import de.ari24.packetlogger.packets.clientbound.*;
+import de.ari24.packetlogger.web.handlers.WSSPacket;
+import io.netty.buffer.Unpooled;
+import lombok.Getter;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
 import net.minecraft.network.packet.s2c.query.QueryResponseS2CPacket;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static de.ari24.packetlogger.PacketLogger.PACKET_TICKER;
 
 public class PacketHandler {
+    @Getter
     private static final Map<Class<? extends Packet<?>>, BasePacketHandler<?>> HANDLERS = new HashMap<>();
 
+    @Getter
+    private static final List<PacketData> packetData = new ArrayList<>();
+    private static final Queue<SerializedPacketData> readyForSending = new ConcurrentLinkedQueue<>();
+
+    private static Timer timer;
+
     static {
-        // After 11 hours straight coding, I've implemented the 50 packets that I needed to implement.
-        // Total work hours: 18 hours over around 6 days
-        // I will now rest in peace. Good night.
         HANDLERS.put(CustomPayloadS2CPacket.class, new CustomPayloadS2CPacketHandler());
         HANDLERS.put(DifficultyS2CPacket.class, new DifficultyS2CPacketHandler());
         HANDLERS.put(FeaturesS2CPacket.class, new FeaturesS2CPacketHandler());
@@ -140,89 +151,124 @@ public class PacketHandler {
         HANDLERS.put(SignEditorOpenS2CPacket.class, new SignEditorOpenS2CPacketHandler());
         HANDLERS.put(PlayPingS2CPacket.class, new PlayPingS2CPacketHandler());
         // Java why? ;( HANDLERS.put(BundleSplitterPacket.class, new BundleSplitterPacketHandler());
+    }
 
-        // TODO
-        /*
-        PositionAndOnGround
-        Full
-        OnGroundOnly
-         */
+    public static void initialize() {
+        if (timer != null) {
+            timer.cancel();
+        }
+
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (readyForSending.isEmpty()) return;
+
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("id", WSSPacket.MC_PACKET_RECEIVED.ordinal());
+
+                JsonArray jsonArray = new JsonArray();
+                int count = 0;
+
+                while (!readyForSending.isEmpty() || count++ <= PacketLogger.CONFIG.maxPacketsPerSecond()) {
+                    SerializedPacketData data = readyForSending.poll();
+                    if (data == null) continue;
+                    jsonArray.add(data.toJson());
+                }
+
+                jsonObject.add("data", jsonArray);
+                PacketLogger.wss.sendAll(jsonObject);
+            }
+        }, 0, 1000);
+    }
+
+    public static void cleanup() {
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Packet<?>> void handlePacket(T packet) {
+    public static void handlePacket(Packet<?> packet, NetworkSide side) {
         if (packet instanceof BundleS2CPacket bundleS2CPacket) {
-            bundleS2CPacket.getPackets().forEach(PacketHandler::handlePacket);
+            bundleS2CPacket.getPackets().forEach(p -> PacketHandler.handlePacket(p, side));
             return;
         }
 
         PACKET_TICKER.tick();
-        BasePacketHandler<?> handler = HANDLERS.get(packet.getClass());
 
-        if (handler != null) {
-            BasePacketHandler<T> packetHandler = (BasePacketHandler<T>) handler;
+        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+        NetworkState state = Objects.requireNonNull(NetworkState.getPacketHandlerState(packet));
+        int packetId = state.getPacketId(side, packet);
+        int index = packetData.size();
+        long timestamp = System.currentTimeMillis();
 
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("name", packetHandler.name());
-            jsonObject.addProperty("type", "packet");  // used for frontend-side differentiation
+        packet.write(buf);
 
-            // TODO: Add mojenk mappings
-            jsonObject.addProperty("legacyName", packet.getClass().getSimpleName());
+        packetData.add(new PacketData(buf, state, side, packetId, timestamp));
+        readyForSending.offer(new SerializedPacketData(packetId, index, timestamp, state.ordinal(), side.ordinal()));
+    }
 
-            NetworkState state = Objects.requireNonNull(NetworkState.getPacketHandlerState(packet));
-            int id = state.getPacketId(NetworkSide.CLIENTBOUND, packet);
-            jsonObject.addProperty("id", state.name() + "-0x" + StringUtils.leftPad(Integer.toHexString(id), 2, "0").toUpperCase(Locale.ROOT));
+    public static JsonArray retrieveAllPacketDetails() {
+        JsonArray array = new JsonArray();
 
-            try {
-                jsonObject.add("data", packetHandler.serialize(packet));
-            } catch (Exception e) {
-                PacketLogger.LOGGER.error("Error while serializing packet " + packet.getClass().getSimpleName());
-                PacketLogger.LOGGER.error(e.toString());
+        for (int i = 0; i < packetData.size(); i++) {
+            PacketData currentPacketData = packetData.get(i);
+
+            JsonObject data = new JsonObject();
+            data.addProperty("id", currentPacketData.packetId());
+            data.addProperty("timestamp", currentPacketData.timestamp());
+            data.addProperty("networkState", currentPacketData.state().ordinal());
+            data.addProperty("direction", currentPacketData.side().ordinal());
+
+            JsonElement bodyData = retrievePacketDetails(i);
+
+            if (bodyData != null) {
+                data.add("data", bodyData);
+            } else {
+                data.add("data", new JsonObject());
             }
 
-            PacketLogger.wss.sendAll(jsonObject);
-        } else if (PacketLogger.CONFIG.sysOutUnknownPackets()) {
-            PacketLogger.LOGGER.info(packet.getClass().getSimpleName());
-        }
-    }
-
-    public static Map<Class<? extends Packet<?>>, BasePacketHandler<?>> getHandlers() {
-        return HANDLERS;
-    }
-
-    private static String getPacketId(Class<? extends Packet<?>> packetClass) {
-        NetworkState state = NetworkState.HANDLER_STATE_MAP.get(packetClass);
-        NetworkState.PacketHandler<?> packetHandler = state.packetHandlers.get(NetworkSide.CLIENTBOUND);
-        int id = packetHandler.getId(packetClass);
-        return state.name() + "-0x" + StringUtils.leftPad(Integer.toHexString(id), 2, "0").toUpperCase(Locale.ROOT);
-    }
-
-    public static ArrayList<JsonObject> getRegisteredPacketIds() {
-        ArrayList<JsonObject> ids = new ArrayList<>();
-        for (Map.Entry<Class<? extends Packet<?>>, BasePacketHandler<?>> entry : HANDLERS.entrySet()) {
-            Class<? extends Packet<?>> packetClass = entry.getKey();
-            BasePacketHandler<?> handler = entry.getValue();
-            JsonObject jsonObject = new JsonObject();
-
-            String id = getPacketId(packetClass);
-
-            jsonObject.addProperty("value", id);
-            jsonObject.addProperty("label", handler.name());
-            ids.add(jsonObject);
-        }
-        return ids;
-    }
-
-    public static Map<String, JsonObject> getPacketDescriptions() {
-        Map<String, JsonObject> descriptions = new HashMap<>();
-
-        for (Map.Entry<Class<? extends Packet<?>>, BasePacketHandler<?>> entry : HANDLERS.entrySet()) {
-            Class<? extends Packet<?>> packetClass = entry.getKey();
-            BasePacketHandler<?> handler = entry.getValue();
-            String id = getPacketId(packetClass);
-            descriptions.put(id, handler.description());
+            array.add(data);
         }
 
-        return descriptions;
+        return array;
+    }
+
+    public static <T extends Packet<?>> JsonElement retrievePacketDetails(int index) {
+        PacketData data = packetData.get(index);
+
+        if (data == null) return null;
+
+        PacketByteBuf buf = data.buf();
+        NetworkState state = data.state();
+        NetworkSide side = data.side();
+        int packetId = data.packetId();
+
+        T packet = (T) state.getPacketHandler(side, packetId, buf);
+
+        buf.resetReaderIndex();
+
+        if (packet == null) return null;
+
+        BasePacketHandler<T> handler = (BasePacketHandler<T>) HANDLERS.get(packet.getClass());
+
+        if (handler == null) return null;
+
+        return handler.serialize(packet);
+    }
+
+    public record SerializedPacketData(int packetId, int index, long timestamp, int networkState, int direction) {
+        public JsonArray toJson() {
+            JsonArray array = new JsonArray();
+            array.add(packetId);
+            array.add(timestamp);
+            array.add(index);
+            array.add(networkState);
+            array.add(direction);
+            return array;
+        }
+    }
+    public record PacketData(PacketByteBuf buf, NetworkState state, NetworkSide side, int packetId, long timestamp) {
     }
 }
