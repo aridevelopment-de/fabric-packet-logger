@@ -37,6 +37,10 @@ public class MinecraftUtils {
         NetworkState state = NetworkState.HANDLER_STATE_MAP.get(packetClass);
         NetworkState.PacketHandler<?> packetHandler = state.packetHandlers.get(NetworkSide.CLIENTBOUND);
         int id = packetHandler.getId(packetClass);
-        return "0x" + StringUtils.leftPad(Integer.toHexString(id), 2, "0").toUpperCase(Locale.ROOT);
+        return convertToPacketId(id);
+    }
+
+    public static String convertToPacketId(int packetId) {
+        return "0x" + StringUtils.leftPad(Integer.toHexString(packetId), 2, "0").toUpperCase(Locale.ROOT);
     }
 }

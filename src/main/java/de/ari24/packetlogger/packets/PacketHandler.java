@@ -209,8 +209,8 @@ public class PacketHandler {
         readyForSending.offer(new SerializedPacketData(packetId, index, timestamp, state.ordinal(), side.ordinal()));
     }
 
-    public static JsonArray retrieveAllPacketDetails() {
-        JsonArray array = new JsonArray();
+    public static List<JsonObject> retrieveAllPacketDetails() {
+        List<JsonObject> array = new ArrayList<>();
 
         for (int i = 0; i < packetData.size(); i++) {
             PacketData currentPacketData = packetData.get(i);
