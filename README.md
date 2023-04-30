@@ -28,6 +28,7 @@ I use this for development at [thejocraft.net](https://thejocraft.net). Yes, the
 - ``/packetlogger`` is the base command for all subcommands. You should be able to auto-complete them
 - ``/packetlogger logging on/off`` - Toggles the logging state
 - ``/packetlogger open`` - Opens the web-ui in your browser
+- ``/packetlogger export`` - Exports the current stored data in a json format
 
 ## Supported packets
 
