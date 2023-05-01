@@ -25,7 +25,7 @@ public class MapUpdateS2CPacketHandler implements BasePacketHandler<MapUpdateS2C
 
         mapIcons.forEach(icon -> {
             JsonObject child = new JsonObject();
-            child.addProperty("type", icon.getType().toString());
+            child.addProperty("type", icon.getType().ordinal());
             child.addProperty("x", icon.getX());
             child.addProperty("z", icon.getZ());
             child.addProperty("rotation", icon.getRotation());
