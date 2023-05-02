@@ -33,6 +33,7 @@ public class PacketHandler {
     private static Timer timer;
 
     static {
+        // Clientbound
         HANDLERS.put(CustomPayloadS2CPacket.class, new CustomPayloadS2CPacketHandler());
         HANDLERS.put(DifficultyS2CPacket.class, new DifficultyS2CPacketHandler());
         HANDLERS.put(FeaturesS2CPacket.class, new FeaturesS2CPacketHandler());
@@ -151,6 +152,9 @@ public class PacketHandler {
         HANDLERS.put(SignEditorOpenS2CPacket.class, new SignEditorOpenS2CPacketHandler());
         HANDLERS.put(PlayPingS2CPacket.class, new PlayPingS2CPacketHandler());
         // Java why? ;( HANDLERS.put(BundleSplitterPacket.class, new BundleSplitterPacketHandler());
+
+        // Serverbound
+
     }
 
     public static void initialize() {

@@ -6,7 +6,10 @@ import de.ari24.packetlogger.packets.PacketHandler;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.NetworkSide;
+import net.minecraft.network.NetworkState;
+import net.minecraft.network.PacketCallbacks;
 import net.minecraft.network.packet.Packet;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,8 +23,19 @@ public class ClientConnectionMixin {
 
     @Inject(method="channelRead0(Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/packet/Packet;)V", at=@At(value="INVOKE", target="Lnet/minecraft/network/ClientConnection;handlePacket(Lnet/minecraft/network/packet/Packet;Lnet/minecraft/network/listener/PacketListener;)V"))
     private void PacketLogger$onPacketRead(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo ci) {
-        if (PacketLogger.CONFIG.logState() == PacketLoggerConfigModel.LogState.LOGGING && side == NetworkSide.CLIENTBOUND) {
+        if (side == NetworkSide.SERVERBOUND) return;
+
+        if (PacketLogger.CONFIG.logState() == PacketLoggerConfigModel.LogState.LOGGING) {
             PacketHandler.handlePacket(packet, NetworkSide.CLIENTBOUND);
+        }
+    }
+
+    @Inject(method="sendInternal", at=@At("HEAD"))
+    private void PacketLogger$onPacketSend(Packet<?> packet, @Nullable PacketCallbacks callbacks, NetworkState packetState, NetworkState currentState, CallbackInfo ci) {
+        if (side == NetworkSide.SERVERBOUND) return;
+
+        if (PacketLogger.CONFIG.logState() == PacketLoggerConfigModel.LogState.LOGGING) {
+            PacketHandler.handlePacket(packet, NetworkSide.SERVERBOUND);
         }
     }
 }
