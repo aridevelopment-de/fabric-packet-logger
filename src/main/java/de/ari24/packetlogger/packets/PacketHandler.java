@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import de.ari24.packetlogger.packets.clientbound.*;
+import de.ari24.packetlogger.packets.serverbound.*;
 import de.ari24.packetlogger.web.handlers.WSSPacket;
 import io.netty.buffer.Unpooled;
 import lombok.Getter;
@@ -12,6 +13,12 @@ import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.c2s.handshake.HandshakeC2SPacket;
+import net.minecraft.network.packet.c2s.login.LoginHelloC2SPacket;
+import net.minecraft.network.packet.c2s.login.LoginKeyC2SPacket;
+import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
+import net.minecraft.network.packet.c2s.query.QueryPingC2SPacket;
+import net.minecraft.network.packet.c2s.query.QueryRequestC2SPacket;
 import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
@@ -154,7 +161,12 @@ public class PacketHandler {
         // Java why? ;( HANDLERS.put(BundleSplitterPacket.class, new BundleSplitterPacketHandler());
 
         // Serverbound
-
+        HANDLERS.put(QueryRequestC2SPacket.class, new QueryRequestC2SPacketHandler());
+        HANDLERS.put(QueryPingC2SPacket.class, new QueryPingC2SPacketHandler());
+        HANDLERS.put(HandshakeC2SPacket.class, new HandshakeC2SPacketHandler());
+        HANDLERS.put(LoginHelloC2SPacket.class, new LoginHelloC2SPacketHandler());
+        HANDLERS.put(LoginKeyC2SPacket.class, new LoginKeyC2SPacketHandler());
+        HANDLERS.put(LoginQueryResponseC2SPacket.class, new LoginQueryResponseC2SPacketHandler());
     }
 
     public static void initialize() {

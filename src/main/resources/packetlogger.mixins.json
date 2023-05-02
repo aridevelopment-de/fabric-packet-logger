@@ -13,6 +13,7 @@
     "EndCombatS2CPacketAccessor",
     "GameStateChangeS2CPacketReasonAccessor",
     "LoginHelloS2CPacketAccessor",
+    "LoginKeyC2SPacketAccessor",
     "LookAtS2CPacketAccessor",
     "MapStateUpdateDataAccessor",
     "MapUpdateS2CPacketAccessor",
