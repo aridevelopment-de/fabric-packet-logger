@@ -32,9 +32,16 @@ I use this for development at [thejocraft.net](https://thejocraft.net). Yes, the
 
 ## Supported packets
 
-![100%](https://progress-bar.dev/100?title=All%20Play%20Packets%20(110/110))  
-![100%](https://progress-bar.dev/100?title=All%20Status%20Packets%20(2/2))  
-![100%](https://progress-bar.dev/100?title=All%20Login%20Packets%20(5/5))
+**Clientbound**  
+![100%](https://progress-bar.dev/100?title=Play%20Packets%20(110/110))  
+![100%](https://progress-bar.dev/100?title=Status%20Packets%20(2/2))  
+![100%](https://progress-bar.dev/100?title=Login%20Packets%20(5/5))
+
+**Serverbound**  
+![0%](https://progress-bar.dev/0?title=Play%20Packets%20(0/51))  
+![100%](https://progress-bar.dev/100?title=Status%20Packets%20(2/2))  
+![100%](https://progress-bar.dev/100?title=Login%20Packets%20(3/3))  
+![100%](https://progress-bar.dev/100?title=Handshaking%20Packets%20(1/1))
 
 As developing serializers for each packet takes a lot of time, not every packet is supported. I will add more packets
 over time. If you want to help out, feel free to open a pull request.
