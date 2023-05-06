@@ -10,10 +10,10 @@ I use this for development at [thejocraft.net](https://thejocraft.net). Yes, the
 
 ## Supported Minecraft Versions
 
-| Minecraft Version | Status |
-|-------------------|------|
-| 1.19.3 | ⚠️   |
-| 1.19.4 | ✔️     |
+| Minecraft Version | Status                        |
+|-------------------|-------------------------------|
+| 1.19.3 | ⚠️ (Only clientbound packets) |
+| 1.19.4 | ✔️                            |
 
 ⚠️ = Packets implemented but not validated  
 ✔️ = Supported
