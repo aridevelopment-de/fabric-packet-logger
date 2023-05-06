@@ -12,7 +12,12 @@ public class LoginQueryRequestS2CPacketHandler implements BasePacketHandler<Logi
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("messageId", packet.getQueryId());
         jsonObject.addProperty("channel", packet.getChannel().toString());
-        jsonObject.add("data", ConvertUtils.GSON_INSTANCE.toJsonTree(packet.getPayload().array()));
+
+        byte[] data = new byte[]{};
+        packet.getPayload().readBytes(data);
+        packet.getPayload().resetReaderIndex();
+
+        jsonObject.add("data", ConvertUtils.GSON_INSTANCE.toJsonTree(data));
         return jsonObject;
     }
 }

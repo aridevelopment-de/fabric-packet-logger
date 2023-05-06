@@ -14,10 +14,8 @@ public class CustomPayloadS2CPacketHandler implements BasePacketHandler<CustomPa
 
         byte[] bytes = new byte[]{};
         packet.getData().resetReaderIndex();
-        packet.getData().resetWriterIndex();
         packet.getData().readBytes(bytes);
         packet.getData().resetReaderIndex();
-        packet.getData().resetWriterIndex();
         jsonObject.add("data", ConvertUtils.GSON_INSTANCE.toJsonTree(bytes));
         return jsonObject;
     }

@@ -4,3 +4,17 @@ accessWidener   v1  named
 accessible  class   net/minecraft/network/NetworkState$PacketHandler
 accessible  field   net/minecraft/network/NetworkState  packetHandlers      Ljava/util/Map;
 accessible  field   net/minecraft/network/NetworkState  HANDLER_STATE_MAP   Ljava/util/Map;
+
+# PlayerInteractEntityC2SPacket.class
+accessible class net/minecraft/network/packet/c2s/play/PlayerInteractEntityC2SPacket$InteractTypeHandler
+accessible class net/minecraft/network/packet/c2s/play/PlayerInteractEntityC2SPacket$InteractHandler
+accessible class net/minecraft/network/packet/c2s/play/PlayerInteractEntityC2SPacket$InteractAtHandler
+accessible class net/minecraft/network/packet/c2s/play/PlayerInteractEntityC2SPacket$InteractType
+accessible  field   net/minecraft/network/packet/c2s/play/PlayerInteractEntityC2SPacket type    Lnet/minecraft/network/packet/c2s/play/PlayerInteractEntityC2SPacket$InteractTypeHandler;
+
+# PlayerMoveC2SPacket.class
+accessible field net/minecraft/network/packet/c2s/play/PlayerMoveC2SPacket x D
+accessible field net/minecraft/network/packet/c2s/play/PlayerMoveC2SPacket y D
+accessible field net/minecraft/network/packet/c2s/play/PlayerMoveC2SPacket z D
+accessible field net/minecraft/network/packet/c2s/play/PlayerMoveC2SPacket yaw F
+accessible field net/minecraft/network/packet/c2s/play/PlayerMoveC2SPacket pitch F

@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import de.ari24.packetlogger.packets.clientbound.*;
+import de.ari24.packetlogger.packets.serverbound.*;
 import de.ari24.packetlogger.web.handlers.WSSPacket;
 import io.netty.buffer.Unpooled;
 import lombok.Getter;
@@ -12,6 +13,13 @@ import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.c2s.handshake.HandshakeC2SPacket;
+import net.minecraft.network.packet.c2s.login.LoginHelloC2SPacket;
+import net.minecraft.network.packet.c2s.login.LoginKeyC2SPacket;
+import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
+import net.minecraft.network.packet.c2s.play.*;
+import net.minecraft.network.packet.c2s.query.QueryPingC2SPacket;
+import net.minecraft.network.packet.c2s.query.QueryRequestC2SPacket;
 import net.minecraft.network.packet.s2c.login.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
@@ -33,6 +41,7 @@ public class PacketHandler {
     private static Timer timer;
 
     static {
+        // Clientbound
         HANDLERS.put(CustomPayloadS2CPacket.class, new CustomPayloadS2CPacketHandler());
         HANDLERS.put(DifficultyS2CPacket.class, new DifficultyS2CPacketHandler());
         HANDLERS.put(FeaturesS2CPacket.class, new FeaturesS2CPacketHandler());
@@ -151,6 +160,65 @@ public class PacketHandler {
         HANDLERS.put(SignEditorOpenS2CPacket.class, new SignEditorOpenS2CPacketHandler());
         HANDLERS.put(PlayPingS2CPacket.class, new PlayPingS2CPacketHandler());
         // Java why? ;( HANDLERS.put(BundleSplitterPacket.class, new BundleSplitterPacketHandler());
+
+        // Serverbound
+        HANDLERS.put(QueryRequestC2SPacket.class, new QueryRequestC2SPacketHandler());
+        HANDLERS.put(QueryPingC2SPacket.class, new QueryPingC2SPacketHandler());
+        HANDLERS.put(HandshakeC2SPacket.class, new HandshakeC2SPacketHandler());
+        HANDLERS.put(LoginHelloC2SPacket.class, new LoginHelloC2SPacketHandler());
+        HANDLERS.put(LoginKeyC2SPacket.class, new LoginKeyC2SPacketHandler());
+        HANDLERS.put(LoginQueryResponseC2SPacket.class, new LoginQueryResponseC2SPacketHandler());
+        HANDLERS.put(TeleportConfirmC2SPacket.class, new TeleportConfirmC2SPacketHandler());
+        HANDLERS.put(ChatMessageC2SPacket.class, new ChatMessageC2SPacketHandler());
+        HANDLERS.put(ClientStatusC2SPacket.class, new ClientStatusC2SPacketHandler());
+        HANDLERS.put(MessageAcknowledgmentC2SPacket.class, new MessageAcknowledgmentC2SPacketHandler());
+        HANDLERS.put(QueryBlockNbtC2SPacket.class, new QueryBlockNbtC2SPacketHandler());
+        HANDLERS.put(ButtonClickC2SPacket.class, new ButtonClickC2SPacketHandler());
+        HANDLERS.put(ClickSlotC2SPacket.class, new ClickSlotC2SPacketHandler());
+        HANDLERS.put(BookUpdateC2SPacket.class, new BookUpdateC2SPacketHandler());
+        HANDLERS.put(QueryEntityNbtC2SPacket.class, new QueryEntityNbtC2SPacketHandler());
+        HANDLERS.put(PlayerSessionC2SPacket.class, new PlayerSessionC2SPacketHandler());
+        HANDLERS.put(UpdateDifficultyC2SPacket.class, new UpdateDifficultyC2SPacketHandler());
+        HANDLERS.put(UpdateDifficultyLockC2SPacket.class, new UpdateDifficultyLockC2SPacketHandler());
+        HANDLERS.put(UpdatePlayerAbilitiesC2SPacket.class, new UpdatePlayerAbilitiesC2SPacketHandler());
+        HANDLERS.put(ClientCommandC2SPacket.class, new ClientCommandC2SPacketHandler());
+        HANDLERS.put(CustomPayloadC2SPacket.class, new CustomPayloadC2SPacketHandler());
+        HANDLERS.put(CloseHandledScreenC2SPacket.class, new CloseHandledScreenC2SPacketHandler());
+        HANDLERS.put(CommandExecutionC2SPacket.class, new CommandExecutionC2SPacketHandler());
+        HANDLERS.put(AdvancementTabC2SPacket.class, new AdvancementTabC2SPacketHandler());
+        HANDLERS.put(PlayerActionC2SPacket.class, new PlayerActionC2SPacketHandler());
+        HANDLERS.put(CreativeInventoryActionC2SPacket.class, new CreativeInventoryActionC2SPacketHandler());
+        HANDLERS.put(UpdateSelectedSlotC2SPacket.class, new UpdateSelectedSlotC2SPacketHandler());
+        HANDLERS.put(UpdateJigsawC2SPacket.class, new UpdateJigsawC2SPacketHandler());
+        HANDLERS.put(UpdateCommandBlockC2SPacket.class, new UpdateCommandBlockC2SPacketHandler());
+        HANDLERS.put(UpdateCommandBlockMinecartC2SPacket.class, new UpdateCommandBlockMinecartC2SPacketHandler());
+        HANDLERS.put(UpdateStructureBlockC2SPacket.class, new UpdateStructureBlockC2SPacketHandler());
+        HANDLERS.put(UpdateSignC2SPacket.class, new UpdateSignC2SPacketHandler());
+        HANDLERS.put(SelectMerchantTradeC2SPacket.class, new SelectMerchantTradeC2SPacketHandler());
+        HANDLERS.put(ResourcePackStatusC2SPacket.class, new ResourcePackStatusC2SPacketHandler());
+        HANDLERS.put(RecipeBookDataC2SPacket.class, new RecipeBookDataC2SPacketHandler());
+        HANDLERS.put(PlayPongC2SPacket.class, new PlayPongC2SPacketHandler());
+        HANDLERS.put(PlayerInputC2SPacket.class, new PlayerInputC2SPacketHandler());
+        HANDLERS.put(SpectatorTeleportC2SPacket.class, new SpectatorTeleportC2SPacketHandler());
+        HANDLERS.put(HandSwingC2SPacket.class, new HandSwingC2SPacketHandler());
+        HANDLERS.put(CraftRequestC2SPacket.class, new CraftRequestC2SPacketHandler());
+        HANDLERS.put(UpdateBeaconC2SPacket.class, new UpdateBeaconC2SPacketHandler());
+        HANDLERS.put(RenameItemC2SPacket.class, new RenameItemC2SPacketHandler());
+        HANDLERS.put(KeepAliveC2SPacket.class, new KeepAliveC2SPacketHandler());
+        HANDLERS.put(JigsawGeneratingC2SPacket.class, new JigsawGeneratingC2SPacketHandler());
+        HANDLERS.put(PlayerInteractEntityC2SPacket.class, new PlayerInteractEntityC2SPacketHandler());
+        HANDLERS.put(PickFromInventoryC2SPacket.class, new PickFromInventoryC2SPacketHandler());
+        HANDLERS.put(VehicleMoveC2SPacket.class, new VehicleMoveC2SPacketHandler());
+        HANDLERS.put(RequestCommandCompletionsC2SPacket.class, new RequestCommandCompletionsC2SPacketHandler());
+        HANDLERS.put(ClientSettingsC2SPacket.class, new ClientSettingsC2SPacketHandler());
+        HANDLERS.put(PlayerInteractBlockC2SPacket.class, new PlayerInteractBlockC2SPacketHandler());
+        HANDLERS.put(PlayerInteractItemC2SPacket.class, new PlayerInteractItemC2SPacketHandler());
+        HANDLERS.put(BoatPaddleStateC2SPacket.class, new BoatPaddleStateC2SPacketHandler());
+        HANDLERS.put(RecipeCategoryOptionsC2SPacket.class, new RecipeCategoryOptionsC2SPacketHandler());
+        HANDLERS.put(PlayerMoveC2SPacket.Full.class, new FullHandler());
+        HANDLERS.put(PlayerMoveC2SPacket.LookAndOnGround.class, new LookAndOnGroundHandler());
+        HANDLERS.put(PlayerMoveC2SPacket.PositionAndOnGround.class, new PositionAndOnGroundHandler());
+        HANDLERS.put(PlayerMoveC2SPacket.OnGroundOnly.class, new OnGroundOnlyHandler());
     }
 
     public static void initialize() {
