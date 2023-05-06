@@ -215,6 +215,10 @@ public class PacketHandler {
         HANDLERS.put(PlayerInteractItemC2SPacket.class, new PlayerInteractItemC2SPacketHandler());
         HANDLERS.put(BoatPaddleStateC2SPacket.class, new BoatPaddleStateC2SPacketHandler());
         HANDLERS.put(RecipeCategoryOptionsC2SPacket.class, new RecipeCategoryOptionsC2SPacketHandler());
+        HANDLERS.put(PlayerMoveC2SPacket.Full.class, new FullHandler());
+        HANDLERS.put(PlayerMoveC2SPacket.LookAndOnGround.class, new LookAndOnGroundHandler());
+        HANDLERS.put(PlayerMoveC2SPacket.PositionAndOnGround.class, new PositionAndOnGroundHandler());
+        HANDLERS.put(PlayerMoveC2SPacket.OnGroundOnly.class, new OnGroundOnlyHandler());
     }
 
     public static void initialize() {
