@@ -38,7 +38,7 @@ I use this for development at [thejocraft.net](https://thejocraft.net). Yes, the
 ![100%](https://progress-bar.dev/100?title=Login%20Packets%20(5/5))
 
 **Serverbound**  
-![92%](https://progress-bar.dev/92?title=Play%20Packets%20(47/51))  
+![100%](https://progress-bar.dev/92?title=Play%20Packets%20(51/51))  
 ![100%](https://progress-bar.dev/100?title=Status%20Packets%20(2/2))  
 ![100%](https://progress-bar.dev/100?title=Login%20Packets%20(3/3))  
 ![100%](https://progress-bar.dev/100?title=Handshaking%20Packets%20(1/1))
