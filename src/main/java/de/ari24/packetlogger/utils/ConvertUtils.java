@@ -15,16 +15,26 @@ import net.minecraft.network.packet.s2c.play.ChunkData;
 import net.minecraft.network.packet.s2c.play.LightData;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.GlobalPos;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 
 public class ConvertUtils {
     public static final Gson GSON_INSTANCE = new Gson();
+    public static final Map<Direction, String> DIRECTION_MAP = Map.of(
+            Direction.DOWN, "down",
+            Direction.UP, "up",
+            Direction.NORTH, "north",
+            Direction.SOUTH, "south",
+            Direction.WEST, "west",
+            Direction.EAST, "east"
+    );
 
     public static void appendGameProfileDescription(JsonObject jsonObject) {
         jsonObject.addProperty("uuid", "UUID of the player");

@@ -17,8 +17,13 @@
     "LookAtS2CPacketAccessor",
     "MapStateUpdateDataAccessor",
     "MapUpdateS2CPacketAccessor",
+    "PlayerInteractEntityC2SPacketAccessor",
+    "PlayerInteractEntityC2SPacketInteractAtHandlerAccessor",
+    "PlayerInteractEntityC2SPacketInteractHandlerAccessor",
     "SetCameraEntityS2CPacketAccessor",
-    "TagPacketSerializerSerializedAccessor"
+    "SpectatorTeleportC2SPacketAccessor",
+    "TagPacketSerializerSerializedAccessor",
+    "UpdateCommandBlockMinecartC2SPacketAccessor"
   ],
   "client": [
     "MinecraftClientMixin"

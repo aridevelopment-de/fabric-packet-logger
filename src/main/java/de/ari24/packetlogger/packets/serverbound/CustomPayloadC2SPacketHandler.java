@@ -1,23 +1,22 @@
-package de.ari24.packetlogger.packets.clientbound;
+package de.ari24.packetlogger.packets.serverbound;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
+import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
 
-public class CustomPayloadS2CPacketHandler implements BasePacketHandler<CustomPayloadS2CPacket> {
+public class CustomPayloadC2SPacketHandler implements BasePacketHandler<CustomPayloadC2SPacket> {
     @Override
-    public JsonObject serialize(CustomPayloadS2CPacket packet) {
+    public JsonObject serialize(CustomPayloadC2SPacket packet) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("channel", packet.getChannel().toString());
-        jsonObject.addProperty("readableBytes", packet.getData().readableBytes());
 
         byte[] bytes = new byte[]{};
         packet.getData().resetReaderIndex();
         packet.getData().readBytes(bytes);
         packet.getData().resetReaderIndex();
+
         jsonObject.add("data", ConvertUtils.GSON_INSTANCE.toJsonTree(bytes));
         return jsonObject;
     }
 }
-
