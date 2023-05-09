@@ -3,7 +3,7 @@ package de.ari24.packetlogger.utils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;

@@ -6,12 +6,6 @@ import de.ari24.packetlogger.config.PacketLoggerConfigModel;
 import de.ari24.packetlogger.ui.PacketLoggerToast;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.toast.SystemToast;
-import net.minecraft.client.toast.Toast;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
 public class ToggleLogging {
     public static LiteralArgumentBuilder<FabricClientCommandSource> register() {

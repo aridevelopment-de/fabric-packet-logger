@@ -5,7 +5,7 @@ import de.ari24.packetlogger.packets.PacketHandler;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

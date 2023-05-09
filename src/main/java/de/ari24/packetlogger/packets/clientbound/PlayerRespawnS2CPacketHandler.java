@@ -26,9 +26,6 @@ public class PlayerRespawnS2CPacketHandler implements BasePacketHandler<PlayerRe
         jsonObject.addProperty("isFlat", packet.isFlatWorld());
         // TODO: wiki.vg states a "copyMetadata" boolean, but it's not in the packet class
         // Is the flag attribute used for this?
-        jsonObject.addProperty("keepAttributes", packet.hasFlag(PlayerRespawnS2CPacket.KEEP_ATTRIBUTES));
-        jsonObject.addProperty("keepTrackedData", packet.hasFlag(PlayerRespawnS2CPacket.KEEP_TRACKED_DATA));
-        jsonObject.addProperty("keepAll", packet.hasFlag(PlayerRespawnS2CPacket.KEEP_ALL));
         jsonObject.addProperty("hasDeathLocation", packet.getLastDeathPos().isPresent());
 
         if (packet.getLastDeathPos().isPresent()) {

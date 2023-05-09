@@ -17,24 +17,15 @@ public class SynchronizeRecipesS2CPacketHandler implements BasePacketHandler<Syn
 
         if (recipe instanceof SpecialCraftingRecipe specialCraftingRecipe) {
             jsonObject.addProperty("category", specialCraftingRecipe.getCategory().asString());
-        } else if (recipe instanceof SmithingTrimRecipe smithingTrimRecipe) {
-            jsonObject.addProperty("template", "TODO");
-            jsonObject.addProperty("base", "TODO");
-            jsonObject.addProperty("addition", "TODO");
-        } else if (recipe instanceof SmithingTransformRecipe smithingTransformRecipe) {
-            jsonObject.addProperty("template", "TODO");
-            jsonObject.addProperty("base", "TODO");
-            jsonObject.addProperty("addition", "TODO");
-            jsonObject.add("result", ConvertUtils.serializeItemStack(smithingTransformRecipe.getOutput(null)));
         } else if (recipe instanceof StonecuttingRecipe stonecuttingRecipe) {
             jsonObject.addProperty("group", stonecuttingRecipe.getGroup());
             jsonObject.add("ingredient", stonecuttingRecipe.getIngredients().get(0).toJson());
-            jsonObject.add("result", ConvertUtils.serializeItemStack(stonecuttingRecipe.getOutput(null)));
+            jsonObject.add("result", ConvertUtils.serializeItemStack(stonecuttingRecipe.getOutput()));
         } else if (recipe instanceof AbstractCookingRecipe abstractCookingRecipe) {
             jsonObject.addProperty("group", abstractCookingRecipe.getGroup());
             jsonObject.addProperty("category", abstractCookingRecipe.getCategory().asString());
             jsonObject.add("ingredient", abstractCookingRecipe.getIngredients().get(0).toJson());
-            jsonObject.add("result", ConvertUtils.serializeItemStack(abstractCookingRecipe.getOutput(null)));
+            jsonObject.add("result", ConvertUtils.serializeItemStack(abstractCookingRecipe.getOutput()));
             jsonObject.addProperty("experience", abstractCookingRecipe.getExperience());
             jsonObject.addProperty("cookingTime", abstractCookingRecipe.getCookTime());
         } else if (recipe instanceof ShapedRecipe shapedRecipe) {
@@ -46,8 +37,7 @@ public class SynchronizeRecipesS2CPacketHandler implements BasePacketHandler<Syn
             List<JsonElement> ingredients = new ArrayList<>();
             shapedRecipe.getIngredients().forEach(ingredient -> ingredients.add(ingredient.toJson()));
             jsonObject.add("ingredients", ConvertUtils.GSON_INSTANCE.toJsonTree(ingredients));
-            jsonObject.add("result", ConvertUtils.serializeItemStack(shapedRecipe.getOutput(null)));
-            jsonObject.addProperty("showNotification", shapedRecipe.showNotification());
+            jsonObject.add("result", ConvertUtils.serializeItemStack(shapedRecipe.getOutput()));
         } else if (recipe instanceof ShapelessRecipe shapelessRecipe) {
             jsonObject.addProperty("group", shapelessRecipe.getGroup());
             jsonObject.addProperty("category", shapelessRecipe.getCategory().asString());
@@ -56,7 +46,7 @@ public class SynchronizeRecipesS2CPacketHandler implements BasePacketHandler<Syn
             List<JsonElement> ingredients = new ArrayList<>();
             shapelessRecipe.getIngredients().forEach(ingredient -> ingredients.add(ingredient.toJson()));
             jsonObject.add("ingredients", ConvertUtils.GSON_INSTANCE.toJsonTree(ingredients));
-            jsonObject.add("result", ConvertUtils.serializeItemStack(shapelessRecipe.getOutput(null)));
+            jsonObject.add("result", ConvertUtils.serializeItemStack(shapelessRecipe.getOutput()));
         }
 
         return jsonObject;
