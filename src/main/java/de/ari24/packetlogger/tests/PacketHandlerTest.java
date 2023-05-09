@@ -5,7 +5,8 @@ import de.ari24.packetlogger.packets.PacketHandler;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
-import net.minecraft.network.Packet;
+import net.minecraft.network.packet.Packet;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
@@ -14,33 +15,79 @@ class PacketHandlerTest {
 
     static final String PROGRESS_BAR_URL = "![<percentage>%](https://progress-bar.dev/<percentage>?title=All%20Play%20Packets%20(<num>/<all>))";
 
-    @org.junit.jupiter.api.Test
-    void testPlayPackets() {
-        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHandlers();
+    @Test
+    void testClientboundPlayPackets() {
+        testPlayPackets(NetworkSide.CLIENTBOUND);
+    }
+
+    @Test
+    void testServerboundPlayPackets() {
+        testPlayPackets(NetworkSide.SERVERBOUND);
+    }
+
+    @Test
+    void testClientboundLoginPackets() {
+        testLoginPackets(NetworkSide.CLIENTBOUND);
+    }
+
+    @Test
+    void testServerboundLoginPackets() {
+        testLoginPackets(NetworkSide.SERVERBOUND);
+    }
+
+    @Test
+    void testClientboundStatusPackets() {
+        testStatusPackets(NetworkSide.CLIENTBOUND);
+    }
+
+    @Test
+    void testServerboundStatusPackets() {
+        testStatusPackets(NetworkSide.SERVERBOUND);
+    }
+
+    @Test
+    void testClientboundHandshakingPackets() {
+        testHandshakingPackets(NetworkSide.CLIENTBOUND);
+    }
+
+    @Test
+    void testServerboundHandshakingPackets() {
+        testHandshakingPackets(NetworkSide.SERVERBOUND);
+    }
+
+    void testPlayPackets(NetworkSide side) {
+        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHANDLERS();
         List<Class<? extends Packet<?>>> implementedPackets = handlers.keySet().stream().toList();
 
-        Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.PLAY.getPacketIdToPacketMap(NetworkSide.CLIENTBOUND);
+        Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.PLAY.getPacketIdToPacketMap(side);
         // Pro solution
+        List<Class<? extends Packet<?>>> registeredPlayPackets = registeredPlayPacketsMapping.values().stream().filter(p -> !p.getName().contains("BundleSplitterPacket")).toList();
+        compareAndPrintResults(registeredPlayPackets, implementedPackets);
+    }
+
+    void testLoginPackets(NetworkSide side) {
+        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHANDLERS();
+        List<Class<? extends Packet<?>>> implementedPackets = handlers.keySet().stream().toList();
+
+        Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.LOGIN.getPacketIdToPacketMap(side);
         List<Class<? extends Packet<?>>> registeredPlayPackets = registeredPlayPacketsMapping.values().stream().toList();
         compareAndPrintResults(registeredPlayPackets, implementedPackets);
     }
 
-    @org.junit.jupiter.api.Test
-    void testLoginPackets() {
-        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHandlers();
+    void testStatusPackets(NetworkSide side) {
+        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHANDLERS();
         List<Class<? extends Packet<?>>> implementedPackets = handlers.keySet().stream().toList();
 
-        Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.LOGIN.getPacketIdToPacketMap(NetworkSide.CLIENTBOUND);
+        Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.STATUS.getPacketIdToPacketMap(side);
         List<Class<? extends Packet<?>>> registeredPlayPackets = registeredPlayPacketsMapping.values().stream().toList();
         compareAndPrintResults(registeredPlayPackets, implementedPackets);
     }
 
-    @org.junit.jupiter.api.Test
-    void testStatusPackets() {
-        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHandlers();
+    void testHandshakingPackets(NetworkSide side) {
+        Map<Class<? extends Packet<?>>, BasePacketHandler<?>> handlers = PacketHandler.getHANDLERS();
         List<Class<? extends Packet<?>>> implementedPackets = handlers.keySet().stream().toList();
 
-        Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.STATUS.getPacketIdToPacketMap(NetworkSide.CLIENTBOUND);
+        Int2ObjectMap<Class<? extends Packet<?>>> registeredPlayPacketsMapping = NetworkState.HANDSHAKING.getPacketIdToPacketMap(side);
         List<Class<? extends Packet<?>>> registeredPlayPackets = registeredPlayPacketsMapping.values().stream().toList();
         compareAndPrintResults(registeredPlayPackets, implementedPackets);
     }

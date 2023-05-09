@@ -2,22 +2,31 @@ package de.ari24.packetlogger.web;
 
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
+import de.ari24.packetlogger.config.PacketLoggerConfigModel;
 import de.ari24.packetlogger.packets.PacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
+import de.ari24.packetlogger.web.handlers.*;
 import lombok.Getter;
 import org.java_websocket.WebSocket;
+import org.java_websocket.framing.Framedata;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
 import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
+import java.nio.ByteBuffer;
+import java.util.*;
 
 public class WebsocketServer extends WebSocketServer {
 
     @Getter
     private final Collection<WebSocket> clients;
+
+    private final Map<Integer, Class<? extends BaseHandler>> handlers = Map.of(
+            WSSPacket.PACKETLOGGER_LOGSTATE.ordinal(), PacketloggerLogstateHandler.class,
+            WSSPacket.REQUEST_MC_PACKET_INFO.ordinal(), RequestMcPacketInfoHandler.class,
+            WSSPacket.REQUEST_CLEAR.ordinal(), RequestClearHandler.class,
+            WSSPacket.REQUEST_EXPORT.ordinal(), RequestExportHandler.class
+    );
 
     public WebsocketServer(int port) {
         super(new InetSocketAddress(port));
@@ -32,16 +41,10 @@ public class WebsocketServer extends WebSocketServer {
         clients.add(conn);
 
         try {
-            JsonObject jsonObject = new JsonObject();;
-            jsonObject.addProperty("type", "init");
-            jsonObject.add("allPackets", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getRegisteredPacketIds()));
-            jsonObject.add("descriptions", ConvertUtils.GSON_INSTANCE.toJsonTree(PacketHandler.getPacketDescriptions()));
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("id", WSSPacket.PACKETLOGGER_LOGSTATE.ordinal());
+            jsonObject.addProperty("data", PacketLogger.CONFIG.logState().ordinal());
             conn.send(jsonObject.toString());
-
-            JsonObject loggingState = new JsonObject();
-            loggingState.addProperty("type", "loggingState");
-            loggingState.addProperty("state", PacketLogger.CONFIG.logPackets() ? "logging" : "off");
-            conn.send(loggingState.toString());
         } catch (Exception exception) {
             PacketLogger.LOGGER.error("Failed to send meta to client", exception);
         }
@@ -56,10 +59,19 @@ public class WebsocketServer extends WebSocketServer {
     @Override
     public void onMessage(WebSocket conn, String message) {
         JsonObject jsonObject = ConvertUtils.GSON_INSTANCE.fromJson(message, JsonObject.class);
-        String type = jsonObject.get("type").getAsString();
 
-        if (Objects.equals(type, "loggingState")) {
-            PacketLogger.CONFIG.logPackets(Objects.equals(jsonObject.get("state").getAsString(), "logging"));
+        int id = jsonObject.get("id").getAsInt();
+
+        if (!handlers.containsKey(id)) {
+            PacketLogger.LOGGER.error("Unknown web packet received from websocket id " + id);
+            return;
+        }
+
+        try {
+            BaseHandler handler = handlers.get(id).getDeclaredConstructor().newInstance();
+            handler.handle(conn, jsonObject);
+        } catch (Exception exception) {
+            PacketLogger.LOGGER.error("Failed to handle web packet from websocket id " + id, exception);
         }
     }
 
@@ -74,8 +86,10 @@ public class WebsocketServer extends WebSocketServer {
     }
 
     public void sendAll(JsonObject object) {
+        String serializedData = object.toString();
+
         for (WebSocket client : clients) {
-            client.send(object.toString());
+            client.send(serializedData);
         }
     }
 }
