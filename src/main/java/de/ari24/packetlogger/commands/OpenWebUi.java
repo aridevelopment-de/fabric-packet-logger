@@ -13,7 +13,7 @@ public class OpenWebUi {
                     int httpPort = PacketLogger.CONFIG.webserverPort();
                     int wssPort = PacketLogger.CONFIG.wssPort();
 
-                    String url = "http://localhost:" + httpPort + "/index.html?wssPort=" + wssPort;
+                    String url = "http://localhost:" + httpPort + "/index.html?wssPort=" + wssPort + "&version=1.19.3";
                     Util.getOperatingSystem().open(url);
                     return 1;
                 });
