@@ -10,10 +10,10 @@ I use this for development at [thejocraft.net](https://thejocraft.net). Yes, the
 
 ## Supported Minecraft Versions
 
-| Minecraft Version | Status                        |
-|-------------------|-------------------------------|
-| 1.19.3 | ⚠️ (Only clientbound packets) |
-| 1.19.4 | ✔️                            |
+| Minecraft Version | Status                       | Notes |
+|-------------------|------------------------------| ----- |
+| 1.19.3 | ⚠️ | A rather scuffed version, since 1.19.4 support existed before 1.19.3, so 1.19.3 was created out of 1.19.4 |
+| 1.19.4 | ✔️                           | |
 
 ⚠️ = Packets implemented but not validated  
 ✔️ = Supported
@@ -38,7 +38,7 @@ I use this for development at [thejocraft.net](https://thejocraft.net). Yes, the
 ![100%](https://progress-bar.dev/100?title=Login%20Packets%20(5/5))
 
 **Serverbound**  
-![100%](https://progress-bar.dev/92?title=Play%20Packets%20(51/51))  
+![100%](https://progress-bar.dev/100?title=Play%20Packets%20(51/51))  
 ![100%](https://progress-bar.dev/100?title=Status%20Packets%20(2/2))  
 ![100%](https://progress-bar.dev/100?title=Login%20Packets%20(3/3))  
 ![100%](https://progress-bar.dev/100?title=Handshaking%20Packets%20(1/1))
