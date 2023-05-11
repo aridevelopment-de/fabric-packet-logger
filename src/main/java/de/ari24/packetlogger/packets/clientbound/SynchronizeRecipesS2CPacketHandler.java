@@ -1,6 +1,7 @@
 package de.ari24.packetlogger.packets.clientbound;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
@@ -28,12 +29,24 @@ public class SynchronizeRecipesS2CPacketHandler implements BasePacketHandler<Syn
             jsonObject.add("result", ConvertUtils.serializeItemStack(smithingTransformRecipe.getOutput(null)));
         } else if (recipe instanceof StonecuttingRecipe stonecuttingRecipe) {
             jsonObject.addProperty("group", stonecuttingRecipe.getGroup());
-            jsonObject.add("ingredient", stonecuttingRecipe.getIngredients().get(0).toJson());
+
+            if (stonecuttingRecipe.getIngredients().size() > 0) {
+                jsonObject.add("ingredient", stonecuttingRecipe.getIngredients().get(0).toJson());
+            } else {
+                jsonObject.add("ingredient", JsonNull.INSTANCE);
+            }
+
             jsonObject.add("result", ConvertUtils.serializeItemStack(stonecuttingRecipe.getOutput(null)));
         } else if (recipe instanceof AbstractCookingRecipe abstractCookingRecipe) {
             jsonObject.addProperty("group", abstractCookingRecipe.getGroup());
             jsonObject.addProperty("category", abstractCookingRecipe.getCategory().asString());
-            jsonObject.add("ingredient", abstractCookingRecipe.getIngredients().get(0).toJson());
+
+            if (abstractCookingRecipe.getIngredients().size() > 0) {
+                jsonObject.add("ingredient", abstractCookingRecipe.getIngredients().get(0).toJson());
+            } else {
+                jsonObject.add("ingredient", JsonNull.INSTANCE);
+            }
+
             jsonObject.add("result", ConvertUtils.serializeItemStack(abstractCookingRecipe.getOutput(null)));
             jsonObject.addProperty("experience", abstractCookingRecipe.getExperience());
             jsonObject.addProperty("cookingTime", abstractCookingRecipe.getCookTime());
