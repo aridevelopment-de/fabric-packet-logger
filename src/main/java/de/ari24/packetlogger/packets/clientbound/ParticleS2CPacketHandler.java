@@ -21,7 +21,11 @@ public class ParticleS2CPacketHandler implements BasePacketHandler<ParticleS2CPa
     public JsonObject serialize(ParticleS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
 
-        Identifier id = Registries.PARTICLE_TYPE.getId(packet.getParameters().getType());
+        Identifier id = null;
+
+        if (packet.getParameters().getType() != null) {
+            id = Registries.PARTICLE_TYPE.getId(packet.getParameters().getType());
+        }
 
         if (id != null) {
             jsonObject.addProperty("particleType", id.toString());

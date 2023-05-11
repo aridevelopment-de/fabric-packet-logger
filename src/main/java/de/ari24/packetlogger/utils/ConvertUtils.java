@@ -17,6 +17,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.GlobalPos;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -150,8 +151,12 @@ public class ConvertUtils {
         return "#" + Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b);
     }
 
-    public static JsonObject serializeStatusEffect(StatusEffect statusEffect) {
+    public static JsonObject serializeStatusEffect(@Nullable StatusEffect statusEffect) {
         JsonObject jsonObject = new JsonObject();
+
+        if (statusEffect == null) {
+            return jsonObject;
+        }
 
         Identifier identifier = Registries.STATUS_EFFECT.getId(statusEffect);
 

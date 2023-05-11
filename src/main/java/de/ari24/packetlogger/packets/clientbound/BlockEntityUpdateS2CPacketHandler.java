@@ -13,7 +13,11 @@ public class BlockEntityUpdateS2CPacketHandler implements BasePacketHandler<Bloc
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("location", packet.getPos().toString());
 
-        Identifier id = Registries.BLOCK_ENTITY_TYPE.getId(packet.getBlockEntityType());
+        Identifier id = null;
+
+        if (packet.getBlockEntityType() != null) {
+            id = Registries.BLOCK_ENTITY_TYPE.getId(packet.getBlockEntityType());
+        }
 
         if (id != null) {
             jsonObject.addProperty("type", id.toString());

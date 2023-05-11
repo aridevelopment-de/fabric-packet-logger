@@ -21,7 +21,11 @@ public class StatisticsS2CPacketHandler implements BasePacketHandler<StatisticsS
 
         packet.getStatMap().forEach((key, value) -> {
             JsonObject child = new JsonObject();
-            Identifier identifier = Registries.STAT_TYPE.getId(key.getType());
+            Identifier identifier = null;
+
+            if (key.getType() != null) {
+                identifier = Registries.STAT_TYPE.getId(key.getType());
+            }
 
             if (identifier == null) {
                 child.addProperty("id", key.toString());
