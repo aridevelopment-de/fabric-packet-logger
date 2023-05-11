@@ -277,7 +277,7 @@ public class PacketHandler {
         readyForSending.offer(new SerializedPacketData(packetId, index, timestamp, state.ordinal(), side.ordinal()));
     }
 
-    public static List<JsonObject> retrieveAllPacketDetails() {
+    public static List<JsonObject> retrieveAllPacketDetails() throws Exception {
         List<JsonObject> array = new ArrayList<>();
 
         for (int i = 0; i < packetData.size(); i++) {
@@ -303,7 +303,7 @@ public class PacketHandler {
         return array;
     }
 
-    public static <T extends Packet<?>> JsonElement retrievePacketDetails(int index) {
+    public static <T extends Packet<?>> JsonElement retrievePacketDetails(int index) throws Exception {
         PacketData data = packetData.get(index);
 
         if (data == null) return null;

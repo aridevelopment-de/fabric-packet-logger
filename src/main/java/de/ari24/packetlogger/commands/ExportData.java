@@ -30,12 +30,17 @@ public class ExportData {
     public static LiteralArgumentBuilder<FabricClientCommandSource> register() {
         return ClientCommandManager.literal("export")
                 .executes(ctx -> {
-                    exportData(List.of(), List.of());
+                    try {
+                        exportData(List.of(), List.of());
+                    } catch (Exception e) {
+                        PacketLoggerToast.notify("An error occurred while retrieving packet details. Please check your console for more detail!");
+                        PacketLogger.LOGGER.error("An error occurred while retrieving packet details!", e);
+                    }
                     return 1;
                 });
     }
 
-    public static void exportData(List<String> whitelist, List<String> blacklist) {
+    public static void exportData(List<String> whitelist, List<String> blacklist) throws Exception {
         // whitelist: ["cbound-play-0x4E"]
         PacketLogger.CONFIG.logState(PacketLoggerConfigModel.LogState.OFF);
         PacketLoggerToast.notify("Exporting packets. This might take a while...");
