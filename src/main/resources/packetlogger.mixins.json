@@ -6,6 +6,7 @@
   "mixins": [
     "AdvancementProgressAccessor",
     "BossBarS2CPacketAccessor",
+    "ChunkDataBlockEntityDataMixin",
     "ChunkDeltaS2CPacketAccessor",
     "ClientConnectionMixin",
     "CommandTreeS2CPacketAccessor",

@@ -6,9 +6,11 @@ import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import de.ari24.packetlogger.packets.clientbound.*;
 import de.ari24.packetlogger.packets.serverbound.*;
+import de.ari24.packetlogger.ui.PacketLoggerToast;
 import de.ari24.packetlogger.web.handlers.WSSPacket;
 import io.netty.buffer.Unpooled;
 import lombok.Getter;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.PacketByteBuf;
@@ -258,23 +260,29 @@ public class PacketHandler {
 
     @SuppressWarnings("unchecked")
     public static void handlePacket(Packet<?> packet, NetworkSide side) {
-        if (packet instanceof BundleS2CPacket bundleS2CPacket) {
-            bundleS2CPacket.getPackets().forEach(p -> PacketHandler.handlePacket(p, side));
-            return;
+        try {
+            if (packet instanceof BundleS2CPacket bundleS2CPacket) {
+                bundleS2CPacket.getPackets().forEach(p -> PacketHandler.handlePacket(p, side));
+                return;
+            }
+
+            PACKET_TICKER.tick();
+
+            PacketByteBuf buf = PacketByteBufs.create();
+            NetworkState state = Objects.requireNonNull(NetworkState.getPacketHandlerState(packet));
+            int packetId = state.getPacketId(side, packet);
+            int index = packetData.size();
+            long timestamp = System.currentTimeMillis();
+
+            packet.write(buf);
+
+            packetData.add(new PacketData(buf, state, side, packetId, timestamp));
+            readyForSending.offer(new SerializedPacketData(packetId, index, timestamp, state.ordinal(), side.ordinal()));
+        } catch (Exception e) {
+            PacketLoggerToast.notify("Error occurred while handling packet. Check console!");
+            PacketLogger.LOGGER.error("Error occurred while handling packet: " + packet.getClass().getSimpleName(), e);
+            PacketLogger.LOGGER.error("Side: " + side.name());
         }
-
-        PACKET_TICKER.tick();
-
-        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-        NetworkState state = Objects.requireNonNull(NetworkState.getPacketHandlerState(packet));
-        int packetId = state.getPacketId(side, packet);
-        int index = packetData.size();
-        long timestamp = System.currentTimeMillis();
-
-        packet.write(buf);
-
-        packetData.add(new PacketData(buf, state, side, packetId, timestamp));
-        readyForSending.offer(new SerializedPacketData(packetId, index, timestamp, state.ordinal(), side.ordinal()));
     }
 
     public static List<JsonObject> retrieveAllPacketDetails() throws Exception {
