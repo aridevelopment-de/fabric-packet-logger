@@ -22,7 +22,9 @@ enum PacketId {
     REQUEST_MC_PACKET_INFO,
     MC_PACKET_INFO,
     REQUEST_CLEAR,
-    REQUEST_EXPORT
+    REQUEST_EXPORT,
+    WHITE_BLACK_LIST_CONFIRM,
+    WHITE_BLACK_LIST_CHANGE
 }
 ````
 
@@ -123,6 +125,22 @@ public enum NetworkState {
 }
 ````
 
+## ``white_black_list_confirm``
+
+Confirms the state of the white/blacklist. Will be sent after each white_black_list_change packet.
+White/Blacklist entry is given in the following format: ``(cbound|sbound)-(play|login|status|handshake)-0x[0-9a-f]{2}``
+
+
+````json
+{
+  "id": 7,
+  "data": {
+    "whitelist": ["cbound-play-0x01", "sbound-play-0x02", "..."],
+    "blacklist": ["cbound-play-0x03", "sbound-play-0x04", "..."]
+  }
+}
+````
+
 # Web -> Client
 
 ## ``packetlogger_logstate``
@@ -164,10 +182,20 @@ public enum NetworkState {
 
 `````json
 {
-  "id": 6,
-  "data": {
-    "whitelist": ["play-0x01", "play-0x02"],
-    "blacklist": ["play-0x03", "play-0x04"]
-  }
+  "id": 6
 }
 `````
+
+## ``white_black_list_change``
+
+Will be sent whenever the frontend changes the whitelist/blacklist. MC Client responds with a ``white_black_list_confirm`` packet containing updated white/blacklist data.
+
+````json
+{
+  "id": 8,
+  "data": {
+    "whitelist": ["cbound-play-0x01", "sbound-play-0x02", "..."],
+    "blacklist": ["cbound-play-0x03", "sbound-play-0x04", "..."]
+  }
+}
+````

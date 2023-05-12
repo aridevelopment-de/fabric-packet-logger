@@ -67,7 +67,7 @@ to this websocket as well and receive the same data as the web-ui. I'd recommend
 using [insomnia](https://insomnia.rest/) or [weasel](https://addons.mozilla.org/de/firefox/addon/websocket-weasel/) on
 firefox.  
 A protocol has been defined for the websocket. It uses data chunking and lazy loading of packet information to reduce
-traffic. See metadata.md for more information.
+traffic. See protocol.md for more information.
 
 ## Previews
 

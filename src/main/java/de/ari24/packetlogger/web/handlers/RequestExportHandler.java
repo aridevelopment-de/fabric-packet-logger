@@ -12,11 +12,8 @@ import java.util.List;
 public class RequestExportHandler implements BaseHandler {
     @Override
     public void handle(WebSocket ws, JsonObject data) {
-        List<String> whitelist = data.getAsJsonObject("data").get("whitelist").getAsJsonArray().asList().stream().map(JsonElement::getAsString).toList();
-        List<String> blacklist = data.getAsJsonObject("data").get("blacklist").getAsJsonArray().asList().stream().map(JsonElement::getAsString).toList();
-
         try {
-            ExportData.exportData(whitelist, blacklist);
+            ExportData.exportData();
         } catch (Exception e) {
             PacketLoggerToast.notify("An error occurred while retrieving packet details. Please check your console for more detail!");
             PacketLogger.LOGGER.error("An error occurred while retrieving packet details!", e);

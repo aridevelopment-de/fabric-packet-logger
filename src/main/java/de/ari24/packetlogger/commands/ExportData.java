@@ -31,7 +31,7 @@ public class ExportData {
         return ClientCommandManager.literal("export")
                 .executes(ctx -> {
                     try {
-                        exportData(List.of(), List.of());
+                        exportData();
                     } catch (Exception e) {
                         PacketLoggerToast.notify("An error occurred while retrieving packet details. Please check your console for more detail!");
                         PacketLogger.LOGGER.error("An error occurred while retrieving packet details!", e);
@@ -40,7 +40,7 @@ public class ExportData {
                 });
     }
 
-    public static void exportData(List<String> whitelist, List<String> blacklist) throws Exception {
+    public static void exportData() throws Exception {
         // whitelist: ["cbound-play-0x4E"]
         PacketLogger.CONFIG.logState(PacketLoggerConfigModel.LogState.OFF);
         PacketLoggerToast.notify("Exporting packets. This might take a while...");
@@ -50,7 +50,7 @@ public class ExportData {
             String direction = NetworkSide.values()[packet.get("direction").getAsInt()] == NetworkSide.CLIENTBOUND ? "cbound" : "sbound";
             String networkState = NetworkState.values()[packet.get("networkState").getAsInt()].name().toLowerCase();
             String formattedId = direction + "-" + networkState.toLowerCase() + "-" + MinecraftUtils.convertToPacketId(id);
-            return (whitelist.size() > 0 && whitelist.contains(formattedId)) || (blacklist.size() > 0 && !blacklist.contains(formattedId)) || (whitelist.size() == 0 && blacklist.size() == 0);
+            return (PacketHandler.getWhitelist().size() > 0 && PacketHandler.getWhitelist().contains(formattedId)) || (PacketHandler.getBlacklist().size() > 0 && !PacketHandler.getBlacklist().contains(formattedId)) || (PacketHandler.getWhitelist().size() == 0 && PacketHandler.getBlacklist().size() == 0);
         }).collect(JsonArray::new, JsonArray::add, JsonArray::addAll);
 
         // let filename be current date and time

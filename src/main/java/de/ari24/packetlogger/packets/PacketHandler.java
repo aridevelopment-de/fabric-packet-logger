@@ -37,6 +37,12 @@ public class PacketHandler {
     private static final Map<Class<? extends Packet<?>>, BasePacketHandler<?>> HANDLERS = new HashMap<>();
 
     @Getter
+    private static final List<String> whitelist = new ArrayList<>();
+
+    @Getter
+    private static final List<String> blacklist = new ArrayList<>();
+
+    @Getter
     private static final List<PacketData> packetData = new ArrayList<>();
     private static final Queue<SerializedPacketData> readyForSending = new ConcurrentLinkedQueue<>();
 
@@ -271,6 +277,16 @@ public class PacketHandler {
             PacketByteBuf buf = PacketByteBufs.create();
             NetworkState state = Objects.requireNonNull(NetworkState.getPacketHandlerState(packet));
             int packetId = state.getPacketId(side, packet);
+            String packetIdRepresentation = convertToRepresentation(packetId, state, side);
+
+            if (whitelist.size() > 0 && !whitelist.contains(packetIdRepresentation)) {
+                return;
+            }
+
+            if (blacklist.contains(packetIdRepresentation)) {
+                return;
+            }
+
             int index = packetData.size();
             long timestamp = System.currentTimeMillis();
 
@@ -283,6 +299,15 @@ public class PacketHandler {
             PacketLogger.LOGGER.error("Error occurred while handling packet: " + packet.getClass().getSimpleName(), e);
             PacketLogger.LOGGER.error("Side: " + side.name());
         }
+    }
+
+    private static String convertToRepresentation(int packetId, NetworkState state, NetworkSide side) {
+        // "(cbound|sbound)-(play|login|status|handshake)-0x[0-9a-f]{2}"
+        String packetIdRepresentation = "0x" + String.format("%02X", packetId);
+        String packetRepresentation = side == NetworkSide.CLIENTBOUND ? "cbound" : "sbound";
+        packetRepresentation += "-" + state.name().toLowerCase(Locale.ROOT);  // TODO: May fail
+        packetRepresentation += "-" + packetIdRepresentation;
+        return packetRepresentation;
     }
 
     public static List<JsonObject> retrieveAllPacketDetails() throws Exception {

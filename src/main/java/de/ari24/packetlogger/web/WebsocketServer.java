@@ -25,7 +25,8 @@ public class WebsocketServer extends WebSocketServer {
             WSSPacket.PACKETLOGGER_LOGSTATE.ordinal(), PacketloggerLogstateHandler.class,
             WSSPacket.REQUEST_MC_PACKET_INFO.ordinal(), RequestMcPacketInfoHandler.class,
             WSSPacket.REQUEST_CLEAR.ordinal(), RequestClearHandler.class,
-            WSSPacket.REQUEST_EXPORT.ordinal(), RequestExportHandler.class
+            WSSPacket.REQUEST_EXPORT.ordinal(), RequestExportHandler.class,
+            WSSPacket.WHITE_BLACK_LIST_CHANGE.ordinal(), WhiteBlackListChangeHandler.class
     );
 
     public WebsocketServer(int port) {
