@@ -2,6 +2,7 @@ package de.ari24.packetlogger.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import com.mojang.authlib.GameProfile;
 import de.ari24.packetlogger.PacketLogger;
 import net.minecraft.client.MinecraftClient;
@@ -171,5 +172,23 @@ public class ConvertUtils {
         jsonObject.addProperty("color", convertRGB(statusEffect.getColor()));
         jsonObject.addProperty("positive", statusEffect.isBeneficial());
         return jsonObject;
+    }
+
+    public static Object convertJsonPrimitive(JsonPrimitive primitive) {
+        if (primitive.isBoolean()) {
+            return primitive.getAsBoolean();
+        } else if (primitive.isNumber()) {
+            return primitive.getAsNumber();
+        } else if (primitive.isString()) {
+            return primitive.getAsString();
+        } else if (primitive.isJsonNull()) {
+            return null;
+        } else if (primitive.isJsonArray()) {
+            return primitive.getAsJsonArray().asList();
+        } else if (primitive.isJsonObject()) {
+            return primitive.getAsJsonObject();
+        } else {
+            return primitive;
+        }
     }
 }
