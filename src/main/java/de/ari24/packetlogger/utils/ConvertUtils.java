@@ -16,8 +16,10 @@ import net.minecraft.network.packet.s2c.play.ChunkData;
 import net.minecraft.network.packet.s2c.play.LightData;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.GlobalPos;
+import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -111,17 +113,14 @@ public class ConvertUtils {
 
     public static void appendEntity(JsonObject jsonObject, int entityId, String key, String idKey) {
         ClientWorld clientWorld = MinecraftClient.getInstance().world;
+        jsonObject.addProperty(idKey, entityId);
 
         if (PacketLogger.CONFIG.resolveEntityIdsToEntities() && clientWorld != null) {
             Entity entity = clientWorld.getEntityById(entityId);
 
             if (entity != null) {
                 jsonObject.add(key, ConvertUtils.serializeEntity(entity));
-            } else {
-                jsonObject.addProperty(idKey, entityId);
             }
-        } else {
-            jsonObject.addProperty(idKey, entityId);
         }
     }
 
@@ -142,6 +141,24 @@ public class ConvertUtils {
         jsonObject.addProperty("world", entity.getWorld().toString());
         jsonObject.addProperty("pos", entity.getPos().toString());
         return jsonObject;
+    }
+
+    public static String serializeBlockPos(BlockPos pos) {
+        return pos.getX() + "," + pos.getY() + "," + pos.getZ();
+    }
+
+    public static BlockPos deserializeBlockPos(String pos) {
+        String[] split = pos.split(",");
+        return new BlockPos(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+    }
+
+    public static String serializeVec3d(Vec3d vec3d) {
+        return vec3d.getX() + "," + vec3d.getY() + "," + vec3d.getZ();
+    }
+
+    public static Vec3d deserializeVec3d(String vec3d) {
+        String[] split = vec3d.split(",");
+        return new Vec3d(Double.parseDouble(split[0]), Double.parseDouble(split[1]), Double.parseDouble(split[2]));
     }
 
     public static String convertRGB(int color) {

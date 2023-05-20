@@ -8,6 +8,13 @@ import net.minecraft.world.GameMode;
 
 public class GameStateChangeS2CPacketHandler implements BasePacketHandler<GameStateChangeS2CPacket> {
 
+    @Override
+    public GameStateChangeS2CPacket deserialize(Class<GameStateChangeS2CPacket> clazz, JsonObject json) throws Exception {
+        GameStateChangeS2CPacket.Reason reason = new GameStateChangeS2CPacket.Reason(json.get("eventId").getAsInt());
+        float value = json.get("value").getAsFloat();
+
+        return new GameStateChangeS2CPacket(reason, value);
+    }
 
     @Override
     public JsonObject serialize(GameStateChangeS2CPacket packet) {
@@ -67,18 +74,17 @@ public class GameStateChangeS2CPacketHandler implements BasePacketHandler<GameSt
             }
         }
 
+        jsonObject.addProperty("eventId", accessor.getId());
+
         if (event != null) {
             jsonObject.addProperty("event", event);
-        } else {
-            jsonObject.addProperty("event", accessor.getId());
         }
+
+        jsonObject.addProperty("rawValue", packet.getValue());
 
         if (value != null) {
             jsonObject.addProperty("value", value);
-        } else {
-            jsonObject.addProperty("value", packet.getValue());
         }
-
         return jsonObject;
     }
 }

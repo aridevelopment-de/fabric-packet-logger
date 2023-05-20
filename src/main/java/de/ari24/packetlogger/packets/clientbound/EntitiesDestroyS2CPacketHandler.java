@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import de.ari24.packetlogger.PacketLogger;
 import de.ari24.packetlogger.packets.BasePacketHandler;
 import de.ari24.packetlogger.utils.ConvertUtils;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -13,7 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntitiesDestroyS2CPacketHandler implements BasePacketHandler<EntitiesDestroyS2CPacket> {
+    @Override
+    public EntitiesDestroyS2CPacket deserialize(Class<EntitiesDestroyS2CPacket> clazz, JsonObject json) throws Exception {
+        IntList entityIds = new IntArrayList();
 
+        for (int entityId : ConvertUtils.GSON_INSTANCE.fromJson(json.get("entityIds"), int[].class)) {
+            entityIds.add(entityId);
+        }
+
+        return new EntitiesDestroyS2CPacket(entityIds);
+    }
 
     @Override
     public JsonObject serialize(EntitiesDestroyS2CPacket packet) {

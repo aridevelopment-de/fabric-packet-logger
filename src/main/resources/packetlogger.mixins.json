@@ -12,6 +12,8 @@
     "CommandTreeS2CPacketAccessor",
     "DebugHudMixin",
     "EndCombatS2CPacketAccessor",
+    "EntitySetHeadYawS2CPacketAccessor",
+    "EntityStatusS2CPacketAccessor",
     "GameStateChangeS2CPacketReasonAccessor",
     "LoginHelloS2CPacketAccessor",
     "LoginKeyC2SPacketAccessor",
